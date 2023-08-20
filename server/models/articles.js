@@ -15,6 +15,7 @@ const articleSchema = mongoose.Schema(
             type: String,
             required: [true, "Article Content is Required!"],
         },
+        createdBy: { type: mongoose.Types.ObjectId, ref: "User" },
     },
     { timestamps: true }
 );

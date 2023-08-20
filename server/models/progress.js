@@ -7,7 +7,8 @@ const questionSchema = mongoose.Schema({
 
 const progressSchema = mongoose.Schema(
     {
-        questions: [questionSchema],
+        userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+        QAArray: [questionSchema],
     },
     { timestamps: true }
 );
