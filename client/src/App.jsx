@@ -1,11 +1,14 @@
 import "./App.css";
-import ArticleQuill from "./components/ArticleQuill";
+import Header from "./components/Header";
+import Main from "./components/Main";
+import Footer from "./components/Footer";
 
 function App() {
     return (
         <>
-            <p>Hello this is wellnest frontend</p>
-            <ArticleQuill />
+            <Header />
+            <Main />
+            <Footer />
         </>
     );
 }
