@@ -5,17 +5,17 @@ const createJournal = async (req, res) => {
         const newJournal = await Journal.create(req.body);
         res.status(201).json(newJournal);
     } catch (error) {
-        res.status().json({ message: error.message, errors: error.errors });
+        res.status(500).json({ message: error.message, errors: error.errors });
     }
 };
 
 const getAllJournals = async (req, res) => {
     try {
-        const journals = await Article.find().populate("createdBy", "userName");
+        const journals = await Journal.find().populate("createdBy", "userName");
         console.log(" getting all journals:", journals);
         res.json(journals);
     } catch (error) {
-        res.status().json({ message: error.message, errors: error.errors });
+        res.status(500).json({ message: error.message, errors: error.errors });
     }
 };
 
@@ -41,6 +41,7 @@ const updateJournal = async (req, res) => {
     try {
         const {
             params: { id },
+            body,
         } = req;
         const updatedJournal = await Journal.findOneAndUpdate(
             { _id: id },
@@ -48,6 +49,7 @@ const updateJournal = async (req, res) => {
             { new: true }
         );
         console.log("Journal updated:", updatedJournal);
+        res.status(200).json(updatedJournal);
         if (!updatedJournal) {
             res.status(404).json({ message: "Journal not found" });
         }

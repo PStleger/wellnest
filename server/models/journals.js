@@ -6,6 +6,7 @@ const journalSchema = mongoose.Schema(
             type: String,
             required: [true, "Journal Content is Required!"],
         },
+        createdBy: { type: mongoose.Types.ObjectId, ref: "User" },
     },
     { timestamps: true }
 );

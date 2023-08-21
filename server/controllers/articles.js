@@ -5,7 +5,7 @@ const createArticle = async (req, res) => {
         const newArticle = await Article.create(req.body);
         res.status(201).json(newArticle);
     } catch (error) {
-        res.status().json({ message: error.message, errors: error.errors });
+        res.status(500).json({ message: error.message, errors: error.errors });
     }
 };
 
@@ -13,9 +13,10 @@ const getAllArticles = async (req, res) => {
     try {
         const articles = await Article.find().populate("createdBy", "userName");
         console.log(" getting all articles:", articles);
+        console.log(" getting createdBy:", articles.createdBy);
         res.json(articles);
     } catch (error) {
-        res.status().json({ message: error.message, errors: error.errors });
+        res.status(500).json({ message: error.message, errors: error.errors });
     }
 };
 
@@ -41,6 +42,7 @@ const updateArticle = async (req, res) => {
     try {
         const {
             params: { id },
+            body,
         } = req;
         const updatedArticle = await Article.findOneAndUpdate(
             { _id: id },
@@ -48,6 +50,7 @@ const updateArticle = async (req, res) => {
             { new: true }
         );
         console.log("Article updated:", updatedArticle);
+        res.status(200).json(updatedArticle);
         if (!updatedArticle) {
             res.status(404).json({ message: "Article not found" });
         }

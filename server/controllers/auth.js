@@ -1,6 +1,6 @@
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
-const jwt = require("jasonwebtoken");
+const jwt = require("jsonwebtoken");
 const SECRET = process.env.JWT_SECRET;
 const oneDayInMilliseconds = 24 * 60 * 60 * 1000; // time the user logged in
 
@@ -39,14 +39,14 @@ const login = async (req, res) => {
     const { userName, password } = req.body;
     if (!userName || !password) {
         //checking to see if the input valid
-        res.status(400).json({
+        return res.status(400).json({
             message: "These inputs are invalid, please check again",
         });
     }
     try {
         const currentUser = await User.findOne({ userName }); //checking to see if user exists
         if (!currentUser) {
-            res.status(400).json({ message: "Invalid login attempt" });
+            return res.status(400).json({ message: "Invalid login attempt" });
         } else {
             console.log("User trying to log in:", currentUser.userName);
             const isPasswordValid = await bcrypt.compare(
