@@ -6,10 +6,14 @@ function Register() {
     const context = useContext(AuthContext);
     const errors = context.errors;
     const [user, setUser] = useState({
+        firstName: "",
+        lastName: "",
         userName: "",
         email: "",
+        country: "",
         password: "",
         confirmPassword: "",
+        dob: "",
     });
 
     const handleChange = (e) => {
@@ -28,6 +32,28 @@ function Register() {
     if (!context.loading && !context.user) {
         return (
             <form className="form" onSubmit={handleSubmit}>
+                <label htmlFor="">First Name:</label>
+                {errors?.firstName && (
+                    <p className="text-danger">{errors?.firstName.message}</p>
+                )}
+                <input
+                    type="text"
+                    name="firstName"
+                    value={user.firstName}
+                    onChange={handleChange}
+                    required
+                />
+                <label htmlFor="">Last Name:</label>
+                {errors?.lastName && (
+                    <p className="text-danger">{errors?.lastName.message}</p>
+                )}
+                <input
+                    type="text"
+                    name="lastName"
+                    value={user.lastName}
+                    onChange={handleChange}
+                    required
+                />
                 <label htmlFor="">Username:</label>
                 {errors?.userName && (
                     <p className="text-danger">{errors?.userName.message}</p>
@@ -36,6 +62,28 @@ function Register() {
                     type="text"
                     name="userName"
                     value={user.userName}
+                    onChange={handleChange}
+                    required
+                />
+                <label htmlFor="">Country:</label>
+                {errors?.country && (
+                    <p className="text-danger">{errors?.country.message}</p>
+                )}
+                <input
+                    type="text"
+                    name="country"
+                    value={user.country}
+                    onChange={handleChange}
+                    required
+                />
+                <label htmlFor="">Date of Birth:</label>
+                {errors?.dob && (
+                    <p className="text-danger">{errors?.dob.message}</p>
+                )}
+                <input
+                    type="text"
+                    name="dob"
+                    value={user.dob}
                     onChange={handleChange}
                     required
                 />

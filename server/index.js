@@ -15,10 +15,10 @@ const path = require("path");
 app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
-app.use("/api/articles", articlesRouter);
-app.use("/api/auth", authRouter);
-app.use("/api/journals", journalsRouter);
-app.use("/api/progress", progressRouter);
+app.use("/articles", articlesRouter);
+app.use("/auth", authRouter);
+app.use("/journals", journalsRouter);
+app.use("/progress", progressRouter);
 
 if (process.env.NODE_ENV === "production") {
     const buildPath = path.join(__dirname, "../client/dist");
