@@ -21,7 +21,7 @@ app.use("/api/journals", journalsRouter);
 app.use("/api/progress", progressRouter);
 
 if (process.env.NODE_ENV === "production") {
-    const buildPath = path.join(_dirname, "../client/dist");
+    const buildPath = path.join(__dirname, "../client/dist");
     app.use(express.static(buildPath));
     app.get("*", (req, res) => {
         res.sendFile(path.join(buildPath, "index.html"));
