@@ -89,7 +89,7 @@ const getLoggedInUser = async (req, res) => {
     // to have logged in user information once they logged in
     try {
         const user = await User.findOne({ _id: req.user._id }).select(
-            "_id email username"
+            "_id email userName"
         );
         console.log("user still logged in", user);
         res.json({ user });
