@@ -7,6 +7,7 @@ const oneDayInMilliseconds = 24 * 60 * 60 * 1000; // time the user logged in
 //creating a new user function for registration
 const register = async (req, res) => {
     try {
+        console.log("before user.create");
         const newUser = await User.create(req.body); // creating new user
         console.log("new user create:", newUser);
         const user = {

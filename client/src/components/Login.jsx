@@ -20,7 +20,7 @@ function Login() {
         context.login(user);
     };
     if (!context.loading && context.user) {
-        return <Navigate to="/" />;
+        return <Navigate to="/dashboard" />;
     }
 
     if (!context.loading && !context.user) {
