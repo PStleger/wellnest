@@ -1,6 +1,8 @@
-import { createContext, useState, useEffect } from 'react';
-import axios from '../axiosInstance';
-import { useNavigate } from 'react-router-dom';
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+import { createContext, useState, useEffect } from "react";
+import axios from "../axiosInstance";
+import { useNavigate } from "react-router-dom";
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
@@ -8,7 +10,7 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [errors, setErrors] = useState(null);
     const navigate = useNavigate();
-    
+
     const setState = (user, loading, errors) => {
         setUser(user);
         setLoading(loading);
@@ -16,52 +18,54 @@ const AuthProvider = ({ children }) => {
     };
 
     // Are we logged in?
-    useEffect(() => {  
+    useEffect(() => {
         axios
-        .get('auth/currentUser')
-        .then(res => setState(res.data.user, false, null))
-        .catch(error => {
-            setState(null, false, null);
-        });
+            .get("auth/currentUser")
+            .then((res) => setState(res.data.user, false, null))
+            .catch((error) => {
+                setState(null, false, null);
+            });
     }, []);
 
-    const login = async user => {
+    const login = async (user) => {
         setLoading(true);
         try {
-        const res = await axios.post('auth/login', user);
-        setState(res.data.user, false, null);
-        navigate('/');
+            const res = await axios.post("auth/login", user);
+            setState(res.data.user, false, null);
+            navigate("/");
         } catch (error) {
-        console.log(error.response);
-        setState(null, false, error.response.data);
+            console.log(error.response);
+            setState(null, false, error.response.data);
         }
     };
-    const register = async user => {
+    const register = async (user) => {
         setLoading(true);
         try {
-        const res = await axios.post('auth/register', user);
-        setState(res.data.user, false, null);
-        navigate('/');
+            const res = await axios.post("auth/register", user);
+            setState(res.data.user, false, null);
+            navigate("/");
         } catch (error) {
-        console.log(error.response);
-        setState(null, false, error.response.data.errors);
+            console.log(error.response);
+            setState(null, false, error.response.data.errors);
         }
     };
     const logout = async () => {
         setLoading(true);
         try {
-        const res = await axios.post('auth/logout', {});
-        setState(null, false, null);
-        navigate('/');
-        window.location.reload();
+            const res = await axios.post("auth/logout", {});
+            setState(null, false, null);
+            navigate("/");
+            window.location.reload();
         } catch (error) {
-        console.log(error.response);
-        setState(null, false, error.response.errors);
+            console.log(error.response);
+            setState(null, false, error.response.errors);
         }
     };
     return (
-        <AuthContext.Provider value={{ user, loading, errors, login, register, logout }}>
-        {children}
+        <AuthContext.Provider
+            value={{ user, loading, errors, login, register, logout }}
+        >
+            {children}
         </AuthContext.Provider>
     );
 };

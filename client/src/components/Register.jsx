@@ -31,10 +31,13 @@ function Register() {
 
     if (!context.loading && !context.user) {
         return (
-            <form className="form" onSubmit={handleSubmit}>
+            <form
+                className="form flex flex-col gap-2 border w-1/5 border-gray-600 mx-auto justify-center items-center my-5 py-5"
+                onSubmit={handleSubmit}
+            >
                 <label htmlFor="">First Name:</label>
                 {errors?.firstName && (
-                    <p className="text-danger">{errors?.firstName.message}</p>
+                    <p className="text-danger ">{errors?.firstName.message}</p>
                 )}
                 <input
                     type="text"
@@ -42,6 +45,7 @@ function Register() {
                     value={user.firstName}
                     onChange={handleChange}
                     required
+                    className="border border-red-200 w-5/6 "
                 />
                 <label htmlFor="">Last Name:</label>
                 {errors?.lastName && (
@@ -53,6 +57,7 @@ function Register() {
                     value={user.lastName}
                     onChange={handleChange}
                     required
+                    className="border border-red-200 w-5/6"
                 />
                 <label htmlFor="">Username:</label>
                 {errors?.userName && (
@@ -64,6 +69,7 @@ function Register() {
                     value={user.userName}
                     onChange={handleChange}
                     required
+                    className="border border-red-200 w-5/6"
                 />
                 <label htmlFor="">Country:</label>
                 {errors?.country && (
@@ -75,6 +81,7 @@ function Register() {
                     value={user.country}
                     onChange={handleChange}
                     required
+                    className="border border-red-200 w-5/6"
                 />
                 <label htmlFor="">Date of Birth:</label>
                 {errors?.dob && (
@@ -86,6 +93,7 @@ function Register() {
                     value={user.dob}
                     onChange={handleChange}
                     required
+                    className="border border-red-200 w-5/6"
                 />
                 <label htmlFor="">Email:</label>
                 {errors?.email && (
@@ -97,6 +105,7 @@ function Register() {
                     value={user.email}
                     onChange={handleChange}
                     required
+                    className="border border-red-200 w-5/6"
                 />
                 <label htmlFor="">Password:</label>
                 {errors?.password && (
@@ -108,6 +117,7 @@ function Register() {
                     value={user.password}
                     onChange={handleChange}
                     required
+                    className="border border-red-200 w-5/6"
                 />
                 <label htmlFor="">Confirm Password</label>
                 {errors?.confirmPassword && (
@@ -121,8 +131,11 @@ function Register() {
                     value={user.confirmPassword}
                     onChange={handleChange}
                     required
+                    className="border border-red-200 w-5/6"
                 />
-                <button>Register</button>
+                <button className="border-2 border-red-900 w-2/6 my-5">
+                    Register
+                </button>
             </form>
         );
     }
