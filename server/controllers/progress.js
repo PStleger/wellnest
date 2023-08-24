@@ -1,14 +1,15 @@
 const Progress = require("../models/progress");
 
+
 const createProgress = async (req, res) => {
     try {
         const { userId, QAArray } = req.body;
 
         const progress = await Progress.create({
             userId,
-            QAArray: QAArray.map((answer) => ({
-                questionText: answer.questionText,
-                answer: answer.answer,
+            QAArray: QAArray.map((item) => ({
+                question: item.question,
+                answer: item.answer,
             })),
         });
         res.status(201).json(progress);
@@ -62,10 +63,34 @@ const deleteProgress = async (req, res) => {
         res.status(500).json({ message: error.message, errors: error.errors });
     }
 };
-
+// const createImageProgress = async (req, res) => {
+//     try {
+//       console.log('MULTER FILE??', req.file.path);
+//       const progress = await progress.create({ ...req.body, image: req.file.path });
+//       res.status(201).json(progress);
+//     } catch (error) {
+//       res.status(500).json({ message: error.message });
+//     }
+//   };
+const createImageProgress = (req, res) => {
+    const imageFile = req.file.buffer.toString('base64');
+  
+    cloudinary.uploader
+      .upload(`data:image/png;base64,${imageFile}`, {
+        resource_type: 'image',
+      })
+      .then((result) => {
+        res.json({ imageUrl: result.secure_url });
+        console.log(result.secure_url);
+      })
+      .catch((error) => {
+        res.status(500).json({ error: 'Error uploading image to Cloudinary' });
+      });
+  };
 module.exports = {
     createProgress,
     getAllProgress,
     getProgressById,
     deleteProgress,
+    createImageProgress,
 };
