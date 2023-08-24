@@ -1,0 +1,48 @@
+.boxbutton {
+    height: 2.5rem;
+    background-color: white;
+    color: #b336e4;
+    padding: 1rem;
+    border: 0.2rem solid white;
+    border-radius: 3px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    position: relative;
+    margin-bottom: 5rem;
+}
+/* 
+.boxbutton:hover{
+    cursor: pointer;
+    background: rgb(107, 237, 14);
+    color: #b336e4;
+} */
+
+.boxbutton::before,
+.boxbutton::after {
+    content: "";
+    position: absolute;
+    inset: -0.5rem;
+    background: conic-gradient(
+        from var(--gradient-angle),
+        #b336e4,
+        rgb(8, 238, 246)
+    );
+    animation: rotation 5s linear infinite;
+    border-radius: inherit;
+    z-index: -1;
+}
+
+.boxbutton::after {
+    filter: blur(3.5rem);
+}
+
+@keyframes rotation {
+    0% {
+        --gradient-angle: 0deg;
+    }
+    100% {
+        --gradient-angle: 360deg;
+    }
+}
