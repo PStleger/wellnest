@@ -1,5 +1,7 @@
 const NewJournal = () => {
-    return <div></div>;
+    return <div>
+        This is a new Journal page!!!
+    </div>;
 };
 
 export default NewJournal;
