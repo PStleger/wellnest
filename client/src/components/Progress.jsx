@@ -1,4 +1,4 @@
-import { useState, Fragment, useRef } from "react";
+import { useState, Fragment, useRef, useEffect } from "react";
 import Wheel from "@uiw/react-color-wheel";
 import { hsvaToHex } from "@uiw/color-convert";
 import { ReactSketchCanvas } from "react-sketch-canvas";
@@ -10,11 +10,15 @@ const Progress = () => {
     const navigate = useNavigate();
     const [answer, setAnswer] = useState("");
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+    // const [canvasDataURL, setCanvasDataURL] = useState("");
     const [hsva, setHsva] = useState({ h: 214, s: 43, v: 90, a: 1 });
-    const [showBox, setShowBox] = useState(false);
+    const [answeredQuestion1, setAnsweredQuestion1] = useState(false);
+    const [showBoxBreathing, setShowBoxBreathing] = useState(false);
+    const [showScanButton, setShowScanButton] = useState(false);
+    const [showBodyScan, setShowBodyScan] = useState(false);
     const [QAarray, setQAarray] = useState([
         {
-            question: "How are you feeling today?", //0
+            question: "How are you feeling today? It's ok if you're not sure.", //0
             answer: "",
         },
         {
@@ -45,6 +49,27 @@ const Progress = () => {
             answer: "",
         },
     ]);
+
+    useEffect(() => {
+        if (answeredQuestion1) {
+            const timer = setTimeout(() => {
+                setShowScanButton(true);
+            }, 16 * 1000); // 16 seconds in milliseconds
+
+            return () => clearTimeout(timer);
+        }
+    }, [answeredQuestion1]);
+
+    useEffect(() => {
+        if (showScanButton) {
+            const timer = setTimeout(() => {
+                // Your code to show the "Continue for Body Scan" button
+            }, 16000); // 16 seconds in milliseconds
+
+            return () => clearTimeout(timer);
+        }
+    }, [showScanButton]);
+
     const updateAnswer = (e) => {
         setAnswer(e.target.value);
     };
@@ -55,14 +80,27 @@ const Progress = () => {
             const updatedQAarray = [...QAarray];
             updatedQAarray[currentQuestionIndex].answer = answer; // Save the answer
             setQAarray(updatedQAarray); // Update the question-answer array
+            if (currentQuestionIndex === 0) {
+                setAnsweredQuestion1(true);
+                setShowBoxBreathing(true);
+            }
+            setCurrentQuestionIndex(currentQuestionIndex + 1);
             setAnswer(""); // Clear the answer for the next question
             // console.log(answer, updatedQAarray);
-            if (currentQuestionIndex === 0) {
-                setShowBox(true);
-            } else {
-                setCurrentQuestionIndex(currentQuestionIndex + 1);
-            }
         }
+    };
+    const handleQuestionAfterBox = () => {
+        // handleNextQuestion();
+        setShowBoxBreathing(false);
+        handleBodyScan();
+    };
+    const handleQuestionAfterBodyScan = () => {
+        handleNextQuestion();
+        setShowBodyScan(false);
+    };
+
+    const handleBodyScan = () => {
+        setShowBodyScan(true);
     };
     const wheel = () => {
         const updateWheelColor = (color) => {
@@ -70,6 +108,7 @@ const Progress = () => {
             // console.log(color.hsva);
             setAnswer(JSON.stringify(color.hsva)); // Convert HSVa to a string and set it as the answer
         };
+
         return (
             <Fragment>
                 <Wheel color={hsva} onChange={updateWheelColor} />
@@ -165,10 +204,30 @@ const Progress = () => {
 
     return (
         <div>
-            <p>{QAarray[currentQuestionIndex].question}</p>
-            {currentQuestionIndex === 0 && showBox ? (
-                <button className="boxbutton">Box Breathing</button>
+            {showBodyScan ? <p>This is body scan</p> : null}
+            {showBodyScan ? (
+                <button onClick={handleQuestionAfterBodyScan}>
+                    Continue to questions
+                </button>
+            ) : answeredQuestion1 && showBoxBreathing ? (
+                <div>
+                    <p>BOX BREATHING INSTRUCTIONS</p>
+                    <button
+                        className="boxbutton"
+                        onClick={handleQuestionAfterBox}
+                    >
+                        Box Breathing
+                    </button>
+                </div>
+            ) : (
+                <p>{QAarray[currentQuestionIndex].question}</p>
+            )}
+            {showBoxBreathing && showScanButton ? (
+                <button onClick={handleQuestionAfterBox}>
+                    Continue for Body Scan
+                </button>
             ) : null}
+
             {currentQuestionIndex == 2 || currentQuestionIndex == 7 ? (
                 <div>{wheel()}</div>
             ) : null}
@@ -189,7 +248,9 @@ const Progress = () => {
             {/* {currentQuestionIndex == 4 ? (
   <img src={QAarray[currentQuestionIndex-1].answer} alt="" />
 ):null} */}
-            {currentQuestionIndex == 2 ||
+            {showBoxBreathing ||
+            showBodyScan ||
+            currentQuestionIndex == 2 ||
             currentQuestionIndex == 7 ||
             currentQuestionIndex == 3 ||
             currentQuestionIndex == 9 ||
@@ -206,11 +267,12 @@ const Progress = () => {
                     onChange={updateAnswer}
                 />
             )}
-            {currentQuestionIndex == 5 ||
-            currentQuestionIndex == 6 ||
-            currentQuestionIndex == 8 ||
-            currentQuestionIndex == 10 ||
-            currentQuestionIndex == 12 ? (
+            {showBoxBreathing == false &&
+            (currentQuestionIndex == 5 ||
+                currentQuestionIndex == 6 ||
+                currentQuestionIndex == 8 ||
+                currentQuestionIndex == 10 ||
+                currentQuestionIndex == 12) ? (
                 <div>
                     <button
                         className="border border-red-200 w-5/6"
@@ -226,13 +288,20 @@ const Progress = () => {
                     </button>
                 </div>
             ) : null}
-            {currentQuestionIndex == 3 || currentQuestionIndex == 9 ? (
+            {showBoxBreathing == false &&
+            showBodyScan == false &&
+            (currentQuestionIndex == 3 || currentQuestionIndex == 9) ? (
                 <button onClick={handleCanvas}>Continue</button>
             ) : (
-                <button onClick={handleNextQuestion}>Continue</button>
+                showBoxBreathing == false &&
+                showBodyScan == false && (
+                    <button onClick={handleNextQuestion}>Continue</button>
+                )
             )}
 
-            {currentQuestionIndex == 14 ? (
+            {showBoxBreathing == false &&
+            showBodyScan == false &&
+            currentQuestionIndex == 14 ? (
                 <div>
                     <button
                         onClick={handleJournal}
