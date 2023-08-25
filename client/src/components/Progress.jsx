@@ -10,6 +10,7 @@ const Progress = () => {
   });
   const [answer, setAnswer] = useState("");
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [canvasDataURL, setCanvasDataURL] = useState("");
   const [hsva, setHsva] = useState({ h: 214, s: 43, v: 90, a: 1 });
   const [QAarray, setQAarray] = useState([
     {
@@ -76,8 +77,9 @@ const Progress = () => {
 
   const handleCanvas = () => {
     canvasRef.current.exportImage("png")
-      .then(data => {
-        console.log(data);
+      .then(dataURL => {
+        console.log(dataURL);
+        setCanvasDataURL(dataURL); // Store the canvas PNG data URL
       })
       .catch(e => {
         console.log(e);
