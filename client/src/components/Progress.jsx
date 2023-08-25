@@ -1,4 +1,5 @@
-import { useState, useRef } from "react";
+import { useState, Fragment, useRef } from "react";
+import Wheel from "@uiw/react-color-wheel";
 import { hsvaToHex } from "@uiw/color-convert";
 import { ReactSketchCanvas } from "react-sketch-canvas";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +11,7 @@ const Progress = () => {
     const [answer, setAnswer] = useState("");
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [hsva, setHsva] = useState({ h: 214, s: 43, v: 90, a: 1 });
+    const [showBox, setShowBox] = useState(false);
     const [QAarray, setQAarray] = useState([
         {
             question: "How are you feeling today?", //0
@@ -53,9 +55,13 @@ const Progress = () => {
             const updatedQAarray = [...QAarray];
             updatedQAarray[currentQuestionIndex].answer = answer; // Save the answer
             setQAarray(updatedQAarray); // Update the question-answer array
-            setCurrentQuestionIndex(currentQuestionIndex + 1);
             setAnswer(""); // Clear the answer for the next question
             // console.log(answer, updatedQAarray);
+            if (currentQuestionIndex === 0) {
+                setShowBox(true);
+            } else {
+                setCurrentQuestionIndex(currentQuestionIndex + 1);
+            }
         }
     };
     const wheel = () => {
@@ -64,44 +70,14 @@ const Progress = () => {
             // console.log(color.hsva);
             setAnswer(JSON.stringify(color.hsva)); // Convert HSVa to a string and set it as the answer
         };
-
         return (
-            <div>
-                <p>{QAarray[currentQuestionIndex].question}</p>
-                {currentQuestionIndex == 1 || currentQuestionIndex == 5 ? (
-                    <div>{wheel()}</div>
-                ) : null}
-
-                {currentQuestionIndex == 2 || currentQuestionIndex == 6 ? (
-                    <ReactSketchCanvas
-                        style={{
-                            border: "0.0625rem solid #9c9c9c",
-                            borderRadius: "0.25rem",
-                        }}
-                        width="600"
-                        height="400"
-                        strokeWidth={4}
-                        strokeColor={hsvaToHex(hsva)}
-                    />
-                ) : null}
-
-                {currentQuestionIndex == 1 ||
-                currentQuestionIndex == 5 ||
-                currentQuestionIndex == 2 ||
-                currentQuestionIndex == 6 ? null : (
-                    <input
-                        className="border border-red-200 w-5/6"
-                        type="text"
-                        value={answer}
-                        onChange={updateAnswer}
-                    />
-                )}
-                {currentQuestionIndex == 2 || currentQuestionIndex == 6 ? (
-                    <button onClick={handleCanvas}>Continue</button>
-                ) : (
-                    <button onClick={handleNextQuestion}>Continue</button>
-                )}
-            </div>
+            <Fragment>
+                <Wheel color={hsva} onChange={updateWheelColor} />
+                <div
+                    className="rounded-full h-8 w-8"
+                    style={{ background: hsvaToHex(hsva) }}
+                ></div>
+            </Fragment>
         );
     };
     const canvasRef = useRef(null); // Create a ref for the canvas
@@ -189,8 +165,10 @@ const Progress = () => {
 
     return (
         <div>
-            <button className="boxbutton">Box Breathing</button>
             <p>{QAarray[currentQuestionIndex].question}</p>
+            {currentQuestionIndex === 0 && showBox ? (
+                <button className="boxbutton">Box Breathing</button>
+            ) : null}
             {currentQuestionIndex == 2 || currentQuestionIndex == 7 ? (
                 <div>{wheel()}</div>
             ) : null}
