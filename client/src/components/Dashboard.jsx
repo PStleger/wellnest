@@ -22,16 +22,16 @@ const Dashboard = () => {
             >
                 Logout
             </button>
-            <div className="flex flex-wrap ">
+            <div className="flex flex-wrap border-2">
                 <div className="w-full">
                     <ul
-                        className="flex mb-0 list-none flex-wrap pt-3  flex-row w-[800px] mx-auto "
+                        className="flex mb-0 list-none flex-wrap pt-3 flex-row sm:w-[800px] mx-auto " //flex wrap issue
                         role="tablist"
                     >
-                        <li className="-mb-px mr-2 last:mr-0 flex-auto text-center rounded-t-xl ">
+                        <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
                             <a
                                 className={
-                                    "text-xs font-bold uppercase px-5 py-3 shadow-lg  block leading-normal " +
+                                    "text-xs font-bold uppercase px-5 py-3 shadow-lg block leading-normal " +
                                     (openTab === 1
                                         ? "text-[#DFC6E0] bg-[#8C1960]"
                                         : "text-" + "red" + "-600 bg-[#DFC6E0]")
@@ -50,7 +50,7 @@ const Dashboard = () => {
                         <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
                             <a
                                 className={
-                                    "text-xs font-bold uppercase px-5 py-3 shadow-lg  block leading-normal " +
+                                    "text-xs font-bold uppercase px-5 py-3 shadow-lg block leading-normal" +
                                     (openTab === 2
                                         ? "text-[#DFC6E0] bg-[#8C1960]"
                                         : "text-" + "red" + "-600 bg-[#DFC6E0]")
@@ -64,6 +64,25 @@ const Dashboard = () => {
                                 role="tablist"
                             >
                                 Journal
+                            </a>
+                        </li>
+                        <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+                            <a
+                                className={
+                                    "text-xs font-bold uppercase px-5 py-3 shadow-lg block leading-normal " +
+                                    (openTab === 3
+                                        ? "text-[#DFC6E0] bg-[#8C1960]"
+                                        : "text-" + "red" + "-600 bg-[#DFC6E0]")
+                                }
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    setOpenTab(3);
+                                }}
+                                data-toggle="tab"
+                                href="#link3"
+                                role="tablist"
+                            >
+                                Progress
                             </a>
                         </li>
                         <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
@@ -105,8 +124,8 @@ const Dashboard = () => {
                             </a>
                         </li>
                     </ul>
-                    <div className="relative flex flex-col min-w-0 break-words bg-[#DFC6E0] w-full mb-6 shadow-lg rounded">
-                        <div className="px-4 py-5 flex-auto">
+                    <div className="relative flex flex-col break-words bg-[#DFC6E0]  mb-6 shadow-lg rounded-2xl">
+                        <div className="py-5 px-5 flex-auto ">
                             <div className="tab-content tab-space">
                                 <div
                                     className={
@@ -114,45 +133,45 @@ const Dashboard = () => {
                                     }
                                     id="link1"
                                 >
-                                    <div className="mx-auto h-[600px] w-[900px] bg-[#DFC6E0] rounded-3xl flex justify-around items-center ">
-                                        <div className="h-2/3 w-1/2 bg-[#EFE2F0] rounded-2xl flex flex-col items-center justify-around py-12 px-4">
-                                            <h2 className="text-[#6C1770] text-2xl">
+                                    <div className="flex justify-around items-center flex-col-reverse gap-10 sm:flex-row">
+                                        <div className="h-auto w-2/3 lg:w-1/2 bg-[#EFE2F0] rounded-3xl flex flex-col items-center justify-around p-10">
+                                            <h2 className="text-[#6C1770] text-2xl py-6">
                                                 Explore
                                             </h2>
-                                            <div className="flex items-center justify-center gap-2 flex-wrap ">
+                                            <div className="gridItem flex items-center justify-center gap-2 flex-wrap lg:mx-16">
                                                 <Link>
-                                                    <div className="w-16 h-14 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl"></div>
+                                                    <div className="w-16 h-14 md:w-24 md:h-20 lg:w-32 lg:h-28 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl"></div>
                                                 </Link>
                                                 <Link>
-                                                    <div className="w-16 h-14 bg-gradient-to-r from-pink-400 to-blue-500 rounded-xl"></div>
+                                                    <div className="w-16 h-14 md:w-24 md:h-20 lg:w-32 lg:h-28 bg-gradient-to-r from-pink-400 to-blue-500 rounded-xl"></div>
                                                 </Link>
                                                 <Link>
-                                                    <div className="w-16 h-14 bg-gradient-to-r from-yellow-400 to-blue-500 rounded-xl"></div>
+                                                    <div className="w-16 h-14 md:w-24 md:h-20 lg:w-32 lg:h-28 bg-gradient-to-r from-yellow-400 to-blue-500 rounded-xl"></div>
                                                 </Link>
                                                 <Link>
-                                                    <div className="w-16 h-14 bg-gradient-to-r from-red-400 to-blue-500 rounded-xl"></div>
+                                                    <div className="w-16 h-14 md:w-24 md:h-20 lg:w-32 lg:h-28 bg-gradient-to-r from-red-400 to-blue-500 rounded-xl"></div>
                                                 </Link>
                                                 <Link>
-                                                    <div className="w-16 h-14 bg-gradient-to-r from-white to-blue-500 rounded-xl"></div>
+                                                    <div className="w-16 h-14 md:w-24 md:h-20 lg:w-32 lg:h-28 bg-gradient-to-r from-white to-blue-500 rounded-xl"></div>
                                                 </Link>
                                                 <Link>
-                                                    <div className="w-16 h-14 bg-gradient-to-r from-gray-400 to-blue-500 rounded-xl"></div>
+                                                    <div className="w-16 h-14 md:w-24 md:h-20 lg:w-32 lg:h-28 bg-gradient-to-r from-gray-400 to-blue-500 rounded-xl"></div>
                                                 </Link>
                                                 <Link>
-                                                    <div className="w-16 h-14 bg-gradient-to-r from-green-400 to-blue-500 rounded-xl"></div>
+                                                    <div className="w-16 h-14 md:w-24 md:h-20 lg:w-32 lg:h-28 bg-gradient-to-r from-green-400 to-blue-500 rounded-xl"></div>
                                                 </Link>
                                                 <Link>
-                                                    <div className="w-16 h-14 bg-gradient-to-r from-orange-400 to-blue-500 rounded-xl"></div>
+                                                    <div className="w-16 h-14 md:w-24 md:h-20 lg:w-32 lg:h-28 bg-gradient-to-r from-orange-400 to-blue-500 rounded-xl"></div>
                                                 </Link>
                                                 <Link>
-                                                    <div className="w-16 h-14 bg-gradient-to-r from-orange-400 to-blue-500 rounded-xl"></div>
+                                                    <div className="w-16 h-14 md:w-24 md:h-20 lg:w-32 lg:h-28 bg-gradient-to-r from-orange-400 to-blue-500 rounded-xl"></div>
                                                 </Link>
                                                 <Link>
-                                                    <div className="w-16 h-14 bg-gradient-to-r from-orange-400 to-blue-500 rounded-xl"></div>
+                                                    <div className="w-16 h-14 md:w-24 md:h-20 lg:w-32 lg:h-28 bg-gradient-to-r from-orange-400 to-blue-500 rounded-xl"></div>
                                                 </Link>
                                             </div>
                                         </div>
-                                        <button className="border-4 bg-white text-[#6C1770] text-xl  border-yellow-300 rounded-full h-48 w-48 shadow-2xl shadow-yellow-400">
+                                        <button className="border-4 bg-white text-[#6C1770] text-xl border-yellow-300 rounded-full h-52 w-52 lg:h-80 lg:w-80 shadow-2xl shadow-yellow-400">
                                             Get Started
                                         </button>
                                     </div>
