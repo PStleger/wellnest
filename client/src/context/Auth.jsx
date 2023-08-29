@@ -31,6 +31,7 @@ const AuthProvider = ({ children }) => {
         setLoading(true);
         try {
             const res = await axios.post("auth/login", user);
+            console.log("sadadasdadasdasdasd", res);
             setState(res.data.user, false, null);
             navigate("/");
         } catch (error) {

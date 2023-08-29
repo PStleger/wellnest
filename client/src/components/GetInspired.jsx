@@ -1,5 +1,5 @@
 const GetInspired = () => {
-    return <div></div>;
+    return <div>This is get inspired</div>;
 };
 
 export default GetInspired;
