@@ -25,13 +25,13 @@ const Dashboard = () => {
             <div className="flex flex-wrap border-2">
                 <div className="w-full">
                     <ul
-                        className="flex mb-0 list-none flex-wrap pt-3 flex-row sm:w-[800px] mx-auto " //flex wrap issue
+                        className="flex sm:w-[800px] mx-auto items-center "
                         role="tablist"
                     >
-                        <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+                        <li className="text-center mx-2">
                             <a
                                 className={
-                                    "text-xs font-bold uppercase px-5 py-3 shadow-lg block leading-normal " +
+                                    "text-xs w-[120px] font-bold uppercase py-3 shadow-lg block leading-normal " +
                                     (openTab === 1
                                         ? "text-[#DFC6E0] bg-[#8C1960]"
                                         : "text-" + "red" + "-600 bg-[#DFC6E0]")
@@ -47,10 +47,10 @@ const Dashboard = () => {
                                 My Nest
                             </a>
                         </li>
-                        <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+                        <li className="text-center mx-2">
                             <a
                                 className={
-                                    "text-xs font-bold uppercase px-5 py-3 shadow-lg block leading-normal" +
+                                    "text-xs w-[120px] font-bold uppercase py-3 shadow-lg block leading-normal " +
                                     (openTab === 2
                                         ? "text-[#DFC6E0] bg-[#8C1960]"
                                         : "text-" + "red" + "-600 bg-[#DFC6E0]")
@@ -66,10 +66,11 @@ const Dashboard = () => {
                                 Journal
                             </a>
                         </li>
-                        <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+                      
+                        <li className="text-center mx-2">
                             <a
                                 className={
-                                    "text-xs font-bold uppercase px-5 py-3 shadow-lg block leading-normal " +
+                                    "text-xs w-[120px]  font-bold uppercase py-3 shadow-lg block leading-normal " +
                                     (openTab === 3
                                         ? "text-[#DFC6E0] bg-[#8C1960]"
                                         : "text-" + "red" + "-600 bg-[#DFC6E0]")
@@ -85,7 +86,7 @@ const Dashboard = () => {
                                 Progress
                             </a>
                         </li>
-                        <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+                        <li className="text-center mx-2">
                             <a
                                 className={
                                     "text-xs font-bold uppercase px-5 py-3 shadow-lg  block leading-normal " +
@@ -104,10 +105,10 @@ const Dashboard = () => {
                                 Saved
                             </a>
                         </li>
-                        <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+                        <li className="text-center mx-2">
                             <a
                                 className={
-                                    "text-xs font-bold uppercase px-5 py-3 shadow-lg block leading-normal " +
+                                    "text-xs w-[120px] font-bold uppercase py-3 shadow-lg block leading-normal " +
                                     (openTab === 4
                                         ? "text-[#DFC6E0] bg-[#8C1960]"
                                         : "text-" + "red" + "-600 bg-[#DFC6E0]")
@@ -124,7 +125,7 @@ const Dashboard = () => {
                             </a>
                         </li>
                     </ul>
-                    <div className="relative flex flex-col break-words bg-[#DFC6E0]  mb-6 shadow-lg rounded-2xl">
+                    <div className="relative flex flex-col break-words bg-[#DFC6E0]  mb-6 shadow-lg md:rounded-2xl">
                         <div className="py-5 px-5 flex-auto ">
                             <div className="tab-content tab-space">
                                 <div
