@@ -14,13 +14,13 @@ import {
 import { hsvaToHex } from "@uiw/color-convert";
 
 let weekDays = [
-    "Sunday",
     "Monday",
     "Tuesday",
     "Wednesday",
     "Thursday",
     "Friday",
     "Saturday",
+    "Sunday",
 ];
 
 export default function ProgressDetails() {
@@ -86,14 +86,14 @@ export default function ProgressDetails() {
     const endOfWeek = new Date(currentDate);
     endOfWeek.setDate(currentDate.getDate() - currentDate.getDay() + 7);
 
-    const startDateString = startOfWeek.toDateString();
-    const endDateString = endOfWeek.toDateString();
+    const startDateString = startOfWeek.toDateString().slice(4, 16);
+    const endDateString = endOfWeek.toDateString().slice(4, 16);
 
     return (
         modifiedStackedData && (
             <>
-                <p className="my-5 mx-5 text-lg">
-                    {`This Week: 
+                <p className="my-5 mx-28 text-lg text-[#8C1960] font-semibold">
+                    {`This Week:    
                     ${startDateString} - 
                     ${endDateString}`}
                 </p>
@@ -103,8 +103,12 @@ export default function ProgressDetails() {
                     data={modifiedStackedData}
                     className="mx-auto my-20"
                 >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="day" tick="monday" />
+                    <CartesianGrid strokeDasharray="3 3" stroke="#DFC6E0" />
+                    <XAxis
+                        dataKey="day"
+                        stroke="#8C1960"
+                        className="font-semibold"
+                    />
                     {/* <YAxis /> */}
                     {/* <Tooltip
                     className="rounded-2xl"
