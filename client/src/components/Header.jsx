@@ -30,6 +30,7 @@ const Header = () => {
         context.logout();
         return <Navigate to="/" />;
     };
+    console.log(context.user);
     return (
         <Disclosure
             as="nav"
@@ -107,9 +108,8 @@ const Header = () => {
                                 </button>
 
                                 {/* Profile dropdown */}
-                                {context.isAuthenticated ? (
+                                {context.user ? (
                                     <Menu as="div" className="relative ml-3">
-                                        ;
                                         <div>
                                             <Menu.Button className="relative flex rounded-full  text-sm  focus:ring-2 focus:ring-[#8C1960] sm:w-12 sm:h-12 w-8 h-8">
                                                 <span className="sr-only">
