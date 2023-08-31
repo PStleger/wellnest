@@ -7,4 +7,9 @@ export default {
         },
     },
     plugins: [],
+    variants: {
+        extend: {
+          inset: ["group-hover"],
+        }
+      }
 };
