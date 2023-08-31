@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const authenticate = require("../middlewares/auth");
-router.use(authenticate);
 
+
+router.use(authenticate);
 const {
     createJournal,
     getAllJournals,

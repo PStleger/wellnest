@@ -33,7 +33,7 @@ const Header = () => {
     return (
         <Disclosure
             as="nav"
-            className="bg-white border-b-2 border-pink-800 h-fit min-h-[7rem] pt-5"
+            className="bg-white border-b-2 shadow-2xl shadow-[#8C1960]/50 h-fit min-h-[7rem] pt-5"
         >
             {({ open }) => (
                 <>

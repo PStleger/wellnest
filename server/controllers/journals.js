@@ -2,7 +2,11 @@ const Journal = require("../models/journals");
 
 const createJournal = async (req, res) => {
     try {
-        const newJournal = await Journal.create(req.body);
+        const { text, createdBy } = req.body;
+        const newJournal = await Journal.create({
+            text,
+            createdBy: req.user.userName,
+        });
         res.status(201).json(newJournal);
     } catch (error) {
         res.status(500).json({ message: error.message, errors: error.errors });
@@ -11,7 +15,9 @@ const createJournal = async (req, res) => {
 
 const getAllJournals = async (req, res) => {
     try {
-        const journals = await Journal.find().populate("createdBy", "userName");
+        const journals = await Journal.find({
+            createdBy: req.user.userName,
+        }).populate("userName");
         console.log(" getting all journals:", journals);
         res.json(journals);
     } catch (error) {
