@@ -5,6 +5,7 @@ import { ReactSketchCanvas } from "react-sketch-canvas";
 import { useNavigate } from "react-router-dom";
 import axios from "../axiosInstance";
 import "./Progress.css";
+import boxsteps from "../assets/boxsteps.gif";
 
 const Progress = () => {
     const navigate = useNavigate();
@@ -111,9 +112,13 @@ const Progress = () => {
 
         return (
             <Fragment>
-                <Wheel color={hsva} onChange={updateWheelColor} />
+                <Wheel
+                    className="h-36 w-36"
+                    color={hsva}
+                    onChange={updateWheelColor}
+                />
                 <div
-                    className="rounded-full h-8 w-8"
+                    className="rounded-full h-12 w-12 m-8 content-center"
                     style={{ background: hsvaToHex(hsva) }}
                 ></div>
             </Fragment>
@@ -203,28 +208,54 @@ const Progress = () => {
     };
 
     return (
-        <div>
-            {showBodyScan ? <p>This is body scan</p> : null}
+        <div className="flex flex-col justify-center items-center">
             {showBodyScan ? (
-                <button onClick={handleQuestionAfterBodyScan}>
-                    Continue to questions
+                <p className="text-[#6C1770] p-8 font-bold text-2xl text-center max-w-md animate-fade animate-once animate-duration-[3000ms] animate-delay-0 animate-ease-linear animate-normal animate-fill-forwards">
+                    This is body scan
+                </p>
+            ) : null}
+            {showBodyScan ? (
+                <button
+                    onClick={handleQuestionAfterBodyScan}
+                    className="m-10 relative inline-flex items-center justify-center px-4 py-2 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-xl shadow-xl group hover:ring-1 hover:ring-purple-500"
+                >
+                    <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0]"></span>
+                    <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
+                    <span className="relative text-white text-2xl">
+                        Continue to questions
+                    </span>
                 </button>
             ) : answeredQuestion1 && showBoxBreathing ? (
                 <div>
-                    <p>BOX BREATHING INSTRUCTIONS</p>
+                    {/* <p className="text-[#6C1770] p-8 font-bold text-2xl text-center max-w-md animate-fade animate-once animate-duration-[3000ms] animate-delay-0 animate-ease-linear animate-normal animate-fill-forwards">
+                        BOX BREATHING INSTRUCTIONS
+                    </p> */}
                     <button
                         className="boxbutton"
                         onClick={handleQuestionAfterBox}
                     >
-                        Box Breathing
+                        {/* <p className="text-[#cd60d3] p-8 font-bold text-2xl text-center max-w-md animate-fade animate-once animate-duration-[3000ms] animate-delay-0 animate-ease-linear animate-normal animate-fill-forwards">
+                            Step 1: Breathe in, counting to four slowly. Feel
+                            the air enter your lungs.
+                        </p> */}
+                        <img src={boxsteps} alt="" />
                     </button>
                 </div>
             ) : (
-                <p>{QAarray[currentQuestionIndex].question}</p>
+                <p className="text-[#6C1770] p-8 font-bold text-2xl text-center max-w-md animate-fade animate-once animate-duration-[3000ms] animate-delay-0 animate-ease-linear animate-normal animate-fill-forwards">
+                    {QAarray[currentQuestionIndex].question}
+                </p>
             )}
             {showBoxBreathing && showScanButton ? (
-                <button onClick={handleQuestionAfterBox}>
-                    Continue for Body Scan
+                <button
+                    onClick={handleQuestionAfterBox}
+                    className="m-10 relative inline-flex items-center justify-center px-4 py-2 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-xl shadow-xl group hover:ring-1 hover:ring-purple-500"
+                >
+                    <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0]"></span>
+                    <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
+                    <span className="relative text-white text-2xl">
+                        Continue for Bodyscan
+                    </span>
                 </button>
             ) : null}
 
@@ -236,11 +267,11 @@ const Progress = () => {
                 <ReactSketchCanvas
                     ref={canvasRef}
                     style={{
-                        border: "0.0625rem solid #9c9c9c",
-                        borderRadius: "0.25rem",
+                        border: "0.5rem solid #cd60d3",
+                        borderRadius: "0.50rem",
                     }}
-                    width="600"
-                    height="400"
+                    width="60rem"
+                    height="30rem"
                     strokeWidth={4}
                     strokeColor={hsvaToHex(hsva)}
                 />
@@ -261,7 +292,7 @@ const Progress = () => {
             currentQuestionIndex == 12 ||
             currentQuestionIndex == 14 ? null : (
                 <input
-                    className="border border-red-200 w-5/6"
+                    className="m-4 p-1 rounded-full max-w-sm text-[#6C1770] border border-[#6C1770] hover:border-fuchsia-500 focus:border-blue-50"
                     type="text"
                     value={answer}
                     onChange={updateAnswer}
@@ -273,29 +304,54 @@ const Progress = () => {
                 currentQuestionIndex == 8 ||
                 currentQuestionIndex == 10 ||
                 currentQuestionIndex == 12) ? (
-                <div>
+                <div className="flex flex-row">
                     <button
-                        className="border border-red-200 w-5/6"
                         onClick={handleYes}
+                        className="m-10 relative inline-flex items-center justify-center px-4 py-2 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-xl shadow-xl group hover:ring-1 hover:ring-purple-500"
                     >
-                        Yes
+                        <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0]"></span>
+                        <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
+                        <span className="relative text-white text-2xl">
+                            Yes
+                        </span>
                     </button>
                     <button
-                        className="border border-red-200 w-5/6"
                         onClick={handleNo}
+                        className="m-10 relative inline-flex items-center justify-center px-4 py-2 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-xl shadow-xl group hover:ring-1 hover:ring-purple-500"
                     >
-                        No
+                        <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0]"></span>
+                        <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
+                        <span className="relative text-white text-2xl">No</span>
                     </button>
                 </div>
             ) : null}
             {showBoxBreathing == false &&
             showBodyScan == false &&
             (currentQuestionIndex == 3 || currentQuestionIndex == 9) ? (
-                <button onClick={handleCanvas}>Continue</button>
+                <button
+                    onClick={handleCanvas}
+                    className="m-10 relative inline-flex items-center justify-center px-4 py-2 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-xl shadow-xl group hover:ring-1 hover:ring-purple-500"
+                >
+                    <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0]"></span>
+                    <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
+                    <span className="relative text-white text-2xl">
+                        Continue
+                    </span>
+                </button>
             ) : (
                 showBoxBreathing == false &&
-                showBodyScan == false && (
-                    <button onClick={handleNextQuestion}>Continue</button>
+                showBodyScan == false &&
+                currentQuestionIndex !== 14 && (
+                    <button
+                        onClick={handleNextQuestion}
+                        className="m-10 relative inline-flex items-center justify-center px-4 py-2 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-xl shadow-xl group hover:ring-1 hover:ring-purple-500"
+                    >
+                        <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0]"></span>
+                        <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
+                        <span className="relative text-white text-2xl">
+                            Continue
+                        </span>
+                    </button>
                 )
             )}
 
@@ -305,15 +361,23 @@ const Progress = () => {
                 <div>
                     <button
                         onClick={handleJournal}
-                        className="border border-red-200 w-5/6"
+                        className="m-5 relative inline-flex items-center justify-center px-4 py-2 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-xl shadow-xl group hover:ring-1 hover:ring-purple-500"
                     >
-                        Yes, Id like to Journal
+                        <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0]"></span>
+                        <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
+                        <span className="relative text-white text-2xl">
+                            Yes, I'd like to Journal
+                        </span>
                     </button>
                     <button
                         onClick={handleNest}
-                        className="border border-red-200 w-5/6"
+                        className="m-5 relative inline-flex items-center justify-center px-4 py-2 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-xl shadow-xl group hover:ring-1 hover:ring-purple-500"
                     >
-                        Return to my Nest
+                        <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0]"></span>
+                        <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
+                        <span className="relative text-white text-2xl">
+                            Return to my Nest
+                        </span>
                     </button>
                 </div>
             ) : null}
