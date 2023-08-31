@@ -2,12 +2,14 @@
 import axios from "../axiosInstance";
 import { useEffect, useState } from "react";
 // import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
     BarChart,
     Bar,
     XAxis,
     // YAxis,
     CartesianGrid,
+
     // Tooltip,
     // Legend,
 } from "recharts";
@@ -24,6 +26,7 @@ let weekDays = [
 ];
 
 export default function ProgressDetails() {
+    const navigate = useNavigate();
     const [dailyProgress, setDailyProgress] = useState([]);
     // const { id } = useParams();
     // console.log("ID from useParams:", id);
@@ -33,7 +36,10 @@ export default function ProgressDetails() {
             .then((res) =>
                 setDailyProgress(
                     res.data.map((r) => {
-                        const color = JSON.parse(r.QAArray[2].answer);
+                        const color =
+                            r.QAArray[7].answer !== ""
+                                ? JSON.parse(r.QAArray[7].answer)
+                                : JSON.parse(r.QAArray[2].answer);
                         // console.log(color);
                         return {
                             id: r._id,
@@ -43,7 +49,9 @@ export default function ProgressDetails() {
                                 v: color.v,
                                 a: color.a,
                             }),
-                            day: weekDays[new Date(r.createdAt).getDay()],
+                            day: weekDays[
+                                (new Date(r.createdAt).getDay() + 6) % 7
+                            ],
                         };
                     })
                 )
@@ -52,7 +60,7 @@ export default function ProgressDetails() {
                 console.log(error);
             });
     }, []);
-    console.log(dailyProgress);
+    // console.log(dailyProgress);
 
     const groupedData = dailyProgress.reduce((accumulator, data) => {
         if (!accumulator[data.day]) {
@@ -74,7 +82,7 @@ export default function ProgressDetails() {
     });
 
     const colors = dailyProgress.reduce((colorMap, data) => {
-        colorMap[data.color] = true;
+        colorMap[data.color] = { id: data.id, exists: true };
         return colorMap;
     }, {});
 
@@ -111,9 +119,9 @@ export default function ProgressDetails() {
                     />
                     {/* <YAxis /> */}
                     {/* <Tooltip
-                    className="rounded-2xl"
-                    wrapperStyle={{ width: 100, backgroundColor: "red" }}
-                /> */}
+                        className="rounded-2xl"
+                        wrapperStyle={{ width: 100, backgroundColor: "red" }}
+                    /> */}
                     {/* <Legend
                     width={100}
                     wrapperStyle={{
@@ -129,10 +137,15 @@ export default function ProgressDetails() {
                         <Bar
                             key={color}
                             dataKey={color}
-                            stackId="a"
+                            stackId="1"
                             fill={`${color}`}
                             barSize={100}
                             stroke="#808080"
+                            onClick={() =>
+                                navigate(
+                                    `../progress/progress/${colors[color].id}`
+                                )
+                            }
                         />
                     ))}
                 </BarChart>
