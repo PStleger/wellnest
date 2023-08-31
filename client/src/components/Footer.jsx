@@ -1,6 +1,6 @@
 const Footer = () => {
     return <div>
-        <div className="flex items-end w-full min-h-screen bg-white">
+        {/* <div className="flex items-end w-full min-h-screen bg-[#DFC6E0]"> */}
 
 <footer className="w-full text-gray-700 bg-[#DFC6E0] body-font">
     <div
@@ -113,7 +113,7 @@ const Footer = () => {
     </div>
 </footer>
 
-</div>
+{/* </div> */}
     </div>;
 };
 
