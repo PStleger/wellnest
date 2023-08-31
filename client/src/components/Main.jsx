@@ -52,7 +52,10 @@ const Main = () => {
                     />
                     <Route path="journals/new" element={<NewJournal />} />
                     <Route path="progress" element={<Progress />} />
-                    <Route path="progress/:id" element={<ProgressDetails />} />
+                    <Route
+                        path="progressdetails"
+                        element={<ProgressDetails />}
+                    />
                     <Route path="progress/new" element={<NewProgress />} />
                 </Route>
                 <Route path="/" element={<Landing />} />

@@ -319,7 +319,6 @@ const Progress = () => {
             ) : null}
         </div>
     );
-
 };
 
 export default Progress;

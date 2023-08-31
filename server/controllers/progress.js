@@ -1,17 +1,17 @@
 const Progress = require("../models/progress");
-
-
+const moment = require("moment");
 const createProgress = async (req, res) => {
     try {
         const { userId, QAArray } = req.body;
-
+        console.log(req.body);
         const progress = await Progress.create({
-            userId,
+            userId: req.user._id,
             QAArray: QAArray.map((item) => ({
                 question: item.question,
                 answer: item.answer,
             })),
         });
+        console.log(progress.populated("userId"));
         res.status(201).json(progress);
     } catch (error) {
         res.status(500).json({ message: error.message, errors: error.errors });
@@ -20,7 +20,13 @@ const createProgress = async (req, res) => {
 
 const getAllProgress = async (req, res) => {
     try {
-        const progress = await Progress.find().populate("userName");
+        const currentDate = new Date();
+        const startOfWeek = moment(currentDate).startOf("isoWeek");
+        const endOfWeek = moment(currentDate).endOf("isoWeek");
+        const progress = await Progress.find({
+            userId: req.user._id,
+            createdAt: { $gte: startOfWeek, $lte: endOfWeek },
+        }).populate("userName");
         console.log(" getting all progress data:", progress);
         res.json(progress);
     } catch (error) {
@@ -33,7 +39,11 @@ const getProgressById = async (req, res) => {
         const {
             params: { id },
         } = req;
-        const progress = await Progress.find({ _id: id }).populate("userName");
+        const { userId } = req.body;
+        const progress = await Progress.find({
+            _id: id,
+            userId: req.user._id,
+        }).populate("userName");
         if (progress.length === 0) {
             res.status(404).json({ message: "progress data not found" });
         }
@@ -73,20 +83,22 @@ const deleteProgress = async (req, res) => {
 //     }
 //   };
 const createImageProgress = (req, res) => {
-    const imageFile = req.file.buffer.toString('base64');
-  
+    const imageFile = req.file.buffer.toString("base64");
+
     cloudinary.uploader
-      .upload(`data:image/png;base64,${imageFile}`, {
-        resource_type: 'image',
-      })
-      .then((result) => {
-        res.json({ imageUrl: result.secure_url });
-        console.log(result.secure_url);
-      })
-      .catch((error) => {
-        res.status(500).json({ error: 'Error uploading image to Cloudinary' });
-      });
-  };
+        .upload(`data:image/png;base64,${imageFile}`, {
+            resource_type: "image",
+        })
+        .then((result) => {
+            res.json({ imageUrl: result.secure_url });
+            console.log(result.secure_url);
+        })
+        .catch((error) => {
+            res.status(500).json({
+                error: "Error uploading image to Cloudinary",
+            });
+        });
+};
 module.exports = {
     createProgress,
     getAllProgress,
