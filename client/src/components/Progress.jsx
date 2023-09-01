@@ -25,7 +25,7 @@ let weekDays = [
     "Sunday",
 ];
 
-export default function ProgressDetails() {
+const Progress = () => {
     const navigate = useNavigate();
     const [dailyProgress, setDailyProgress] = useState([]);
     // const { id } = useParams();
@@ -152,4 +152,6 @@ export default function ProgressDetails() {
             </>
         )
     );
-}
+};
+
+export default Progress;

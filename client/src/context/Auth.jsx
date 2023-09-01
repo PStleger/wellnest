@@ -33,7 +33,7 @@ const AuthProvider = ({ children }) => {
             const res = await axios.post("auth/login", user);
             console.log("sadadasdadasdasdasd", res);
             setState(res.data.user, false, null);
-            navigate("/");
+            navigate("/dashboard");
         } catch (error) {
             console.log(error.response);
             setState(null, false, error.response.data);
@@ -44,7 +44,7 @@ const AuthProvider = ({ children }) => {
         try {
             const res = await axios.post("auth/register", user);
             setState(res.data.user, false, null);
-            navigate("/");
+            navigate("/dashboard");
         } catch (error) {
             console.log(error.response);
             setState(null, false, error.response.data.errors);
