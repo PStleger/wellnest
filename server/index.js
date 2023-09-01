@@ -10,7 +10,7 @@ const authRouter = require("./routes/auth");
 const articlesRouter = require("./routes/articles");
 const journalsRouter = require("./routes/journals");
 const progressRouter = require("./routes/progress");
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 8000;
 const path = require("path");
 
 app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));

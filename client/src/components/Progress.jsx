@@ -142,6 +142,7 @@ const Progress = () => {
                             barSize={100}
                             stroke="#808080"
                             radius={[10, 10, 10, 10]}
+                            className="hover:cursor-pointer"
                             onClick={() =>
                                 navigate(
                                     `../progress/progress/${colors[color].id}`

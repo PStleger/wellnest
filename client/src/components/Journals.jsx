@@ -28,11 +28,11 @@ const Journals = () => {
 
     return (
         <div>
-            <div className="relative flex flex-col break-words bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0] md:rounded-2xl md:mx-10 py-10 my-10 shadow-xl shadow-[#6C1770]/50">
+            <div className="relative flex flex-col break-words max-h-[500px] bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0] md:rounded-2xl md:mx-10 py-10 my-10 shadow-xl shadow-[#6C1770]/50">
                 <div className="py-5 px-5 flex-auto ">
-                    <div className="tab-content tab-space">
-                        <div className="flex justify-around items-center flex-col-reverse gap-10 md:flex-row">
-                            <div className="h-auto w-2/3 xl:w-1/2 bg-[#EFE2F0]/50 rounded-3xl flex flex-col items-center justify-around p-10">
+                    <div className="tab-content tab-space ">
+                        <div className="flex justify-around items-center flex-col-reverse gap-10 md:flex-row ">
+                            <div className="h-auto w-2/3 xl:w-1/2 bg-[#EFE2F0]/50 rounded-3xl flex flex-col items-center justify-around p-10 max-h-[400px]">
                                 <h2 className="text-[#6C1770] text-2xl py-6">
                                     My Journal
                                 </h2>
