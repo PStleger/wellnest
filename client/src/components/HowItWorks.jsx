@@ -1,9 +1,9 @@
 
 // import nest from "./images/nest.png"
-import placeholder from "./images/placeholder.png"
-import placeholder1 from "./images/placeholder1.png"
-import placeholder2 from "./images/placeholder2.png"
-import placeholder3 from "./images/placeholder3.png"
+import placeholder from "../assets/images/placeholder.png"
+import placeholder1 from "../assets/images/placeholder1.png"
+import placeholder2 from "../assets/images/placeholder2.png"
+import placeholder3 from "../assets/images/placeholder3.png"
 // import placeholder4 from "./images/placeholder4.png"
 import { Link } from 'react-router-dom';
 const HowItWorks = () => {

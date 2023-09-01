@@ -4,12 +4,14 @@ import Header from "./components/Header";
 // import Header from "./components/Header";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
+import BodyScan from "./components/BodyScan";
 // import Register from "./components/Register";
 
 function App() {
     return (
         <>
             <Header />
+            <BodyScan />
             <Main />
             <Footer />
         </>

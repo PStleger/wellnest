@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "../axiosInstance";
 import "./Progress.css";
 
+
 const Progress = () => {
     const navigate = useNavigate();
     const [answer, setAnswer] = useState("");
@@ -211,6 +212,7 @@ const Progress = () => {
                 </button>
             ) : answeredQuestion1 && showBoxBreathing ? (
                 <div>
+
                     <p>BOX BREATHING INSTRUCTIONS</p>
                     <button
                         className="boxbutton"
@@ -246,7 +248,7 @@ const Progress = () => {
                 />
             ) : null}
             {/* {currentQuestionIndex == 4 ? (
-  <img src={QAarray[currentQuestionIndex-1].answer} alt="" />
+<img src={QAarray[currentQuestionIndex-1].answer} alt="" />
 ):null} */}
             {showBoxBreathing ||
             showBodyScan ||

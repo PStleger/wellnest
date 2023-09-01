@@ -1,7 +1,8 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../context/Auth";
 import { Navigate } from "react-router-dom";
-import nestlogo from "./images/nestlogo.jpeg";
+import nestlogo from "../assets/images/nestlogo.jpeg";
+
 
 function Login() {
     const context = useContext(AuthContext);
@@ -23,6 +24,7 @@ function Login() {
         if (!context.loading && context.user) {
             return <Navigate to="/dashboard" />;
         }
+        
     
         if (!context.loading && !context.user) {
             return (
@@ -66,14 +68,16 @@ function Login() {
                         value={user.password}
                         onChange={handleChange}
                         required
-                        className=" w-56      rounded-md"
+                        className=" w-56 rounded-md"
                     />
                     </div>
 <div className="p-10 mt-7 text-black">
+
 <button className="relative bg-white text-[#6C1770] text-xl border-none rounded-full h-36 w-36 lg:h-56 lg:w-56 lg:text-[25px]">
-                      Log In
-                      <div className="absolute inset-2 shadow-[0_0px_70px_20px] hover:shadow-[0_10px_50px_0px] rounded-full hover:shadow-yellow-400 shadow-yellow-400 hover:animate-spin animate-duration-[7000ms] animate-pulse animate-fill-forwards"></div>
+                    Log In
+                    <div className="absolute inset-2 shadow-[0_0px_70px_20px] hover:shadow-[0_10px_50px_0px] rounded-full hover:shadow-yellow-400 shadow-yellow-400 hover:animate-spin animate-duration-[7000ms] animate-pulse animate-fill-forwards"></div>
                     </button>
+                
 </div>
                 </form>
             </div>

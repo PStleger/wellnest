@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../context/Auth";
 import { Navigate } from "react-router-dom";
-import nestlogo from "./images/nestlogo.jpeg";
-import { Link } from 'react-router-dom';
+import nestlogo from "../assets/images/nestlogo.jpeg";
+
 
 function Register() {
         const context = useContext(AuthContext);
@@ -29,6 +29,7 @@ function Register() {
     if (!context.loading && context.user) {
         return <Navigate to="/" />;
     }
+if (!context.loading && !context.user) {
   return (
     <section className="h-full">
       <div className="container h-full p-10">
@@ -53,7 +54,8 @@ function Register() {
 
                     
                     <form
-                          className="form flex flex-col gap-2 border border-pink-300 mx-auto justify-center items-center my-5 py-5 bg-[DFC6E0]"
+            
+                            className="form flex flex-col gap-2 border border-pink-300 mx-auto justify-center items-center my-5 py-5 bg-[DFC6E0]"
                             onSubmit={handleSubmit}
                         >
                             <label htmlFor="">First Name:</label>
@@ -152,12 +154,13 @@ function Register() {
                                 value={user.confirmPassword}
                                 onChange={handleChange}
                                 required
-                                className="border-3 border-pink-400 w-5/6 rounded-md"/>
-                            <Link to="/dashboard">
+                                className="border-3 border-pink-400 w-5/6 rounded-md"
+                            />
+                            
                             <button className="rounded-md my-5">
                                 Register
                             </button>
-                            </Link>
+                            
                         </form> 
                 </div>
                 </div>
@@ -183,6 +186,7 @@ function Register() {
       </div>
     </section>
   );
+}
 }
 
 export default Register;
