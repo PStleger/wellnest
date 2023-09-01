@@ -59,7 +59,6 @@ const Dashboard = () => {
                                 Journal
                             </a>
                         </li>
-
                         <li className="text-center w-1/2 rounded-t-xl overflow-hidden shadow-[3px_7px_10px_2px] shadow-cyan-900/80 z--30">
                             <a
                                 className={
@@ -224,6 +223,7 @@ const Dashboard = () => {
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
             {/* <div className="tabs mx-auto w-96 bg-[#8C1960] rounded-xl gap-2 flex  items-center justify-center text-white">
