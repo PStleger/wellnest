@@ -42,6 +42,9 @@ const NewJournal = () => {
             <div className="flex justify-around items-center flex-col-reverse gap-10 md:flex-row">
               <div className="h-auto w-2/3 xl:w-1/2 bg-[#EFE2F0]/50 rounded-3xl flex flex-col items-center justify-around p-10">
                 <h2 className="text-[#6C1770] text-2xl py-6">Journal Entry</h2>
+                <p>Title:</p>
+                <input type="text"></input>
+                
                 <ReactQuill
                   className="w-3/4 h-auto mx-auto my-10 bg-white/50 rounded-2xl border-none"
                   theme="snow"
