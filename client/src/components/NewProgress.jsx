@@ -6,7 +6,7 @@ import { ReactSketchCanvas } from "react-sketch-canvas";
 import { useNavigate } from "react-router-dom";
 import axios from "../axiosInstance";
 import "./NewProgress.css";
-import boxsteps from "../assets/boxsteps.gif";
+import boxsteps from "../assets/boxsteps2.gif";
 
 const NewProgress = () => {
     const navigate = useNavigate();
@@ -209,7 +209,7 @@ const NewProgress = () => {
     };
 
     return (
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center mt-24 mb-24 min-h-[400px]">
             {showBodyScan ? (
                 <p className="text-[#6C1770] p-8 font-bold text-2xl text-center max-w-md animate-fade animate-once animate-duration-[3000ms] animate-delay-0 animate-ease-linear animate-normal animate-fill-forwards">
                     This is body scan
@@ -271,8 +271,8 @@ const NewProgress = () => {
                         border: "0.5rem solid #cd60d3",
                         borderRadius: "0.50rem",
                     }}
-                    width="60rem"
-                    height="30rem"
+                    width="50rem"
+                    height="20rem"
                     strokeWidth={4}
                     strokeColor={hsvaToHex(hsva)}
                 />
@@ -293,7 +293,7 @@ const NewProgress = () => {
             currentQuestionIndex == 12 ||
             currentQuestionIndex == 14 ? null : (
                 <input
-                    className="m-4 p-1 rounded-full max-w-sm text-[#6C1770] border border-[#6C1770] hover:border-fuchsia-500 focus:border-blue-50"
+                    className="m-4 p-1 rounded-full w-60 text-[#6C1770] border border-[#6C1770] hover:border-fuchsia-500 focus:border-blue-50"
                     type="text"
                     value={answer}
                     onChange={updateAnswer}
@@ -342,6 +342,11 @@ const NewProgress = () => {
             ) : (
                 showBoxBreathing == false &&
                 showBodyScan == false &&
+                currentQuestionIndex !== 5 &&
+                currentQuestionIndex !== 6 &&
+                currentQuestionIndex !== 8 &&
+                currentQuestionIndex !== 10 &&
+                currentQuestionIndex !== 12 &&
                 currentQuestionIndex !== 14 && (
                     <button
                         onClick={handleNextQuestion}
