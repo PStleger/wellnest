@@ -25,6 +25,18 @@ const Main = () => {
     return (
         <main>
             <Routes>
+                <Route path="/landing" element={<Landing />} />
+                <Route path="/" element={<Landing />} />
+                <Route path="/howitworks" element={<HowItWorks />} />
+                <Route path="/getinspired" element={<GetInspired />} />
+                <Route path="/publicarticles" element={<PublicArticles />} />
+                <Route
+                    path="/publicarticles/:id"
+                    element={<PublicArticleDetails />}
+                />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+
                 <Route path="/" element={<ProtectedRoute />}>
                     <Route path="dashboard" element={<Dashboard />} />
                     <Route path="profile" element={<Profile />} />
@@ -58,16 +70,6 @@ const Main = () => {
                     />
                     <Route path="progress/new" element={<NewProgress />} />
                 </Route>
-                <Route path="/" element={<Landing />} />
-                <Route path="/howitworks" element={<HowItWorks />} />
-                <Route path="/getinspired" element={<GetInspired />} />
-                <Route path="/publicarticles" element={<PublicArticles />} />
-                <Route
-                    path="/publicarticles/:id"
-                    element={<PublicArticleDetails />}
-                />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
             </Routes>
         </main>
     );
