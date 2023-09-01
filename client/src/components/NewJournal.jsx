@@ -82,11 +82,8 @@ const NewJournal = () => {
                 </Link>
               </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default NewJournal;
