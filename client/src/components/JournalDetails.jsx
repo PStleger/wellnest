@@ -14,7 +14,7 @@ function formatDate(timestamp) {
 const JournalDetails = () => {
   const [journals, setJournals] = useState([]);
   const [value, setValue] = useState("");
-const {id}=useParams();
+  const { id } = useParams();
 
   useEffect(() => {
     // Make the GET request when the component mounts
@@ -36,11 +36,19 @@ const {id}=useParams();
             <div className="flex justify-around items-center flex-col-reverse gap-10 md:flex-row">
               <div className="h-auto w-2/3 xl:w-1/2 bg-[#EFE2F0]/50 rounded-3xl flex flex-col items-center justify-around p-10">
                 <div className="gridItem flex items-center justify-center gap-2 flex-wrap lg:mx-16 flex-col">
-                    <h2 className="text-[#6C1770] text-2xl py-6">Journal Entry: {formatDate(journals.createdAt)}</h2>
-
-                    <p dangerouslySetInnerHTML={{ __html: journals && journals.text }}/>
+                  <h2 className="text-[#6C1770] text-2xl py-6">
+                    Journal Entry: {formatDate(journals.createdAt)}
+                  </h2>
+                  <p>{journals.title}</p>
+                  <p>{journals.description}</p>
+                  <div className="mt-5 px-10 w-auto h-auto border-2 border-white/20 rounded-2xl">
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: journals && journals.text,
+                      }}
+                    />
+                  </div>
                 </div>
-
                 {/* ADD ENTRY BUTTON */}
                 <Link
                   to="../journals/new"

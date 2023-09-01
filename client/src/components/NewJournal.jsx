@@ -8,6 +8,8 @@ import axios from "../axiosInstance";
 
 const NewJournal = () => {
   const [value, setValue] = useState("");
+  const title = "Title";
+  const description = "Category";
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState("option1"); // Initial selected option
   const [checkbox, setCheckbox] = useState(false);
@@ -18,18 +20,26 @@ const NewJournal = () => {
     if (checkbox === true) {
       console.log("ja");
       axios
-        .post(`/journals/newjournal`, { text: value })
+        .post(`/journals/newjournal`, {
+          text: value,
+          description: description,
+          title: title,
+        })
         .then((res) => {
           console.log(res.data);
-          navigate("../journals/:id");
+          navigate(`../journals`);
         })
         .catch((e) => console.log(e));
-    } else{
+    } else {
       axios
-        .post(`/articles/articles`, { text: value })
+        .post(`/articles/articles`, {
+          text: value,
+          description: description,
+          title: title,
+        })
         .then((res) => {
           console.log(res.data);
-          navigate("../articles/:id");
+          navigate(`../articles`);
         })
         .catch((e) => console.log(e));
     }
@@ -38,8 +48,10 @@ const NewJournal = () => {
   const handleSelectChange = (event) => {
     setSelectedOption(event.target.value);
     axios
-    .post(`/articles/articles`)
-  };
+      .post(`/articles/articles`)
+      .then((res)=>console.log("article sent"))
+      .catch((e) => console.log(e))
+    };
 
   return (
     <div>
@@ -51,7 +63,7 @@ const NewJournal = () => {
                 <h2 className="text-[#6C1770] text-2xl py-6">Journal Entry</h2>
                 <p>Title:</p>
                 <input type="text" className="rounded-lg"></input>
-                
+
                 <div className="pt-5">
                   <label htmlFor="dropdown">Select a category: </label>
                   <select
@@ -78,7 +90,6 @@ const NewJournal = () => {
                   onChange={setValue}
                 />
 
-
                 {/* CHECKBOX */}
                 <div className="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem] pb-3">
                   <input
@@ -86,7 +97,7 @@ const NewJournal = () => {
                     type="checkbox"
                     value=""
                     id="checkboxDefault"
-                    onFocus={()=>setCheckbox(true)}
+                    onFocus={() => setCheckbox(true)}
                   />
                   <label
                     className="inline-block pl-[0.15rem] hover:cursor-pointer"
@@ -95,7 +106,6 @@ const NewJournal = () => {
                     Make Public
                   </label>
                 </div>
-
 
                 <Link
                   to="../journals"
@@ -107,12 +117,12 @@ const NewJournal = () => {
                   <span className="relative text-white">Add Entry</span>
                 </Link>
               </div>
-              </div>
-              </div>
-              </div>
             </div>
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default NewJournal;

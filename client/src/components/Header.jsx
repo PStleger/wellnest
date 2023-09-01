@@ -17,8 +17,8 @@ const Header = () => {
     const location = useLocation();
     const navigation = [
         { name: "How It Works", href: "/howitworks", current: true },
-        { name: "Get Inspired", href: "/getinspired", current: false },
-        { name: "Resources", href: "/publicarticles", current: false },
+        { name: "Get Inspired", href: "/publicarticles", current: false },
+        { name: "Resources", href: "/", current: false },//NEEDS A LINK
     ];
     const updatedNavigation = navigation.map((item) => ({
         ...item,

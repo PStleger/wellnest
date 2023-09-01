@@ -10,7 +10,6 @@ const Dashboard = () => {
 
     return (
         <div>
-            {" "}
             <div className="flex flex-wrap mt-16">
                 <div className="w-full">
                     <ul
