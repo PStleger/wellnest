@@ -3,13 +3,13 @@ export default {
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
         extend: {
-            animation: ['group-hover'],
+            animation: ["group-hover"],
         },
     },
-    plugins: [],
+    plugins: [require("tailwindcss-animated")],
     variants: {
         extend: {
-          inset: ["group-hover"],
-        }
-      }
+            inset: ["group-hover"],
+        },
+    },
 };
