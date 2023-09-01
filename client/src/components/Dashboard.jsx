@@ -212,7 +212,7 @@ const Dashboard = () => {
                                 </div>
                                 <div
                                     className={
-                                        openTab === 3 ? "block" : "hidden"
+                                        openTab === 3 ? "block " : "hidden "
                                     }
                                     id="link3"
                                 >
@@ -223,7 +223,6 @@ const Dashboard = () => {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
             {/* <div className="tabs mx-auto w-96 bg-[#8C1960] rounded-xl gap-2 flex  items-center justify-center text-white">

@@ -7,7 +7,7 @@ import placeholder3 from "./images/placeholder3.png";
 import { Link } from "react-router-dom";
 const HowItWorks = () => {
     return (
-        <div className="  bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0] flex flex-col">
+        <div className="  bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0] flex flex-col p-10">
             {/* First Card */}
 
             <div>
@@ -22,7 +22,7 @@ const HowItWorks = () => {
 
             {/* Step 1 */}
             <div className="relative group w-screen h-96 overflow-hidden m-auto mt-36 ">
-                <div className="absolute left-0 w-1/2 h-full flex flex-col justify-center ">
+                <div className="absolute left-0 w-1/5 h-full flex flex-col justify-center ">
                     <p className="font-sans text-center text-white mt-5">
                         In todays fast-paced world, its easy to push our
                         emotions aside or dismiss them in favor of
