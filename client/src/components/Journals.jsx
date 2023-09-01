@@ -41,7 +41,7 @@ const Journals = () => {
                     {journals.map((journal) => (
                       <li key={journal.timestamps}>
                         <Link
-                          to={`/journals/:id`}
+                          to={`/journals/${journal._id}`}
                           className="relative inline-flex items-center justify-center px-4 py-2 w-16 h-14 md:w-24 md:h-20 lg:w-32 lg:h-28 overflow-hidden text-[8px] md:text-[16px] lg:text-lg transition duration-300 ease-out rounded-xl shadow-xl group hover:ring-1 hover:ring-purple-500"
                           >
                           <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#D19976] via-[#CF974E] to-[#ECE5A9]"></span>
