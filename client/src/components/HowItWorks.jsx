@@ -62,7 +62,7 @@ Revolutionizing Emotional Well-Being
     </div>
     <Link to="/publicarticles">
         <button className="absolute left-1/4 bottom-4 bg-white text-black font-bold rounded-lg h-10 w-48 ml-14">
-        Body Scan
+        Quiz
         </button>
     </Link>
     </div>
@@ -97,7 +97,7 @@ Revolutionizing Emotional Well-Being
     <div className="absolute w-full flex place-content-center mt-20">
     <p className="font-sans text-center w-4/5 text-white mt-5">Collaborative effort of a group to achieve a common goal the most effective and efficient way!</p>
     </div>
-    <Link to="/publicarticles">
+    <Link to="/progress">
         <button className="absolute left-1/4 bottom-4 bg-white text-black font-bold rounded-lg h-10 w-48 ml-16">
         Journal
         </button>
@@ -131,11 +131,7 @@ Revolutionizing Emotional Well-Being
 </p>
 </div>
 </div>
-
-
-
-
-                </div>
+</div>
 
     );
 
