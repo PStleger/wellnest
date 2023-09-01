@@ -7,7 +7,7 @@ import placeholder3 from "./images/placeholder3.png";
 import { Link } from "react-router-dom";
 const HowItWorks = () => {
     return (
-        <div className="  bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0] flex flex-col">
+        <div className="  bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0] flex flex-col  items-center justify-center p-10 pb-28">
             {/* First Card */}
 
             <div>
@@ -22,7 +22,7 @@ const HowItWorks = () => {
 
             {/* Step 1 */}
             <div className="relative group w-screen h-96 overflow-hidden m-auto mt-36 ">
-                <div className="absolute left-0 w-1/2 h-full flex flex-col justify-center ">
+                <div className="absolute left-36 w-1/4 h-full flex flex-col justify-center ">
                     <p className="font-sans text-center text-white mt-5">
                         In todays fast-paced world, its easy to push our
                         emotions aside or dismiss them in favor of
@@ -35,27 +35,27 @@ const HowItWorks = () => {
                         health journey. Revolutionizing Emotional Well-Being
                     </p>
                 </div>
-                <div className="absolute right-0 w-1/2 h-full rounded-2xl">
+                <div className="absolute right-52 w-1/4 h-full rounded-2xl">
                     <img
                         className="object-cover w-full h-full transform duration-700 backdrop-opacity-100 rounded-2xl"
                         src={placeholder}
                     />
                     <div className="absolute w-full h-full shadow-2xl opacity-20 transform duration-500 inset-y-full group-hover:-inset-y-0 rounded-2xl"></div>
-                    <div className="absolute bg-gradient-to-t from-black w-full h-full transform duration-500 inset-y-3/4 group-hover:-inset-y-0 rounded-2xl">
+                    <div className="absolute flex justify-center bg-gradient-to-t from-black w-full h-full transform duration-500 inset-y-3/4 group-hover:-inset-y-0 rounded-2xl">
                         <div className="absolute w-full flex place-content-center rounded-2xl">
                             <p className="capitalize font-serif font-bold text-3xl text-center shadow-2xl text-white mt-10 rounded-2xl">
                                 Sign up
                             </p>
                         </div>
-                        <div className="absolute w-full flex place-content-center mt-20 ">
+                        <div className=" justify-center absolute w-full flex place-content-center mt-20 ">
                             <p className="font-sans text-center w-4/5 text-white mt-5 ">
                                 Collaborative effort of a group to achieve a
                                 common goal the most effective and efficient
                                 way!
                             </p>
                         </div>
-                        <Link to="/publicarticles">
-                            <button className="absolute left-1/4 bottom-4 bg-white text-black font-bold rounded-lg h-10 w-48 ml-16">
+                        <Link to="/register">
+                            <button className="absolute left-[140px]  bottom-4 bg-white text-black font-bold rounded-lg h-10 w-48 ">
                                 Sign up
                             </button>
                         </Link>
@@ -65,7 +65,7 @@ const HowItWorks = () => {
 
             {/* Step 2 */}
             <div className="relative group w-screen h-96 overflow-hidden m-auto mt-36">
-                <div className="absolute left-0 w-1/2 h-full rounded-2xl">
+                <div className="absolute left-36 w-1/4 h-full rounded-2xl">
                     <img
                         className="object-cover w-full h-full transform duration-700 backdrop-opacity-100 rounded-2xl"
                         src={placeholder1}
@@ -84,14 +84,14 @@ const HowItWorks = () => {
                                 way!
                             </p>
                         </div>
-                        <Link to="/publicarticles">
-                            <button className="absolute left-1/4 bottom-4 bg-white text-black font-bold rounded-lg h-10 w-48 ml-14">
+                        <Link to="/progress/new">
+                            <button className="absolute left-[140px] bottom-4 bg-white text-black font-bold rounded-lg h-10 w-48 ">
                                 Quiz
                             </button>
                         </Link>
                     </div>
                 </div>
-                <div className="absolute right-0 w-1/2 h-full flex flex-col justify-center">
+                <div className="absolute right-64 w-1/4 h-full flex flex-col justify-center">
                     <p className="font-sans text-center text-white mt-5">
                         In todays fast-paced world, its easy to push our
                         emotions aside or dismiss them in favor of
@@ -108,7 +108,7 @@ const HowItWorks = () => {
 
             {/* Step 3 */}
             <div className="relative group w-screen h-96 overflow-hidden m-auto mt-36">
-                <div className="absolute left-0 w-1/2 h-full flex flex-col justify-center">
+                <div className="absolute left-36 w-1/4 h-full flex flex-col justify-center">
                     <p className="font-sans text-center text-white mt-5">
                         In todays fast-paced world, its easy to push our
                         emotions aside or dismiss them in favor of
@@ -121,7 +121,7 @@ const HowItWorks = () => {
                         health journey. Revolutionizing Emotional Well-Being
                     </p>
                 </div>
-                <div className="absolute right-0 w-1/2 h-full">
+                <div className="absolute right-52 w-1/4 h-full">
                     <img
                         className="object-cover w-full h-full transform duration-700 backdrop-opacity-100 rounded-2xl"
                         src={placeholder2}
@@ -140,8 +140,8 @@ const HowItWorks = () => {
                                 way!
                             </p>
                         </div>
-                        <Link to="/progress">
-                            <button className="absolute left-1/4 bottom-4 bg-white text-black font-bold rounded-lg h-10 w-48 ml-16">
+                        <Link to="/journals">
+                            <button className="absolute left-[140px] bottom-4 bg-white text-black font-bold rounded-lg h-10 w-48 ">
                                 Journal
                             </button>
                         </Link>
@@ -150,7 +150,7 @@ const HowItWorks = () => {
             </div>
             {/* Sample */}
             <div className="relative group w-screen h-96 overflow-hidden m-auto mt-36">
-                <div className="absolute left-0 w-1/2 h-full">
+                <div className="absolute left-36 w-1/4 h-full">
                     <img
                         className="object-cover w-full h-full transform duration-700 backdrop-opacity-100 rounded-2xl"
                         src={placeholder3}
@@ -170,13 +170,13 @@ const HowItWorks = () => {
                             </p>
                         </div>
                         <Link to="/publicarticles">
-                            <button className="absolute left-1/4 bottom-4 bg-white text-black font-bold rounded-lg h-10 w-48 ml-16">
+                            <button className="absolute left-[140px] bottom-4 bg-white text-black font-bold rounded-lg h-10 w-48 ">
                                 Article
                             </button>
                         </Link>
                     </div>
                 </div>
-                <div className="absolute right-0 w-1/2 h-full flex flex-col justify-center">
+                <div className="absolute right-52 w-1/4 h-full flex flex-col justify-center">
                     <p className="font-sans text-center text-white mt-5">
                         In todays fast-paced world, its easy to push our
                         emotions aside or dismiss them in favor of

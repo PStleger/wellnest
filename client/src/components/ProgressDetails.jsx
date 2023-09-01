@@ -25,26 +25,45 @@ const ProgressDetails = () => {
 
     useEffect(() => {
         if (!loading) {
-            let color2 = JSON.parse(dailyProgress.QAArray[2].answer);
-            let color7 = JSON.parse(dailyProgress.QAArray[7].answer);
+            if (
+                dailyProgress.QAArray &&
+                dailyProgress.QAArray[2] &&
+                dailyProgress.QAArray[2].answer
+            ) {
+                try {
+                    const color2 = JSON.parse(dailyProgress.QAArray[2].answer);
+                    setHexColor2(
+                        hsvaToHex({
+                            h: color2.h,
+                            s: color2.s,
+                            v: color2.v,
+                            a: color2.a,
+                        })
+                    );
+                } catch (error) {
+                    console.error("Error parsing color2:", error);
+                }
+            }
 
-            setHexColor2(
-                hsvaToHex({
-                    h: color2.h,
-                    s: color2.s,
-                    v: color2.v,
-                    a: color2.a,
-                })
-            );
-
-            setHexColor7(
-                hsvaToHex({
-                    h: color7.h,
-                    s: color7.s,
-                    v: color7.v,
-                    a: color7.a,
-                })
-            );
+            if (
+                dailyProgress.QAArray &&
+                dailyProgress.QAArray[7] &&
+                dailyProgress.QAArray[7].answer
+            ) {
+                try {
+                    const color7 = JSON.parse(dailyProgress.QAArray[7].answer);
+                    setHexColor7(
+                        hsvaToHex({
+                            h: color7.h,
+                            s: color7.s,
+                            v: color7.v,
+                            a: color7.a,
+                        })
+                    );
+                } catch (error) {
+                    console.error("Error parsing color7:", error);
+                }
+            }
         }
     }, [dailyProgress.QAArray, loading]);
 
