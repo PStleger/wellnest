@@ -186,7 +186,7 @@ const Dashboard = () => {
                           <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#263147] via-[#212C3F] to-[#233045]"></span>
                           <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-blue-300 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
                           <span className="relative text-white text-center">
-                            Hollistic
+                            Holistic
                           </span>
                         </Link>
                         <Link className="relative inline-flex items-center justify-center px-4 py-2 w-16 h-14 md:w-24 md:h-20 lg:w-32 lg:h-28 overflow-hidden text-[8px] md:text-[16px] lg:text-lg transition duration-300 ease-out rounded-xl shadow-xl group hover:ring-1 hover:ring-purple-500">
@@ -198,10 +198,12 @@ const Dashboard = () => {
                         </Link>
                       </div>
                     </div>
+                    <Link to="../progress/new">
                     <button className="relative bg-white text-[#6C1770] text-xl border-none rounded-full h-52 w-52 lg:h-80 lg:w-80 lg:text-[25px]">
                       Get Started
                       <div className="absolute inset-2 shadow-[0_0px_70px_20px] hover:shadow-[0_10px_50px_0px] rounded-full hover:shadow-yellow-400 shadow-yellow-400 hover:animate-spin animate-duration-[7000ms] animate-pulse animate-fill-forwards"></div>
                     </button>
+                    </Link>
                   </div>
                 </div>
                 <div className={openTab === 2 ? "block" : "hidden"} id="link2">
