@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
 import { useNavigate } from "react-router-dom";
 import axios from "../axiosInstance";
-import "./Progress.css";
+// import "./Progress.css";
 
 const NewJournal = () => {
   const [value, setValue] = useState("");
@@ -80,6 +80,9 @@ const NewJournal = () => {
                   <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
                   <span className="relative text-white">Add Entry</span>
                 </Link>
+              </div>
+              </div>
+              </div>
               </div>
             </div>
         </div>
