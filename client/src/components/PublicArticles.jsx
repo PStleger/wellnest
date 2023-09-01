@@ -48,7 +48,7 @@ const PublicArticles = () => {
                   </div>
                 </ol>
                 <Link
-                  to="../articles/new"
+                  to="../journals/new"
                   className="relative inline-flex items-center justify-center p-4 px-5 py-3 mt-10 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-2xl shadow-xl group hover:ring-1 hover:ring-purple-500"
                 >
                   <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0]"></span>
