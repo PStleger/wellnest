@@ -1,0 +1,28 @@
+.hmove {
+     display: flex;
+     position: relative; top: 0; right: 0;
+     animation: slideh linear 60s infinite;
+     }
+
+.hslide { width: 100%; flex-shrink: 0; }
+.hwrap { overflow: hidden; }
+
+@keyframes slideh {
+  0% { right: 0; } 6.25% { right: 0; }
+  12.5% { right: 100%; } 18.75% { right: 100%; }
+  25% { right: 200%; } 31.25% { right: 200%; }
+  37.5% { right: 300%; } 43.75% { right: 300%; }
+  50% { right: 400%; } 56.25% { right: 400%; }
+  62.5% { right: 500%; } 68.75% { right: 500%; }
+  75% { right: 600%; } 81.25% { right: 600%; }
+  87.5% { right: 700%; } 93.75% { right: 700%; }
+  100% { right: 0; }
+}
+
+.hwrap {
+  background: lightcyan;
+}
+.hslide { padding: 2rem; }
+* {
+  box-sizing: border-box;
+}
