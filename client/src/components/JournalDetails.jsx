@@ -74,12 +74,6 @@
 
 // export default JournalDetails;
 
-
-
-
-
-
-
 // import { Link, useParams, useNavigate } from "react-router-dom";
 // import axios from "../axiosInstance";
 // import { useState, useEffect } from "react";
@@ -153,9 +147,7 @@
 //                   </h2>
 //                   <p>{journals.title}</p>
 //                   <p>{journals.description}</p>
-                  
-                  
-                  
+
 //                   {/* <div className="mt-5 px-10 w-auto h-auto border-2 border-white/20 rounded-2xl">
 //                     <p
 //                       dangerouslySetInnerHTML={{
@@ -163,8 +155,7 @@
 //                       }}
 //                     />
 //                   </div> */}
-                
-                
+
 //                 </div>
 //                 <div className="flex space-x-5">
 //                   {isEditing ? (
@@ -186,7 +177,7 @@
 //                       </button>
 //                     </div>
 //                   ) : (
-                    
+
 //                     <div>
 //                       {/* EDIT BUTTON */}
 //                       <Link
@@ -233,11 +224,6 @@
 // };
 
 // export default JournalDetails;
-
-
-
-
-
 
 import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "../axiosInstance";
@@ -288,9 +274,9 @@ const JournalDetails = () => {
   const handleUpdateJournal = () => {
     console.log("editing is being handled");
     console.log(`${id}`);
-        setJournals(res.data);
-        // setIsEditing(true);
-        console.log("Successfully opened editor");
+    setJournals(res.data);
+    // setIsEditing(true);
+    console.log("Successfully opened editor");
   };
 
   const saveUpdateJournal = () => {
@@ -320,6 +306,7 @@ const JournalDetails = () => {
                   </h2>
                   <p>{journals.title}</p>
                   <p>{journals.description}</p>
+                  <p>{journals.createdBy?.userName}</p>
 
                   {isEditing ? (
                     <div>
@@ -335,7 +322,9 @@ const JournalDetails = () => {
                       >
                         Save
                       </button>
-                      <button onClick={() => setIsEditing(false)}>Cancel</button>
+                      <button onClick={() => setIsEditing(false)}>
+                        Cancel
+                      </button>
                     </div>
                   ) : (
                     <div>
@@ -393,4 +382,3 @@ const JournalDetails = () => {
 };
 
 export default JournalDetails;
-
