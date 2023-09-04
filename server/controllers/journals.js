@@ -6,7 +6,7 @@ const createJournal = async (req, res) => {
         console.log(req.body);
         const newJournal = await Journal.create({
             userId: req.user._id,
-            // createdBy: req.user._id,
+            // createdBy: user.username,
             title,
             text,
             description,
@@ -19,7 +19,9 @@ const createJournal = async (req, res) => {
 
 const getAllJournals = async (req, res) => {
     try {
-        const journals = await Journal.find({ userId: req.user._id });
+        const journals = await Journal.find({
+            createdBy: req.user._id,
+        });
         console.log(" getting all journals:", journals);
         console.log(req.user._id);
         res.json(journals);
@@ -33,11 +35,11 @@ const getJournalById = async (req, res) => {
         const {
             params: { id },
         } = req;
-        const { userId } = req.body;
+
         const journal = await Journal.find({
             _id: id,
-            userId: req.user._id,
-        });
+        }).populate("createdBy");
+        console.log("journal: ", journal);
         if (journal.length === 0) {
             res.status(404).json({ message: "journal not found" });
         }
