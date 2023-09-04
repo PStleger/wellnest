@@ -7,7 +7,7 @@ import placeholder3 from "./images/placeholder3.png";
 import { Link } from "react-router-dom";
 const HowItWorks = () => {
     return (
-        <div className="  bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0] flex flex-col  items-center justify-center p-10 pb-28">
+        <div className="  bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0] flex flex-col  items-center justify-center p-10 pb-28 ">
             {/* First Card */}
 
             <div>
@@ -35,7 +35,7 @@ const HowItWorks = () => {
                         health journey. Revolutionizing Emotional Well-Being
                     </p>
                 </div>
-                <div className="absolute right-52 w-1/4 h-full rounded-2xl">
+                <div className="absolute right-52 w-1/4 h-full rounded-2xl sm:flex sm:flex-col">
                     <img
                         className="object-cover w-full h-full transform duration-700 backdrop-opacity-100 rounded-2xl"
                         src={placeholder}

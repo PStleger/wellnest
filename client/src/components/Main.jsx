@@ -23,7 +23,7 @@ import NewProgress from "./NewProgress";
 
 const Main = () => {
     return (
-        <main className="min-h-[550px] pb-20">
+        <main className="min-h-[550px] ">
             <Routes>
                 <Route path="/" element={<ProtectedRoute />}>
                     <Route path="dashboard" element={<Dashboard />} />

@@ -11,7 +11,7 @@ const articleSchema = mongoose.Schema(
             type: String,
             required: [true, "Article Description is Required!"],
         },
-        content: {
+        text: {
             type: String,
             required: [true, "Article Content is Required!"],
         },
