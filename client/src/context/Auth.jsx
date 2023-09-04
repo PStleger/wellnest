@@ -1,9 +1,13 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 import axios from "../axiosInstance";
 import { useNavigate } from "react-router-dom";
 export const AuthContext = createContext();
+
+export function useAuth() {
+    return useContext(AuthContext);
+}
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
@@ -62,6 +66,7 @@ const AuthProvider = ({ children }) => {
             setState(null, false, error.response.errors);
         }
     };
+
     return (
         <AuthContext.Provider
             value={{ user, loading, errors, login, register, logout }}
