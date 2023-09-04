@@ -19,7 +19,7 @@ const Journals = () => {
     useEffect(() => {
         // Make the GET request when the component mounts
         axios
-            .get(`/journals/journals/`)
+            .get(`/journals/journals`)
             .then((res) => {
                 // Update the state with the retrieved journal data
                 setJournals(res.data);

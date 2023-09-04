@@ -12,14 +12,14 @@ const NewJournal = () => {
     // const description = "Category";
     const navigate = useNavigate();
     const [title, setTitle] = useState("");
-    const [selectedOption, setSelectedOption] = useState(""); // Initial selected option
+    const [selectedOption, setSelectedOption] = useState("Mindfulness"); // Initial selected option
     const [checkbox, setCheckbox] = useState(false);
 
     const handleNewJournal = () => {
         console.log("new Journal has been sent to the db");
         console.log(value);
         if (checkbox !== true) {
-            console.log("ja");
+            console.log(selectedOption);
             axios
                 .post(`/journals/newjournal`, {
                     text: value,
@@ -47,11 +47,8 @@ const NewJournal = () => {
     };
 
     const handleSelectChange = (event) => {
+        console.log(event.target);
         setSelectedOption(event.target.value);
-        // axios
-        //     .post(`/articles/articles`)
-        //     .then((res) => console.log("article sent"))
-        //     .catch((e) => console.log(e));
     };
 
     return (
