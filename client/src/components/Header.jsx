@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import logo from "../assets/nestguy.png";
-import userAvatar from "../assets/happyface.png";
+import userAvatar from "../assets/placeholdersu.jpg";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { AuthContext } from "../context/Auth";
 import { useContext } from "react";
@@ -30,6 +30,7 @@ const Header = () => {
         context.logout();
         return <Navigate to="/" />;
     };
+    // console.log(context.user);
     return (
         <Disclosure
             as="nav"
@@ -93,71 +94,90 @@ const Header = () => {
                                 </div>
                             </div>
                             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                                <button
-                                    type="button"
-                                    className="relative rounded-full bg-[#DFC6E0] p-1 text-slate-800 hover:text-[#8C1960] focus:outline-[#8C1960] focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#8C1960]"
-                                >
-                                    <span className="sr-only">
-                                        View notifications
-                                    </span>
-                                    <BellIcon
-                                        className="sm:w-8 sm:h-8 w-6 h-6"
-                                        aria-hidden="true"
-                                    />
-                                </button>
-
                                 {/* Profile dropdown */}
-                                <Menu as="div" className="relative ml-3">
-                                    <div>
-                                        <Menu.Button className="relative flex rounded-full  text-sm  focus:ring-2 focus:ring-[#8C1960] sm:w-12 sm:h-12 w-8 h-8">
+                                {context.user ? (
+                                    <>
+                                        {" "}
+                                        <button
+                                            type="button"
+                                            className="relative rounded-full bg-[#DFC6E0] p-1 text-slate-800 hover:text-[#8C1960] focus:outline-[#8C1960] focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#8C1960]"
+                                        >
                                             <span className="sr-only">
-                                                Open user menu
+                                                View notifications
                                             </span>
-                                            <img
-                                                className="sm:w-12 sm:h-12 w-8 h-8 rounded-full"
-                                                src={userAvatar}
-                                                alt=""
+                                            <BellIcon
+                                                className="sm:w-6 sm:h-6 w-6 h-6"
+                                                aria-hidden="true"
                                             />
-                                        </Menu.Button>
-                                    </div>
-                                    <Transition
-                                        as={Fragment}
-                                        enter="transition ease-out duration-100"
-                                        enterFrom="transform opacity-0 scale-95"
-                                        enterTo="transform opacity-100 scale-100"
-                                        leave="transition ease-in duration-75"
-                                        leaveFrom="transform opacity-100 scale-100"
-                                        leaveTo="transform opacity-0 scale-95"
-                                    >
-                                        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                            <Menu.Item>
-                                                <Link
-                                                    to="/profile"
-                                                    className="block px-4 py-2 text-sm text-gray-700"
-                                                >
-                                                    Your Profile
-                                                </Link>
-                                            </Menu.Item>
-                                            <Menu.Item>
-                                                <Link
-                                                    to="/settings"
-                                                    className="block px-4 py-2 text-sm text-gray-700"
-                                                >
-                                                    Settings
-                                                </Link>
-                                            </Menu.Item>
-                                            <Menu.Item>
-                                                <Link
-                                                    to="/"
-                                                    className="block px-4 py-2 text-sm text-gray-700"
-                                                    onClick={handleLogout}
-                                                >
-                                                    Sign Out
-                                                </Link>
-                                            </Menu.Item>
-                                        </Menu.Items>
-                                    </Transition>
-                                </Menu>
+                                        </button>
+                                        <Menu
+                                            as="div"
+                                            className="relative ml-3"
+                                        >
+                                            <div>
+                                                <Menu.Button className="relative flex rounded-full  text-sm  focus:ring-2 focus:ring-[#a57794] sm:w-12 sm:h-12 w-8 h-8">
+                                                    <span className="sr-only">
+                                                        Open user menu
+                                                    </span>
+                                                    <img
+                                                        className="sm:w-12 sm:h-12 w-8 h-8 rounded-full"
+                                                        src={userAvatar}
+                                                        alt=""
+                                                    />
+                                                </Menu.Button>
+                                            </div>
+                                            <Transition
+                                                as={Fragment}
+                                                enter="transition ease-out duration-100"
+                                                enterFrom="transform opacity-0 scale-95"
+                                                enterTo="transform opacity-100 scale-100"
+                                                leave="transition ease-in duration-75"
+                                                leaveFrom="transform opacity-100 scale-100"
+                                                leaveTo="transform opacity-0 scale-95"
+                                            >
+                                                <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                    <Menu.Item>
+                                                        <Link
+                                                            to="/profile"
+                                                            className="block px-4 py-2 text-sm text-gray-700"
+                                                        >
+                                                            Your Profile
+                                                        </Link>
+                                                    </Menu.Item>
+                                                    <Menu.Item>
+                                                        <Link
+                                                            to="/settings"
+                                                            className="block px-4 py-2 text-sm text-gray-700"
+                                                        >
+                                                            Settings
+                                                        </Link>
+                                                    </Menu.Item>
+                                                    <Menu.Item>
+                                                        <Link
+                                                            to="/"
+                                                            className="block px-4 py-2 text-sm text-gray-700"
+                                                            onClick={
+                                                                handleLogout
+                                                            }
+                                                        >
+                                                            Sign Out
+                                                        </Link>
+                                                    </Menu.Item>
+                                                </Menu.Items>
+                                            </Transition>
+                                        </Menu>
+                                    </> 
+                                ) : (
+                                    <Link to="/login">
+                                        <button className="m-10 relative inline-flex items-center justify-center px-4 py-1 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-xl shadow-xl group hover:ring-1 hover:ring-purple-500">
+                                            <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0]"></span>
+                                            <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
+                                            <span className="relative text-white text-lg">
+                                                Login
+                                            </span>
+                                        </button>
+                                    </Link>
+                                )}
                             </div>
                         </div>
                     </div>

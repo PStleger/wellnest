@@ -36,7 +36,7 @@ const Journals = () => {
               <div className="h-auto w-2/3 xl:w-1/2 bg-[#EFE2F0]/50 rounded-3xl flex flex-col items-center justify-around p-10">
                 <h2 className="text-[#6C1770] text-2xl py-6">My Journal</h2>
 
-                  <ol>
+                  <ol reversed>
                 <div className="gridItem flex items-center justify-center gap-2 flex-wrap lg:mx-16">
                     {journals.map((journal) => (
                       <li key={journal.timestamps}>

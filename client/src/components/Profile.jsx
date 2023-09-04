@@ -1,14 +1,14 @@
-import userAvatar from "../assets/happyface.png";
+import userAvatar from "../assets/placeholdersu.jpg";
 // import { useState } from "react";
 import "./Profile.css";
 
 const Profile = () => {
     return (
-        <div className="flex flex-col items-center justify-center gap-10">
+        <div className="flex flex-col items-center justify-center gap-10 min-h-fit mb-10">
             <div>
                 <div className="my-10 flex items-center gap-16">
                     <div className="avatar-animation-div">
-                        <img src={userAvatar} alt="" className="w-72 h-72" />
+                        <img src={userAvatar} alt="" className="w-84 h-84 " />
                     </div>
                     <div className="flex gap-5 my-10">
                         <button className=" h-10 relative inline-flex items-center justify-center px-4 py-2 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-xl shadow-xl group hover:ring-1 hover:ring-purple-500">
