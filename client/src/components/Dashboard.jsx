@@ -9,7 +9,7 @@ const Dashboard = () => {
     const [openTab, setOpenTab] = useState(1);
 
     return (
-        <div>
+        <div className="pb-20">
             <div className="flex flex-wrap mt-16">
                 <div className="w-full">
                     <ul
@@ -196,10 +196,10 @@ const Dashboard = () => {
                                             </div>
                                         </div>
                                         <Link to="../progress/new">
-                                        <button className="relative bg-white text-[#6C1770] text-xl border-none rounded-full h-52 w-52 lg:h-80 lg:w-80 lg:text-[25px]">
-                                            Get Started
-                                            <div className="absolute inset-2 shadow-[0_0px_70px_20px] hover:shadow-[0_10px_50px_0px] rounded-full hover:shadow-yellow-400 shadow-yellow-400 hover:animate-spin animate-duration-[7000ms] animate-pulse animate-fill-forwards"></div>
-                                        </button>
+                                            <button className="relative bg-white text-[#6C1770] text-xl border-none rounded-full h-52 w-52 lg:h-80 lg:w-80 lg:text-[25px]">
+                                                Get Started
+                                                <div className="absolute inset-2 shadow-[0_0px_70px_20px] hover:shadow-[0_10px_50px_0px] rounded-full hover:shadow-yellow-400 shadow-yellow-400 hover:animate-spin animate-duration-[7000ms] animate-pulse animate-fill-forwards"></div>
+                                            </button>
                                         </Link>
                                     </div>
                                 </div>

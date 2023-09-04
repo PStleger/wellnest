@@ -50,7 +50,11 @@
 
     "react-sketch-canvas": "^6.2.0",
 
+    "reactjs-human-body": "^0.0.8",
+
     "recharts": "^2.8.0",
+
+    "styled-components": "^6.0.7",
 
     "tailwindcss-animated": "^1.0.1"
 

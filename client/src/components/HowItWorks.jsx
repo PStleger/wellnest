@@ -7,7 +7,7 @@ import placeholder3 from "./images/placeholder3.png";
 import { Link } from "react-router-dom";
 const HowItWorks = () => {
     return (
-        <div className="  bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0] flex flex-col  items-center justify-center p-10 pb-28">
+        <div className="  bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0] flex flex-col  items-center justify-center p-10 pb-28 ">
             {/* First Card */}
 
             <div>
