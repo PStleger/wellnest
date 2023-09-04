@@ -5,7 +5,7 @@ const createJournal = async (req, res) => {
         const { userId, title, description, text } = req.body;
         console.log(req.body);
         const newJournal = await Journal.create({
-            userId: req.user._id,
+            createdBy: req.user._id,
             // createdBy: user.username,
             title,
             text,
