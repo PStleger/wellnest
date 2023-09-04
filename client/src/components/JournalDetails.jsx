@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "../axiosInstance";
 import { useState, useEffect } from "react";
 
@@ -15,6 +15,7 @@ const JournalDetails = () => {
   const [journals, setJournals] = useState([]);
   const [value, setValue] = useState("");
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Make the GET request when the component mounts
@@ -27,6 +28,18 @@ const JournalDetails = () => {
       })
       .catch((e) => console.log(e));
   }, [value]); // The effect will re-run whenever 'value' changes
+  
+  const handleDeleteJournal = ()=>{
+    console.log("deletion is being handled");
+    axios
+    .delete(`/journals/${journals._id}`)
+    .then((res)=>{
+      console.log("Successfully deleted");
+      navigate(`../journals`);
+    })
+    .catch((e)=>console.log(e));
+  }
+
 
   return (
     <div>
@@ -57,6 +70,24 @@ const JournalDetails = () => {
                   <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0]"></span>
                   <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
                   <span className="relative text-white">Add Entry</span>
+                </Link>
+                {/* EDIT BUTTON */}
+                {/* <Link
+                  to="../journals/new"
+                  className="relative inline-flex items-center justify-center p-4 px-5 py-3 mt-10 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-2xl shadow-xl group hover:ring-1 hover:ring-purple-500"
+                >
+                  <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0]"></span>
+                  <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
+                  <span className="relative text-white">Add Entry</span>
+                </Link> */}
+                {/* DELETE BUTTON */}
+                <Link onClick={handleDeleteJournal}
+                  to="../journals"
+                  className="relative inline-flex items-center justify-center p-4 px-5 py-3 mt-10 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-2xl shadow-xl group hover:ring-1 hover:ring-purple-500"
+                >
+                  <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0]"></span>
+                  <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
+                  <span className="relative text-white">Delete</span>
                 </Link>
               </div>
             </div>
