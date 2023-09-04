@@ -17,5 +17,5 @@ const journalSchema = mongoose.Schema(
     { timestamps: true }
 );
 
-const model = mongoose.model("Journal", journalSchema);
+const model = mongoose.model("Journal", journalSchema); 
 module.exports = model;

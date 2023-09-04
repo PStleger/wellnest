@@ -19,7 +19,7 @@ const JournalDetails = () => {
     useEffect(() => {
         // Make the GET request when the component mounts
         axios
-            .get(`/journals/journals/${id}`, { text: value })
+            .get(`/journals/journals/${id}`)
             .then((res) => {
                 // Update the state with the retrieved journal data
                 setJournals(res.data);
@@ -41,6 +41,7 @@ const JournalDetails = () => {
                                         {formatDate(journals.createdAt)}
                                     </h2>
                                     <p>{journals.title}</p>
+                                    <p>{journals.createdBy?.userName}</p>
                                     <p>{journals.description}</p>
                                     <div className="mt-5 px-10 w-auto h-auto border-2 border-white/20 rounded-2xl">
                                         <p
