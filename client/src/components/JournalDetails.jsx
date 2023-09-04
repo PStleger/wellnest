@@ -16,6 +16,8 @@ const JournalDetails = () => {
   const [value, setValue] = useState("");
   const { id } = useParams();
   const navigate = useNavigate();
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedText, setEditedText] = useState("");
 
   useEffect(() => {
     // Make the GET request when the component mounts
@@ -24,22 +26,37 @@ const JournalDetails = () => {
       .then((res) => {
         // Update the state with the retrieved journal data
         setJournals(res.data);
+        setEditedText(res.data.text); // Initialize editedText with the current text
         console.log(res.data);
       })
       .catch((e) => console.log(e));
   }, [value]); // The effect will re-run whenever 'value' changes
-  
-  const handleDeleteJournal = ()=>{
-    console.log("deletion is being handled");
-    axios
-    .delete(`/journals/${journals._id}`)
-    .then((res)=>{
-      console.log("Successfully deleted");
-      navigate(`../journals`);
-    })
-    .catch((e)=>console.log(e));
-  }
 
+  const handleDeleteJournal = () => {
+    console.log("deletion is being handled");
+    console.log(`${id}`);
+    axios
+      .delete(`/journals/deletejournal/${id}`)
+      .then((res) => {
+        console.log("Successfully deleted");
+        navigate(`../journals`);
+      })
+      .catch((e) => console.log(e));
+  };
+
+  const handleUpdateJournal = () => {
+    console.log("editing is being handled");
+    console.log(`${id}`);
+    axios
+      .put(`/journals/updatejournal/${id}`, { text: editedText })
+      .then((res) => {
+        setJournals(res.data);
+        setIsEditing(false);
+        console.log("Successfully updated");
+        // navigate(`../journals/${id}`);
+      })
+      .catch((e) => console.log(e));
+  };
 
   return (
     <div>
@@ -54,13 +71,66 @@ const JournalDetails = () => {
                   </h2>
                   <p>{journals.title}</p>
                   <p>{journals.description}</p>
-                  <div className="mt-5 px-10 w-auto h-auto border-2 border-white/20 rounded-2xl">
+                  
+                  
+                  
+                  {/* <div className="mt-5 px-10 w-auto h-auto border-2 border-white/20 rounded-2xl">
                     <p
                       dangerouslySetInnerHTML={{
                         __html: journals && journals.text,
                       }}
                     />
-                  </div>
+                  </div> */}
+                
+                
+                </div>
+                <div className="flex space-x-5">
+                  {isEditing ? (
+                    <div>
+                      <textarea
+                        value={editedText}
+                        onChange={(e) => setEditedText(e.target.value)}
+                      />
+                      <button
+                        onClick={() => {
+                          handleUpdateJournal();
+                          navigate(`../journals/${id}`);
+                        }}
+                      >
+                        Save
+                      </button>
+                      <button onClick={() => setIsEditing(false)}>
+                        Cancel
+                      </button>
+                    </div>
+                  ) : (
+                    
+                    <div>
+                      {/* EDIT BUTTON */}
+                      <Link
+                        onClick={() => {
+                          setIsEditing(true);
+                          handleUpdateJournal();
+                        }}
+                        to="../journals/${id}"
+                        className="relative inline-flex items-center justify-center p-4 px-5 py-3 mt-10 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-2xl shadow-xl group hover:ring-1 hover:ring-purple-500"
+                      >
+                        <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0]"></span>
+                        <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
+                        <span className="relative text-white">Edit</span>
+                      </Link>
+                    </div>
+                  )}
+                  {/* DELETE BUTTON */}
+                  <Link
+                    onClick={handleDeleteJournal}
+                    to="../journals"
+                    className="relative inline-flex items-center justify-center p-4 px-5 py-3 mt-10 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-2xl shadow-xl group hover:ring-1 hover:ring-purple-500"
+                  >
+                    <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0]"></span>
+                    <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
+                    <span className="relative text-white">Delete</span>
+                  </Link>
                 </div>
                 {/* ADD ENTRY BUTTON */}
                 <Link
@@ -70,24 +140,6 @@ const JournalDetails = () => {
                   <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0]"></span>
                   <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
                   <span className="relative text-white">Add Entry</span>
-                </Link>
-                {/* EDIT BUTTON */}
-                {/* <Link
-                  to="../journals/new"
-                  className="relative inline-flex items-center justify-center p-4 px-5 py-3 mt-10 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-2xl shadow-xl group hover:ring-1 hover:ring-purple-500"
-                >
-                  <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0]"></span>
-                  <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
-                  <span className="relative text-white">Add Entry</span>
-                </Link> */}
-                {/* DELETE BUTTON */}
-                <Link onClick={handleDeleteJournal}
-                  to="../journals"
-                  className="relative inline-flex items-center justify-center p-4 px-5 py-3 mt-10 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-2xl shadow-xl group hover:ring-1 hover:ring-purple-500"
-                >
-                  <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0]"></span>
-                  <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
-                  <span className="relative text-white">Delete</span>
                 </Link>
               </div>
             </div>
