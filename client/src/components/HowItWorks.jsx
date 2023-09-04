@@ -35,7 +35,7 @@ const HowItWorks = () => {
                         health journey. Revolutionizing Emotional Well-Being
                     </p>
                 </div>
-                <div className="absolute right-52 w-1/4 h-full rounded-2xl">
+                <div className="absolute right-52 w-1/4 h-full rounded-2xl sm:flex sm:flex-col">
                     <img
                         className="object-cover w-full h-full transform duration-700 backdrop-opacity-100 rounded-2xl"
                         src={placeholder}

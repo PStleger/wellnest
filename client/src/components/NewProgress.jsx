@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "../axiosInstance";
 import "./NewProgress.css";
 import boxsteps from "../assets/boxsteps2.gif";
-import BodyScan from "./BodyScan";
+// import BodyScan from "./BodyScan";
 
 const NewProgress = () => {
     const navigate = useNavigate();
@@ -212,11 +212,11 @@ const NewProgress = () => {
     return (
         <div className="flex flex-col justify-center items-center mt-24 mb-24 min-h-[400px]">
             {showBodyScan ? (
-                // <p className="text-[#6C1770] p-8 font-bold text-2xl text-center max-w-md animate-fade animate-once animate-duration-[3000ms] animate-delay-0 animate-ease-linear animate-normal animate-fill-forwards">
-                //     This is body scan
-                // </p>
-                <BodyScan />
-            ) : null}
+                <p className="text-[#6C1770] p-8 font-bold text-2xl text-center max-w-md animate-fade animate-once animate-duration-[3000ms] animate-delay-0 animate-ease-linear animate-normal animate-fill-forwards">
+                    This is body scan
+                </p>
+            ) : // <BodyScan />
+            null}
             {showBodyScan ? (
                 <button
                     onClick={handleQuestionAfterBodyScan}

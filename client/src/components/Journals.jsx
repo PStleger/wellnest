@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Link } from "react-router-dom";
 import axios from "../axiosInstance";
 import { useState, useEffect } from "react";

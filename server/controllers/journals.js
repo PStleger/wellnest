@@ -2,6 +2,8 @@ const Journal = require("../models/journals");
 
 const createJournal = async (req, res) => {
     try {
+        // const { userId, title, text } = req.body;
+        console.log(req.body);
         const newJournal = await Journal.create(req.body);
         res.status(201).json(newJournal);
     } catch (error) {
