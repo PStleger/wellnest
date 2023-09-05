@@ -15,24 +15,19 @@ export default {
 };
 
 module.exports = {
-    content: [
-        './src/**/*.{js,jsx,ts,tsx}',
-    ],
+    content: ["./src/**/*.{js,jsx,ts,tsx}"],
     theme: {
         extend: {},
     },
     plugins: [],
-}
+};
 
 module.exports = {
-
-    plugins: [
-        require('flowbite/plugin')
-    ]
-}
+    plugins: [require("flowbite/plugin")],
+};
 
 module.exports = {
-    content: ['./src/**/*.{js,jsx,ts,tsx}' /* src folder, for example */],
+    content: ["./src/**/*.{js,jsx,ts,tsx}" /* src folder, for example */],
     theme: {
         extend: {},
     },
