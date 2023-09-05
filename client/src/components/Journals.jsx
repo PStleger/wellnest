@@ -3,14 +3,13 @@ import dayjs from "dayjs";
 import axios from "../axiosInstance";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
-
 const Journals = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [highlightedDays, setHighlightedDays] = useState([]);
   const [journalEntries, setJournalEntries] = useState([]);
   const [currentMonth, setCurrentMonth] = useState(dayjs());
+  const [selectedDate, setSelectedDate] = useState(null); // Add selectedDate state
   const { id } = useParams();
-
 
   useEffect(() => {
     axios
@@ -40,12 +39,8 @@ const Journals = () => {
     setCurrentMonth(currentMonth.add(1, "month"));
   };
 
-  // Function to check if a journal entry belongs to the current month and year
-  const isEntryInCurrentMonthAndYear = (entry) => {
-    return (
-      dayjs(entry.createdAt).isSame(currentMonth, "month") &&
-      dayjs(entry.createdAt).isSame(currentMonth, "year")
-    );
+  const handleDateClick = (date) => {
+    setSelectedDate(date);
   };
 
   return (
@@ -94,19 +89,11 @@ const Journals = () => {
                         ? "bg-[#6C1770] text-white cursor-pointer relative"
                         : "bg-gray-200"
                     } p-2 rounded-full text-center`}
+                    onClick={() => handleDateClick(currentDate)}
                   >
-                    {hasJournalEntry ? (
-                      <Link
-                        to={`/journals/journaldetails/${id}`}
-                        className="block w-full h-full"
-                      >
-                        {formattedDate}
-                        <div className="text-sm mt-1 absolute top-[-5px] right-[-5px]">
-                          📖
-                        </div>
-                      </Link>
-                    ) : (
-                      formattedDate
+                    {formattedDate}
+                    {hasJournalEntry && (
+                      <div className="text-sm mt-1 absolute top-[-5px] right-[-5px]">📖</div>
                     )}
                   </div>
                 );
@@ -114,6 +101,32 @@ const Journals = () => {
             )
           )}
         </div>
+        {selectedDate && (
+          <div>
+            <h2>Journal Titles for {selectedDate.format("MMMM DD, YYYY")}</h2>
+            <ul>
+              {journalEntries.map((entry) => {
+                const entryDate = dayjs(entry.createdAt);
+                if (
+                  entryDate.date() === selectedDate.date() &&
+                  entryDate.isSame(selectedDate, "month") &&
+                  entryDate.isSame(selectedDate, "year")
+                ) {
+                  return (
+                    <div key={entry.id}>
+                      <ul>
+                        <li>
+                          <p>{entry.title}</p>
+                        </li>
+                      </ul>
+                    </div>
+                  );
+                }
+                return null; // If the entry doesn't match the selected date, skip it
+              })}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
