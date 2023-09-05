@@ -42,6 +42,8 @@
 
     "dayjs": "^1.11.9",
 
+    "flowbite": "^1.8.1",
+
     "heroicons-react": "^1.4.1",
 
     "lottie-react": "^2.4.0",
@@ -49,6 +51,8 @@
     "prop-types": "^15.8.1",
 
     "react": "^18.2.0",
+
+    "react-animated-heart": "^0.0.8",
 
     "react-dom": "^18.2.0",
 
@@ -95,3 +99,4 @@
   }
 
 }
+

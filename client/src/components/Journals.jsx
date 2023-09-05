@@ -21,7 +21,7 @@ const Journals = () => {
       .catch((error) => {
         console.error("Error fetching journal entries:", error);
       });
-  }, [currentMonth]);
+  }, [currentMonth, journalEntries]); // Include journalEntries as a dependency
 
   useEffect(() => {
     // Extract days from journal entries and set them as highlighted days
@@ -101,9 +101,11 @@ const Journals = () => {
             )
           )}
         </div>
-        {selectedDate && (
+      </div>
+      {/* JOURNAL LIST */}
+      {selectedDate && (
           <div>
-            <h2>Journal Titles for {selectedDate.format("MMMM DD, YYYY")}</h2>
+            <h2 className="text-[#6C1770] text-xl pt-4">Journal Titles for {selectedDate.format("MMMM DD, YYYY")}</h2>
             <ul>
               {journalEntries.map((entry) => {
                 const entryDate = dayjs(entry.createdAt);
@@ -114,11 +116,45 @@ const Journals = () => {
                 ) {
                   return (
                     <div key={entry.id}>
-                      <ul>
-                        <li>
-                          <p>{entry.title}</p>
-                        </li>
-                      </ul>
+                   
+                      <div className="p-6 my-5 grid gap-8 lg:grid-cols-1 h-70 max-h-[800px] w-full rounded-xl bg-[#EFE2F0]/50">
+                        <div className="flex justify-between items-center mb-5 text-[#6C1770]/50 ">
+                          <span className="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded ">
+                          </span>
+                          <span className="text-sm">{entry.date}</span>
+                        </div>
+                        <h2 className="mb-2 text-2xl font-bold tracking-tight text-[#6C1770] ">
+                          <Link to={`/journals/journals/${id}`}>{entry.title}</Link>
+                        </h2>
+                        <p className="mb-5 font-light text-[#6C1770]/50 ">
+                          {entry.text?.slice(1, 500)}
+                        </p>
+                        <div className="flex justify-between items-end ">
+                          <a
+                            href="#"
+                            className="inline-flex items-end font-medium text-primary-600  hover:underline"
+                          >
+                            <Link
+                              to={`/journals/journals/${id}`}
+                              className="flex justify-center items-center"
+                            >
+                              Read More
+                              <svg
+                                className="ml-2 w-4 h-4"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                  clip-rule="evenodd"
+                                ></path>
+                              </svg>{" "}
+                            </Link>
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   );
                 }
@@ -127,7 +163,6 @@ const Journals = () => {
             </ul>
           </div>
         )}
-      </div>
     </div>
   );
 };
