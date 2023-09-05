@@ -55,3 +55,7 @@
         --gradient-angle: 360deg;
     }
 }
+.custom-continue-button {
+    margin-top: 300px !important;
+  }
+  

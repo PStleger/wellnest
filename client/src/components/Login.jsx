@@ -2,7 +2,7 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../context/Auth";
 import { Link, Navigate } from "react-router-dom";
-import nestlogo from "./images/nestguy.png";
+import nestlogo from "../assets/images/nestguy.png";
 
 function Login() {
     const context = useContext(AuthContext);

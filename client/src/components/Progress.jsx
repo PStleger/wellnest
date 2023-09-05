@@ -25,6 +25,7 @@ let weekDays = [
     "Sunday",
 ];
 
+
 const Progress = () => {
     const navigate = useNavigate();
     const [dailyProgress, setDailyProgress] = useState([]);

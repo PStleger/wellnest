@@ -1,7 +1,8 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../context/Auth";
 import { Navigate } from "react-router-dom";
-import nestlogo from "./images/nestlogo.jpeg";
+
+import nestlogo from "../assets/images/nestlogo.jpeg";
 import { Link } from "react-router-dom";
 
 function Register() {
@@ -357,3 +358,4 @@ export default Register;
 // }
 
 // export default Register;
+
