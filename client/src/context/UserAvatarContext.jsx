@@ -53,7 +53,7 @@ export function UserAvatarProvider({ children }) {
 
     fetchUserAvatar();
     return (
-        <UserAvatarContext.Provider value={{ userAvatar, updateUserAvatar }}>
+        <UserAvatarContext.Provider value={{ userAvatar, updateUserAvatar }}> 
             {children}
         </UserAvatarContext.Provider>
     );

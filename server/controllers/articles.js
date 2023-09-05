@@ -18,7 +18,7 @@ const createArticle = async (req, res) => {
 
 const getAllArticles = async (req, res) => {
     try {
-        const articles = await Article.find();
+        const articles = await Article.find().populate("createdBy");
         console.log(" getting all articles:", articles);
         console.log(" getting createdBy:", articles.createdBy);
         res.json(articles);
