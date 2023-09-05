@@ -7,21 +7,13 @@ import { useUserAvatar } from "../context/UserAvatarContext";
 import { useAuth } from "../context/Auth";
 
 const Profile = () => {
-    const { user } = useAuth();
+    const { user, uploadAvatar, uploading } = useAuth();
     const { userAvatar, updateUserAvatar } = useUserAvatar();
     console.log(userAvatar);
-    const [selectedFile, setSelectedFile] = useState(null);
-    const [uploading, setUploading] = useState(false);
-    const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        // Check if the user is logged in and their user data contains a profilePictureUrl
-        if (user && user.profilePictureUrl) {
-            updateUserAvatar(user.profilePictureUrl);
-            setLoading(false);
-        }
-    }, []);
-
+    // useEffect(()=>{
+    //     console.log("this is a loading message ", loading);
+    // },[loading])
     function convertToDate(dobString) {
         // Extract year, month, and day from the string
         const year = parseInt(dobString.slice(0, 4), 10);
@@ -34,31 +26,14 @@ const Profile = () => {
         return dobDate;
     }
 
-    const handleFileChange = (e) => {
+    const handleFileChange = async (e) => {
+        e.preventDefault();
         const file = e.target.files[0];
-        setSelectedFile(file);
 
         if (file) {
-            setUploading(true);
-
             const formData = new FormData();
             formData.append("avatar", file);
-
-            axios
-                .post("/auth/upload-avatar", formData, {
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                    },
-                })
-                .then((response) => {
-                    updateUserAvatar(response.data.user.avatar);
-                    setUploading(false);
-                    window.location.reload();
-                })
-                .catch((error) => {
-                    console.error("Avatar upload failed:", error);
-                    setUploading(false);
-                });
+            uploadAvatar(formData);
         }
     };
 
@@ -72,7 +47,7 @@ const Profile = () => {
                 console.error("Avatar deletion failed:", error);
             });
     };
-    console.log(user);
+
     return (
         <div className="flex flex-col items-center justify-center gap-10 min-h-fit mb-10">
             <div>
@@ -80,7 +55,7 @@ const Profile = () => {
                     <div className="avatar-animation-div overflow-hidden">
                         {/* <img src={userAvatar} alt="" className="w-84 h-84 " /> */}
                         <img
-                            src={userAvatar || defaultAvatar} // Use userAvatar or defaultAvatar
+                            src={user.avatar || defaultAvatar} // Use userAvatar or defaultAvatar
                             alt="User Avatar"
                             className="w-84 h-84"
                         />
@@ -108,7 +83,7 @@ const Profile = () => {
                         </label>
                         {uploading ? (
                             <span className="ml-2 text-[#6C1770] font-bold ">
-                                Uploading...
+                                Upuploading...
                             </span>
                         ) : null}
                     </div>{" "}

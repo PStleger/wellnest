@@ -71,6 +71,7 @@ const login = async (req, res) => {
                     email: currentUser.email,
                     userName: currentUser.userName,
                     dob: currentUser.dob,
+                    avatar:currentUser.avatar
                 };
 
                 const accessToken = jwt.sign(user, SECRET); // creating a new token for currentUser
@@ -94,7 +95,7 @@ const getLoggedInUser = async (req, res) => {
     // to have logged in user information once they logged in
     try {
         const user = await User.findOne({ _id: req.user._id }).select(
-            "_id email userName firstName lastName dob country"
+            "_id email userName firstName lastName dob country avatar"
         );
         console.log("user still logged in", user);
         res.json({ user });

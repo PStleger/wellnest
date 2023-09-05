@@ -9,7 +9,7 @@ import { useContext } from "react";
 import { Navigate } from "react-router";
 import defaultAvatar from "../assets/defaultavatar.png";
 import axios from "../axiosInstance";
-import { useUserAvatar } from "../context/UserAvatarContext";
+
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
@@ -18,8 +18,7 @@ function classNames(...classes) {
 const Header = () => {
     const context = useContext(AuthContext);
     const location = useLocation();
-    const { userAvatar } = useUserAvatar();
-    console.log("userAvatar:", userAvatar);
+
     const navigation = [
         { name: "How It Works", href: "/howitworks", current: true },
         { name: "Get Inspired", href: "/publicarticles", current: false },
@@ -29,7 +28,9 @@ const Header = () => {
         ...item,
         current: location.pathname === item.href,
     }));
-
+// useEffect(()=>{
+// console.log("context for this", context.user);
+// },[context])
     //get user avatar
 
     // useEffect(() => {
@@ -136,7 +137,7 @@ const Header = () => {
                                                     </span>
                                                     {userAvatar ? (
                                                         <img
-                                                            src={userAvatar}
+                                                            src={context.user.avatar}
                                                             alt="User Avatar"
                                                             className="w-84 h-84"
                                                         />
