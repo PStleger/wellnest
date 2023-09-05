@@ -11,11 +11,11 @@ const articleSchema = mongoose.Schema(
             type: String,
             required: [true, "Article Description is Required!"],
         },
-        content: {
+        text: {
             type: String,
             required: [true, "Article Content is Required!"],
         },
-        createdBy: { type: mongoose.Types.ObjectId, ref: "User" },
+        createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     },
     { timestamps: true }
 );

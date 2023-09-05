@@ -1,5 +1,9 @@
 const CommunityArticleDetails = () => {
-    return <div></div>;
+  return (
+    <div>
+      <button>Click me</button>
+    </div>
+  );
 };
 
 export default CommunityArticleDetails;

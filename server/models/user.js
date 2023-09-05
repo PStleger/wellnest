@@ -26,6 +26,9 @@ const userSchema = mongoose.Schema(
         },
         dob: { type: String, format: Date },
         country: { type: String, required: [true, "Country is required!"] },
+        avatar: {
+            type: String,
+        },
     },
     {
         timestamps: true,

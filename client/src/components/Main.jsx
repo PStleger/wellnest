@@ -23,7 +23,7 @@ import NewProgress from "./NewProgress";
 
 const Main = () => {
     return (
-        <main>
+        <main className="min-h-[550px] ">
             <Routes>
                 <Route path="/landing" element={<Landing />} />
                 <Route path="/" element={<Landing />} />
@@ -65,7 +65,7 @@ const Main = () => {
                     <Route path="journals/new" element={<NewJournal />} />
                     <Route path="progress" element={<Progress />} />
                     <Route
-                        path="progressdetails"
+                        path="progress/progress/:id"
                         element={<ProgressDetails />}
                     />
                     <Route path="progress/new" element={<NewProgress />} />

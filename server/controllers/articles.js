@@ -2,7 +2,14 @@ const Article = require("../models/articles");
 
 const createArticle = async (req, res) => {
     try {
-        const newArticle = await Article.create(req.body);
+        const { userId, title, description, text } = req.body;
+        console.log("new log for user", req.user);
+        const newArticle = await Article.create({
+            createdBy: req.user._id,
+            title,
+            text,
+            description,
+        });
         res.status(201).json(newArticle);
     } catch (error) {
         res.status(500).json({ message: error.message, errors: error.errors });
@@ -11,7 +18,7 @@ const createArticle = async (req, res) => {
 
 const getAllArticles = async (req, res) => {
     try {
-        const articles = await Article.find().populate("createdBy", "userName");
+        const articles = await Article.find().populate("createdBy");
         console.log(" getting all articles:", articles);
         console.log(" getting createdBy:", articles.createdBy);
         res.json(articles);
@@ -25,10 +32,9 @@ const getArticleById = async (req, res) => {
         const {
             params: { id },
         } = req;
-        const article = await Article.find({ _id: id }).populate(
-            "createdBy",
-            "userName"
-        );
+        const article = await Article.find({
+            _id: id,
+        }).populate("createdBy");
         if (article.length === 0) {
             res.status(404).json({ message: "Article not found" });
         }
