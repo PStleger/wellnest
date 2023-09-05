@@ -11,7 +11,6 @@ const Profile = () => {
     const { userAvatar, updateUserAvatar } = useUserAvatar();
     // console.log(userAvatar);
 
-   
     function convertToDate(dobString) {
         // Extract year, month, and day from the string
         const year = parseInt(dobString.slice(0, 4), 10);
