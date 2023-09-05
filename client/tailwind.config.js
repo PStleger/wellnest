@@ -6,7 +6,7 @@ export default {
             animation: ['group-hover'],
         },
     },
-    plugins: [],
+    plugins: [require('tailwindcss-animated')],
     variants: {
         extend: {
           inset: ["group-hover"],

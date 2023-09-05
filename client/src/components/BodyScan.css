@@ -1,11 +1,11 @@
 .hmove {
      display: flex;
      position: relative; top: 0; right: 0;
-     animation: slideh linear 60s infinite;
+     animation: slideh linear 100s infinite;
      }
 
 .hslide { width: 100%; flex-shrink: 0; }
-.hwrap { overflow: hidden; }
+/* .hwrap { overflow: hidden; } */
 
 @keyframes slideh {
   0% { right: 0; } 6.25% { right: 0; }
@@ -25,4 +25,10 @@
 .hslide { padding: 2rem; }
 * {
   box-sizing: border-box;
+}
+
+.trial { 
+  width: 1000px;
+  -webkit-mask-image: radial-gradient(circle at 50%, black 50%, rgba(0,0,0,0.2) 10%);
+  mask-image: radial-gradient(circle at 50%, black 50%, rgba(0,0,0,0.2)10%);
 }

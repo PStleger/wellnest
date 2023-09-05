@@ -1,5 +1,16 @@
 import "./BodyScan.css";
 import image2 from "../assets/3363303.jpg";
+import Lottie from "lottie-react";
+
+import animationData from '../assets/breathe';
+import FootyData from '../assets/Footy.json';
+import ProgressBodyData from '../assets/Progress-Body';
+import TorsoData from '../assets/Torso';
+import ArmData from '../assets/Arm';
+import NeckHeadData from '../assets/Neck-Head';
+import OverallBodyData from '../assets/Overall-Body';
+import BodyScanData from '../assets/BodyLast';
+
 
 const BodyScan = () => {
     return (
@@ -8,7 +19,7 @@ const BodyScan = () => {
                 <div className="hmove">
                     <div className="hslide">
                         <div className="flex flex-row justify-center items-center">
-                            <p className="text-[#6C1770] p-8 ml-5 font-bold text-2xl text-center max-w-md animate-fade animate-once animate-duration-[3000ms] animate-delay-0 animate-ease-linear animate-normal animate-fill-forwards">
+                            <p className="text-[#6C1770] p-8 ml-5 font-bold text-lg text-center max-w-md animate-fade animate-once animate-duration-[3000ms] animate-delay-0 animate-ease-linear animate-normal animate-fill-forwards">
                                 <span className="font-extrabold">
                                     Begin with Breath Awareness: <br />
                                     <br />
@@ -19,17 +30,18 @@ const BodyScan = () => {
                                 your body. This helps you transition into a
                                 state of mindfulness.
                             </p>
-
-                            <img
+                            {/* <img
                                 className="w-[500px] mix-blend-multiply p-8"
                                 src={image2}
                                 alt=""
                             />
+      */}
+      <div className="w-[400px] mix-blend-multiply"><Lottie loop={true} animationData={animationData}/></div>
                         </div>
                     </div>
                     <div className="hslide">
                         <div className="flex flex-row justify-center items-center">
-                            <p className="text-[#6C1770] p-8 font-bold text-2xl text-center max-w-md animate-fade animate-once animate-duration-[3000ms] animate-delay-0 animate-ease-linear animate-normal animate-fill-forwards">
+                            <p className="text-[#6C1770] p-8 font-bold text-lg text-center max-w-md animate-fade animate-once animate-duration-[3000ms] animate-delay-0 animate-ease-linear animate-normal animate-fill-forwards">
                                 <span className="font-extrabold">
                                     Start at Your Feet: <br />
                                     <br />
@@ -39,16 +51,12 @@ const BodyScan = () => {
                                 tension. Pay attention without judgment. Simply
                                 observe what you feel.
                             </p>
-                            <img
-                                className="w-[500px] mix-blend-multiply p-8"
-                                src={image2}
-                                alt=""
-                            />
+                            <div className="w-[400px] mix-blend-multiply"><Lottie loop={true} animationData={FootyData}/></div>
                         </div>
                     </div>
                     <div className="hslide">
                         <div className="flex flex-row justify-center items-center">
-                            <p className="text-[#6C1770] p-8 font-bold text-2xl text-center max-w-md animate-fade animate-once animate-duration-[3000ms] animate-delay-0 animate-ease-linear animate-normal animate-fill-forwards">
+                            <p className="text-[#6C1770] p-8 font-bold text-lg text-center max-w-md animate-fade animate-once animate-duration-[3000ms] animate-delay-0 animate-ease-linear animate-normal animate-fill-forwards">
                                 <span className="font-extrabold">
                                     Progress Slowly Upwards: <br />
                                     <br />
@@ -60,16 +68,13 @@ const BodyScan = () => {
                                 discomfort or tightness, acknowledge it without
                                 trying to change it.
                             </p>
-                            <img
-                                className="w-[500px] mix-blend-multiply p-8"
-                                src={image2}
-                                alt=""
-                            />
+                            <div className="w-[400px]"><Lottie loop={true} animationData={ProgressBodyData}/></div>
+
                         </div>
                     </div>
                     <div className="hslide">
                         <div className="flex flex-row justify-center items-center">
-                            <p className="text-[#6C1770] p-8 font-bold text-2xl text-center max-w-md animate-fade animate-once animate-duration-[3000ms] animate-delay-0 animate-ease-linear animate-normal animate-fill-forwards">
+                            <p className="text-[#6C1770] p-8 font-bold text-lg text-center max-w-md animate-fade animate-once animate-duration-[3000ms] animate-delay-0 animate-ease-linear animate-normal animate-fill-forwards">
                                 <span className="font-extrabold">
                                     Scan Your Torso and Back: <br />
                                     <br />
@@ -80,16 +85,13 @@ const BodyScan = () => {
                                 areas of ease or discomfort? Are there emotions
                                 associated with these sensations?
                             </p>
-                            <img
-                                className="w-[500px] mix-blend-multiply p-8"
-                                src={image2}
-                                alt=""
-                            />
+                            <div className="w-[400px] mix-blend-multiply"><Lottie loop={true} animationData={TorsoData}/></div>
+
                         </div>
                     </div>
                     <div className="hslide">
                         <div className="flex flex-row justify-center items-center">
-                            <p className="text-[#6C1770] p-8 font-bold text-2xl text-center max-w-md animate-fade animate-once animate-duration-[3000ms] animate-delay-0 animate-ease-linear animate-normal animate-fill-forwards">
+                            <p className="text-[#6C1770] p-8 font-bold text-lg text-center max-w-md animate-fade animate-once animate-duration-[3000ms] animate-delay-0 animate-ease-linear animate-normal animate-fill-forwards">
                                 <span className="font-extrabold">
                                     Move to Your Arms: <br />
                                     <br />
@@ -99,16 +101,13 @@ const BodyScan = () => {
                                 arms. Notice any tingling, warmth, or tension in
                                 these areas.
                             </p>
-                            <img
-                                className="w-[500px] mix-blend-multiply p-8"
-                                src={image2}
-                                alt=""
-                            />
+                            <div className="w-[400px] mix-blend-multiply"><Lottie loop={true} animationData={ArmData}/></div>
+
                         </div>
                     </div>
                     <div className="hslide">
                         <div className="flex flex-row justify-center items-center">
-                            <p className="text-[#6C1770] p-8 font-bold text-2xl text-center max-w-md animate-fade animate-once animate-duration-[3000ms] animate-delay-0 animate-ease-linear animate-normal animate-fill-forwards">
+                            <p className="text-[#6C1770] p-8 font-bold text-lg text-center max-w-md animate-fade animate-once animate-duration-[3000ms] animate-delay-0 animate-ease-linear animate-normal animate-fill-forwards">
                                 <span className="font-extrabold">
                                     Scan Your Neck and Head: <br />
                                     <br />
@@ -118,16 +117,13 @@ const BodyScan = () => {
                                 attention to any sensations, even if they seem
                                 subtle.
                             </p>
-                            <img
-                                className="w-[500px] mix-blend-multiply p-8"
-                                src={image2}
-                                alt=""
-                            />
+                            <div className="h-[400px] mix-blend-multiply"><Lottie loop={true} animationData={NeckHeadData}/></div>
+
                         </div>
                     </div>
                     <div className="hslide">
                         <div className="flex flex-row justify-center items-center">
-                            <p className="text-[#6C1770] p-8 font-bold text-2xl text-center max-w-md animate-fade animate-once animate-duration-[3000ms] animate-delay-0 animate-ease-linear animate-normal animate-fill-forwards">
+                            <p className="text-[#6C1770] p-8 font-bold text-lg text-center max-w-md animate-fade animate-once animate-duration-[3000ms] animate-delay-0 animate-ease-linear animate-normal animate-fill-forwards">
                                 <span className="font-extrabold">
                                     Overall Body Awareness: <br />
                                     <br />
@@ -138,16 +134,13 @@ const BodyScan = () => {
                                 parts of your body. Observe your overall sense
                                 of well-being.
                             </p>
-                            <img
-                                className="w-[500px] mix-blend-multiply p-8"
-                                src={image2}
-                                alt=""
-                            />
+                            <div className="h-[400px] mix-blend-multiply"><Lottie loop={true} animationData={OverallBodyData}/></div>
+
                         </div>
                     </div>
                     <div className="hslide">
                         <div className="flex flex-row justify-center items-center">
-                            <p className="text-[#6C1770] p-8 font-bold text-2xl text-center max-w-md animate-fade animate-once animate-duration-[3000ms] animate-delay-0 animate-ease-linear animate-normal animate-fill-forwards">
+                            <p className="text-[#6C1770] p-8 font-bold text-lg text-center max-w-md animate-fade animate-once animate-duration-[3000ms] animate-delay-0 animate-ease-linear animate-normal animate-fill-forwards">
                                 <span className="font-extrabold">
                                     Closing the Scan <br />
                                     <br />
@@ -157,11 +150,8 @@ const BodyScan = () => {
                                 aware of your surroundings. When you're ready,
                                 open your eyes.
                             </p>
-                            <img
-                                className="w-[500px] mix-blend-multiply p-8"
-                                src={image2}
-                                alt=""
-                            />
+                            <div className="mix-blend-multiply"><Lottie loop={true} animationData={BodyScanData}/></div>
+
                         </div>
                     </div>
                 </div>
