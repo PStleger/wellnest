@@ -8,6 +8,9 @@ import axios from "../axiosInstance";
 import "./NewProgress.css";
 import boxsteps from "../assets/boxsteps2.gif";
 import BodyScan from "./BodyScan";
+import Textures from "./Textures";
+import BodyScanInstructions from "./BodyScanInstructions";
+import BodyScanComponent from "./BodyScanInstructions";
 
 const NewProgress = () => {
     const navigate = useNavigate();
@@ -30,7 +33,7 @@ const NewProgress = () => {
         },
         { question: "Assign a colour to this area", answer: "" }, //2
         { question: "Now, assign a shape to this area", answer: "" }, //3
-        { question: "What texture do you feel it is?", answer: "" }, //4
+        { question: "What texture do you feel it is? Use these images as inspiration.", answer: "" }, //4
         {
             question:
                 "Observe this object you’ve assigned a colour, shape, and texture to. Focus on this for a few moments. Has it changed at all?",
@@ -41,7 +44,7 @@ const NewProgress = () => {
         { question: "Has the shape changed?", answer: "" }, //8
         { question: "Now, assign a shape to this area", answer: "" }, //9
         { question: "Has the texture changed?", answer: "" }, //10
-        { question: "What texture do you feel it is?", answer: "" }, //11
+        { question: "What texture do you feel it is? Use these images as inspiration.", answer: "" }, //11
         { question: "Has the location changed?", answer: "" }, //12
         {
             question: "What area in your body is pulling your attention?", //13
@@ -212,12 +215,9 @@ const NewProgress = () => {
     return (
         <div className="flex flex-col justify-center items-center mt-24 mb-24 min-h-[400px]">
             {showBodyScan ? (
-                <>
-                    {/* <p className="text-[#6C1770] p-8 font-bold text-2xl text-center max-w-md animate-fade animate-once animate-duration-[3000ms] animate-delay-0 animate-ease-linear animate-normal animate-fill-forwards">
-                    This is body scan
-                </p> */}
-                    <BodyScan />
-                </>
+                <div>
+                    <BodyScanComponent />
+                </div>
             ) : null}
             {showBodyScan ? (
                 <button
@@ -281,6 +281,11 @@ const NewProgress = () => {
                     strokeColor={hsvaToHex(hsva)}
                 />
             ) : null}
+
+{currentQuestionIndex == 4 || currentQuestionIndex == 11 ? (
+                <div><Textures/></div>
+            ) : null}
+
             {/* {currentQuestionIndex == 4 ? (
   <img src={QAarray[currentQuestionIndex-1].answer} alt="" />
 ):null} */}
