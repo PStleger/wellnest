@@ -19,15 +19,18 @@ function Register() {
     });
     const handleChange = (e) => {
         const { name, value } = e.target;
+        // console.log("name", name);
         setUser({ ...user, [name]: value });
+        // console.log("user", user);
     };
     const handleSubmit = (e) => {
         e.preventDefault();
         context.register(user);
+        console.log("submit:", user);
     };
 
     if (!context.loading && context.user) {
-        return <Navigate to="/" />;
+        return <Navigate to="/dashboard" />;
     }
     return (
         <section className="h-full">
@@ -177,7 +180,7 @@ function Register() {
                                                 className="border-3 border-pink-400 w-5/6 rounded-md"
                                             />
                                             <Link to="/dashboard">
-                                                <button className="rounded-md my-5">
+                                                <button onClick={handleSubmit} className="rounded-md my-5">
                                                     Register
                                                 </button>
                                             </Link>

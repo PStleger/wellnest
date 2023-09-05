@@ -3,12 +3,12 @@ import axios from "../axiosInstance";
 import { useState, useEffect } from "react";
 
 function formatDate(timestamp) {
-  const date = new Date(timestamp);
-  const day = date.getDate();
-  const month = date.getMonth() + 1; // Month is 0-indexed
-  const year = date.getFullYear() % 100; // Get the last two digits of the year
+    const date = new Date(timestamp);
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Month is 0-indexed
+    const year = date.getFullYear() % 100; // Get the last two digits of the year
 
-  return `${day}/${month}/${year}`;
+    return `${day}/${month}/${year}`;
 }
 
 function sanitiseHTML(input) {

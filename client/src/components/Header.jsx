@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import logo from "../assets/nestguy.png";
@@ -7,6 +7,9 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { AuthContext } from "../context/Auth";
 import { useContext } from "react";
 import { Navigate } from "react-router";
+import defaultAvatar from "../assets/defaultavatar.png";
+import axios from "../axiosInstance";
+
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
@@ -15,15 +18,28 @@ function classNames(...classes) {
 const Header = () => {
     const context = useContext(AuthContext);
     const location = useLocation();
+
     const navigation = [
         { name: "How It Works", href: "/howitworks", current: true },
         { name: "Get Inspired", href: "/publicarticles", current: false },
-        { name: "Resources", href: "/", current: false },//NEEDS A LINK
+        { name: "Resources", href: "/", current: false },
     ];
     const updatedNavigation = navigation.map((item) => ({
         ...item,
         current: location.pathname === item.href,
     }));
+// useEffect(()=>{
+// console.log("context for this", context.user);
+// },[context])
+    //get user avatar
+
+    // useEffect(() => {
+    //     // Make an API request to fetch the user's profile
+    //     axios.get("/auth/avatar").then((response) => {
+    //         const userData = response.data;
+    //         setUserAvatar(userData.avatarUrl);
+    //     });
+    // }, []);
 
     const handleLogout = () => {
         console.log("CONTEXT", context);
@@ -115,15 +131,23 @@ const Header = () => {
                                             className="relative ml-3"
                                         >
                                             <div>
-                                                <Menu.Button className="relative flex rounded-full  text-sm  focus:ring-2 focus:ring-[#a57794] sm:w-12 sm:h-12 w-8 h-8">
+                                                <Menu.Button className="relative flex rounded-full  text-sm overflow-hidden focus:ring-2 focus:ring-[#a57794] sm:w-12 sm:h-12 w-8 h-8">
                                                     <span className="sr-only">
                                                         Open user menu
                                                     </span>
-                                                    <img
-                                                        className="sm:w-12 sm:h-12 w-8 h-8 rounded-full"
-                                                        src={userAvatar}
-                                                        alt=""
-                                                    />
+                                                    {userAvatar ? (
+                                                        <img
+                                                            src={context.user.avatar}
+                                                            alt="User Avatar"
+                                                            className="w-84 h-84"
+                                                        />
+                                                    ) : (
+                                                        <img
+                                                            src={defaultAvatar}
+                                                            alt=""
+                                                            className="w-84 h-84"
+                                                        />
+                                                    )}
                                                 </Menu.Button>
                                             </div>
                                             <Transition
@@ -166,7 +190,7 @@ const Header = () => {
                                                 </Menu.Items>
                                             </Transition>
                                         </Menu>
-                                    </> 
+                                    </>
                                 ) : (
                                     <Link to="/login">
                                         <button className="m-10 relative inline-flex items-center justify-center px-4 py-1 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-xl shadow-xl group hover:ring-1 hover:ring-purple-500">

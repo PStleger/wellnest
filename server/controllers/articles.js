@@ -5,7 +5,7 @@ const createArticle = async (req, res) => {
         const { userId, title, description, text } = req.body;
         console.log("new log for user", req.user);
         const newArticle = await Article.create({
-            userId: req.user._id,
+            createdBy: req.user._id,
             title,
             text,
             description,
@@ -18,7 +18,7 @@ const createArticle = async (req, res) => {
 
 const getAllArticles = async (req, res) => {
     try {
-        const articles = await Article.find();
+        const articles = await Article.find().populate("createdBy");
         console.log(" getting all articles:", articles);
         console.log(" getting createdBy:", articles.createdBy);
         res.json(articles);
