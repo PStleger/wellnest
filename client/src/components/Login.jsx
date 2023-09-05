@@ -2,7 +2,7 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../context/Auth";
 import { Link, Navigate } from "react-router-dom";
-import nestlogo from "../assets/images/nestlogo.jpeg";
+import nestlogo from "./images/nestguy.png";
 
 function Login() {
     const context = useContext(AuthContext);
@@ -41,7 +41,7 @@ function Login() {
                                             {/* Logo */}
                                             <div className="text-center">
                                                 <img
-                                                    className="mx-auto w-32 h-40"
+                                                    className="mx-auto w-32 h-auto"
                                                     src={nestlogo}
                                                     alt="logo"
                                                 />

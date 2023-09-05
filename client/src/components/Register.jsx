@@ -19,12 +19,15 @@ function Register() {
     });
     const handleChange = (e) => {
         const { name, value } = e.target;
+        // console.log("name", name);
         setUser({ ...user, [name]: value });
+        // console.log("user", user);
     };
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     context.register(user);
-    // };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        context.register(user);
+        console.log("submit:", user);
+    };
 
     if (!context.loading && context.user) {
         return <Navigate to="/dashboard" />;

@@ -100,7 +100,7 @@ const Progress = () => {
 
     return (
         modifiedStackedData && (
-            <>
+            <div className="max-h-[400px]">
                 <p className="my-5 mx-28 text-lg text-[#8C1960] font-semibold">
                     {`This Week:    
                     ${startDateString} - 
@@ -108,7 +108,7 @@ const Progress = () => {
                 </p>
                 <BarChart
                     width={700}
-                    height={500}
+                    height={300}
                     data={modifiedStackedData}
                     className="mx-auto my-20"
                 >
@@ -142,6 +142,8 @@ const Progress = () => {
                             fill={`${color}`}
                             barSize={100}
                             stroke="#808080"
+                            radius={[10, 10, 10, 10]}
+                            className="hover:cursor-pointer"
                             onClick={() =>
                                 navigate(
                                     `../progress/progress/${colors[color].id}`
@@ -150,7 +152,7 @@ const Progress = () => {
                         />
                     ))}
                 </BarChart>
-            </>
+            </div>
         )
     );
 };
