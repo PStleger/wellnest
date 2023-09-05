@@ -94,7 +94,7 @@ const getLoggedInUser = async (req, res) => {
     // to have logged in user information once they logged in
     try {
         const user = await User.findOne({ _id: req.user._id }).select(
-            "_id email userName"
+            "_id email userName firstName lastName dob country"
         );
         console.log("user still logged in", user);
         res.json({ user });
@@ -122,6 +122,26 @@ const getAvatar = async (req, res) => {
     }
 };
 
+const deleteAvatar = async (req, res) => {
+    try {
+        const userId = req.user._id;
+        // Update the user document in MongoDB to remove the avatar URL
+        const updatedUser = await User.findByIdAndUpdate(
+            userId,
+            { avatar: null },
+            { new: true }
+        );
+        if (!updatedUser) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        res.status(200).json({ message: "Avatar deleted successfully" });
+    } catch (error) {
+        res.status(500).json({
+            message: "Avatar deletion failed",
+            error: error.message,
+        });
+    }
+};
 //update avatar photo
 
 const updateAvatar = async (req, res) => {
@@ -191,4 +211,5 @@ module.exports = {
     getLoggedInUser,
     updateAvatar,
     getAvatar,
+    deleteAvatar,
 };
