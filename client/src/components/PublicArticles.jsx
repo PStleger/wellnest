@@ -1,13 +1,15 @@
 import { Link, useParams } from "react-router-dom";
 import axios from "../axiosInstance";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Heart from "react-animated-heart";
 
 const PublicArticles = () => {
     const [articles, setArticles] = useState([]);
     const [value, setValue] = useState("");
+    const [selectedCategory, setSelectedCategory] = useState("All");
     const { id } = useParams();
     const [isOpen, setIsOpen] = useState(false);
+    const [searchResults, setSearchResults] = useState([]);
 
     useEffect(() => {
         // Make the GET request when the component mounts
@@ -21,6 +23,20 @@ const PublicArticles = () => {
             .catch((e) => console.log(e));
     }, [value]); // The effect will re-run whenever 'value' changes
 
+    useEffect(() => {
+        // Filter articles based on selected category
+        const filteredArticles = filterArticles();
+
+        // Filter the filtered articles based on the search input value
+        const searchFilteredArticles = filteredArticles.filter(
+            (article) =>
+                article.text?.toLowerCase().includes(value.toLowerCase()) ||
+                article.title?.toLowerCase().includes(value.toLowerCase())
+        );
+
+        setSearchResults(searchFilteredArticles);
+    }, [value, selectedCategory, articles]);
+
     const handleLikeClick = (articleId) => {
         const updatedArticles = articles.map((article) => {
             if (article._id === articleId) {
@@ -30,6 +46,34 @@ const PublicArticles = () => {
         });
         setArticles(updatedArticles);
     };
+
+    const dropdownRef = useRef(null);
+
+    useEffect(() => {
+        const handleOutsideClick = (event) => {
+            if (
+                dropdownRef.current &&
+                !dropdownRef.current.contains(event.target)
+            ) {
+                setIsOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handleOutsideClick);
+        return () => {
+            document.removeEventListener("mousedown", handleOutsideClick);
+        };
+    }, []);
+
+    const filterArticles = () => {
+        if (selectedCategory === "All") {
+            return articles; // Display all articles when "All" is selected
+        } else {
+            return articles.filter(
+                (article) => article.description === selectedCategory
+            );
+        }
+    };
+
     function getBorderColorClass(articleDescription) {
         const colorMap = {
             Mindfulness: "border-red-500",
@@ -48,21 +92,13 @@ const PublicArticles = () => {
         setIsOpen(!isOpen);
     };
 
-    const handleCategoryClick = (category) => {
-        setSelectedCategory(category);
-        // Implement your filtering logic here based on the selected category
-        // You can update your list of articles based on the selected category.
-        // For this example, let's just log the selected category.
-        console.log(`Filtering by category: ${category}`);
-    };
-
     return (
         <div>
-            <div className=" relative flex flex-col break-words bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0] md:rounded-2xl md:mx-10 py-10 my-10 shadow-xl shadow-[#6C1770]/50">
+            <div className="  relative flex flex-col break-words bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0] md:rounded-2xl md:mx-10 py-10 my-10 shadow-xl shadow-[#6C1770]/50">
                 <div className="py-5 px-5 flex-auto ">
                     <div className="tab-content tab-space">
                         <div className="flex justify-around items-center flex-col-reverse gap-10 ">
-                            <div className="  h-auto w-2/3 xl:w-1/2 bg-[#EFE2F0]/50 rounded-3xl flex flex-col items-center justify-around p-10">
+                            <div className="  h-auto w-1/2 xl:w-2/3 bg-[#EFE2F0]/50 rounded-3xl flex flex-col items-center justify-around p-10">
                                 <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
                                     <div className="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
                                         <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl ">
@@ -74,121 +110,172 @@ const PublicArticles = () => {
                                         </p>
                                     </div>
                                     <form>
-                                        <div className="flex">
-                                            <label
-                                                htmlFor="search-dropdown"
-                                                className="mb-2 text-sm font-medium text-gray-900 sr-only "
-                                            >
-                                                Your Email
-                                            </label>
-
-                                            <button
-                                                id="dropdown-button"
-                                                onClick={toggleDropdown}
-                                                className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100"
-                                                type="button"
-                                            >
-                                                All categories
-                                                <svg
-                                                    className={`w-2.5 h-2.5 ml-2.5 ${
-                                                        isOpen
-                                                            ? "transform rotate-180"
-                                                            : ""
-                                                    }`}
-                                                    aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    fill="none"
-                                                    viewBox="0 0 10 6"
-                                                >
-                                                    <path
-                                                        stroke="currentColor"
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth="2"
-                                                        d="m1 1 4 4 4-4"
-                                                    />
-                                                </svg>
-                                            </button>
-
+                                        <div className="flex gap-4 mb-20">
                                             <div
-                                                id="_id"
-                                                className={`z-10 ${
-                                                    isOpen ? "block" : "hidden"
-                                                } bg-white divide-y divide-gray-100 rounded-lg shadow w-44 `}
+                                                className="flex flex-col gap-4 relative"
+                                                ref={dropdownRef}
                                             >
-                                                <ul
-                                                    className="py-2 text-sm text-gray-700 "
-                                                    aria-labelledby="dropdown-button"
+                                                <button
+                                                    id="dropdown-button"
+                                                    onClick={toggleDropdown}
+                                                    className="h-[52px] max-h-[52px] flex-shrink-0 w-36 z-50 flex flex-col items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-1 focus:outline-none focus:ring-gray-100"
+                                                    type="button"
                                                 >
-                                                    <li>
-                                                        <button
-                                                            type="button"
-                                                            className="inline-flex w-full px-4 py-2 hover:bg-gray-100 "
-                                                        >
-                                                            Mindfulness
-                                                        </button>
-                                                    </li>
-                                                    <li>
-                                                        <button
-                                                            type="button"
-                                                            className="inline-flex w-full px-4 py-2 hover:bg-gray-100 "
-                                                        >
-                                                            Meditation
-                                                        </button>
-                                                    </li>
-                                                    <li>
-                                                        <button
-                                                            type="button"
-                                                            className="inline-flex w-full px-4 py-2 hover:bg-gray-100 "
-                                                        >
-                                                            CBT
-                                                        </button>
-                                                    </li>
-                                                    <li>
-                                                        <button
-                                                            type="button"
-                                                            className="inline-flex w-full px-4 py-2 hover:bg-gray-100 "
-                                                        >
-                                                            Breathwork
-                                                        </button>
-                                                    </li>
-                                                    <li>
-                                                        <button
-                                                            type="button"
-                                                            className="inline-flex w-full px-4 py-2 hover:bg-gray-100 "
-                                                        >
-                                                            Yoga
-                                                        </button>
-                                                    </li>
-                                                    <li>
-                                                        <button
-                                                            type="button"
-                                                            className="inline-flex w-full px-4 py-2 hover:bg-gray-100 "
-                                                        >
-                                                            Motivational
-                                                        </button>
-                                                    </li>
-                                                    <li>
-                                                        <button
-                                                            type="button"
-                                                            className="inline-flex w-full px-4 py-2 hover:bg-gray-100 "
-                                                        >
-                                                            Holistic
-                                                        </button>
-                                                    </li>
-                                                </ul>
+                                                    All categories
+                                                    <svg
+                                                        className={`   w-2.5 h-2.5 ml-2.5 ${
+                                                            isOpen
+                                                                ? "transform rotate-180"
+                                                                : ""
+                                                        }`}
+                                                        aria-hidden="true"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        fill="none"
+                                                        viewBox="0 0 10 6"
+                                                    >
+                                                        <path
+                                                            stroke="currentColor"
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            strokeWidth="2"
+                                                            d="m1 1 4 4 4-4"
+                                                        />
+                                                    </svg>
+                                                </button>
+                                                <div
+                                                    id="_id"
+                                                    className={`absolute z-10 ${
+                                                        isOpen
+                                                            ? "block"
+                                                            : "hidden"
+                                                    } bg-white divide-y divide-gray-100 rounded-lg shadow w-44 top-16 left-0 `}
+                                                >
+                                                    <ul
+                                                        className="py-2 text-sm text-gray-700  "
+                                                        aria-labelledby="dropdown-button"
+                                                    >
+                                                        <li>
+                                                            <button
+                                                                type="button"
+                                                                className="inline-flex w-full px-4 py-2 hover:bg-gray-100 "
+                                                                onClick={() =>
+                                                                    setSelectedCategory(
+                                                                        "All"
+                                                                    )
+                                                                }
+                                                            >
+                                                                All
+                                                            </button>
+                                                        </li>
+                                                        <li>
+                                                            <button
+                                                                type="button"
+                                                                className="inline-flex w-full px-4 py-2 hover:bg-gray-100 "
+                                                                onClick={() =>
+                                                                    setSelectedCategory(
+                                                                        "Mindfulness"
+                                                                    )
+                                                                }
+                                                            >
+                                                                Mindfulness
+                                                            </button>
+                                                        </li>
+                                                        <li>
+                                                            <button
+                                                                type="button"
+                                                                className="inline-flex w-full px-4 py-2 hover:bg-gray-100 "
+                                                                onClick={() =>
+                                                                    setSelectedCategory(
+                                                                        "Meditation"
+                                                                    )
+                                                                }
+                                                            >
+                                                                Meditation
+                                                            </button>
+                                                        </li>
+                                                        <li>
+                                                            <button
+                                                                type="button"
+                                                                className="inline-flex w-full px-4 py-2 hover:bg-gray-100 "
+                                                                onClick={() =>
+                                                                    setSelectedCategory(
+                                                                        "CBT"
+                                                                    )
+                                                                }
+                                                            >
+                                                                CBT
+                                                            </button>
+                                                        </li>
+                                                        <li>
+                                                            <button
+                                                                type="button"
+                                                                className="inline-flex w-full px-4 py-2 hover:bg-gray-100 "
+                                                                onClick={() =>
+                                                                    setSelectedCategory(
+                                                                        "Breathwork"
+                                                                    )
+                                                                }
+                                                            >
+                                                                Breathwork
+                                                            </button>
+                                                        </li>
+                                                        <li>
+                                                            <button
+                                                                type="button"
+                                                                className="inline-flex w-full px-4 py-2 hover:bg-gray-100 "
+                                                                onClick={() =>
+                                                                    setSelectedCategory(
+                                                                        "Yoga"
+                                                                    )
+                                                                }
+                                                            >
+                                                                Yoga
+                                                            </button>
+                                                        </li>
+                                                        <li>
+                                                            <button
+                                                                type="button"
+                                                                className="inline-flex w-full px-4 py-2 hover:bg-gray-100 "
+                                                                onClick={() =>
+                                                                    setSelectedCategory(
+                                                                        "Motivational"
+                                                                    )
+                                                                }
+                                                            >
+                                                                Motivational
+                                                            </button>
+                                                        </li>
+                                                        <li>
+                                                            <button
+                                                                type="button"
+                                                                className="inline-flex w-full px-4 py-2 hover:bg-gray-100 "
+                                                                onClick={() =>
+                                                                    setSelectedCategory(
+                                                                        "Holistic"
+                                                                    )
+                                                                }
+                                                            >
+                                                                Holistic
+                                                            </button>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                             <div className="relative w-full">
                                                 <input
                                                     type="search"
                                                     id="search-dropdown"
-                                                    className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 "
-                                                    placeholder="Search Mockups, Logos, Design Templates..."
+                                                    className="block p-2.5 h-[52px] max-h-[52px] w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 "
+                                                    placeholder="Search articles.."
+                                                    value={value}
+                                                    onChange={(e) =>
+                                                        setValue(e.target.value)
+                                                    }
                                                     required
                                                 />
                                                 <button
                                                     type="submit"
-                                                    className="absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 "
+                                                    className="absolute flex justify-center items-center h-[52px] max-h-[52px] top-0 right-0 p-2.5 text-sm font-medium  text-white bg-[#8C1960] rounded-r-lg border w-12 hover:bg-[#D9466F] focus:ring-4 focus:outline-none focus:ring-[D9466F]"
                                                 >
                                                     <svg
                                                         className="w-4 h-4"
@@ -212,8 +299,8 @@ const PublicArticles = () => {
                                             </div>
                                         </div>
                                     </form>
-                                    <div className=" grid gap-8 lg:grid-cols-1 overflow-y-auto h-70   ">
-                                        {articles.map((article) => (
+                                    <div className=" grid gap-8 lg:grid-cols-1 overflow-y-scroll h-70 max-h-[800px] rounded-xl  ">
+                                        {searchResults.map((article) => (
                                             <article
                                                 key={article._id}
                                                 className={` border-t-8 p-6 bg-white rounded-lg shadow-md ${getBorderColorClass(
@@ -237,17 +324,22 @@ const PublicArticles = () => {
                                                     </span>
                                                 </div>
                                                 <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
-                                                    <a href="#">
+                                                    <Link
+                                                        to={`/publicarticles/${article._id}`}
+                                                    >
                                                         {article.title}
-                                                    </a>
+                                                    </Link>
                                                 </h2>
                                                 <p className="mb-5 font-light text-gray-500 ">
-                                                    {article.text}
+                                                    {article.text?.slice(
+                                                        1,
+                                                        500
+                                                    )}
                                                 </p>
-                                                <div className="flex justify-between items-center">
-                                                    <div className="flex items-center space-x-4">
+                                                <div className="flex justify-between items-end ">
+                                                    <div className="flex items-end space-x-4">
                                                         <img
-                                                            className="w-7 h-7 rounded-full"
+                                                            className="w-10 h-10 rounded-full"
                                                             src={
                                                                 article
                                                                     .createdBy
@@ -265,9 +357,9 @@ const PublicArticles = () => {
                                                     </div>
                                                     <a
                                                         href="#"
-                                                        className="inline-flex items-center font-medium text-primary-600  hover:underline"
+                                                        className="inline-flex items-end font-medium text-primary-600  hover:underline"
                                                     >
-                                                        <div className="App">
+                                                        <div className="flex justify-end items-end -mb-10">
                                                             <Heart
                                                                 isClick={
                                                                     article.liked ||
@@ -282,21 +374,22 @@ const PublicArticles = () => {
                                                         </div>
                                                         <Link
                                                             to={`/publicarticles/${article._id}`}
+                                                            className="flex justify-center items-center"
                                                         >
                                                             Read More
+                                                            <svg
+                                                                className="ml-2 w-4 h-4"
+                                                                fill="currentColor"
+                                                                viewBox="0 0 20 20"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                            >
+                                                                <path
+                                                                    fill-rule="evenodd"
+                                                                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                                                    clip-rule="evenodd"
+                                                                ></path>
+                                                            </svg>{" "}
                                                         </Link>
-                                                        <svg
-                                                            className="ml-2 w-4 h-4"
-                                                            fill="currentColor"
-                                                            viewBox="0 0 20 20"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                        >
-                                                            <path
-                                                                fill-rule="evenodd"
-                                                                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                                                                clip-rule="evenodd"
-                                                            ></path>
-                                                        </svg>
                                                     </a>
                                                 </div>
                                             </article>
