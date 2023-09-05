@@ -38,9 +38,11 @@
 
     "@win11react/react-canvas-draw": "^1.2.2",
 
-    "axios": "^1.4.0",
+    "axios": "^1.5.0",
 
     "dayjs": "^1.11.9",
+
+    "flowbite": "^1.8.1",
 
     "heroicons-react": "^1.4.1",
 
@@ -49,6 +51,8 @@
     "prop-types": "^15.8.1",
 
     "react": "^18.2.0",
+
+    "react-animated-heart": "^0.0.8",
 
     "react-dom": "^18.2.0",
 
@@ -63,6 +67,14 @@
     "styled-components": "^6.0.7",
 
     "tailwindcss-animated": "^1.0.1"
+
+  },
+
+  "repository": {
+
+    "url": "https://github.com/mariohmol/reactjs-human-body",
+
+    "type": "git"
 
   },
 
@@ -95,3 +107,4 @@
   }
 
 }
+

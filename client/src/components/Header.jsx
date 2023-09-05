@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import logo from "../assets/nestguy.png";
+import logo from "../assets/images/nestguy.png";
 import userAvatar from "../assets/placeholdersu.jpg";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { AuthContext } from "../context/Auth";

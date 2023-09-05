@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+.body-parts {
+    
+
+    margin-top: 50px;
+    max-width: fit-content;
+    max-height: fit-content;
+}
+
+.body-parts div {
+    
+    color: black;
+    
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#info-box {
+    background-color: #3498db;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.hidden {
+    display: none;
+}
+.heady {
+    
+    background-image: url(./assets/images/Girlbody.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 380px;
+    height: 500px;
+    
+
+}
+
