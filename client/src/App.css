@@ -8,7 +8,7 @@ body {
 
 .body-parts {
     
-border: 1px solid black;
+
     margin-top: 50px;
     max-width: fit-content;
     max-height: fit-content;
@@ -45,7 +45,7 @@ border: 1px solid black;
     background-repeat: no-repeat;
     width: 380px;
     height: 500px;
-    border: 1px solid red;
+    
 
 }
 
