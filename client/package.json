@@ -38,7 +38,7 @@
 
     "@win11react/react-canvas-draw": "^1.2.2",
 
-    "axios": "^1.4.0",
+    "axios": "^1.5.0",
 
     "dayjs": "^1.11.9",
 
@@ -67,6 +67,14 @@
     "styled-components": "^6.0.7",
 
     "tailwindcss-animated": "^1.0.1"
+
+  },
+
+  "repository": {
+
+    "url": "https://github.com/mariohmol/reactjs-human-body",
+
+    "type": "git"
 
   },
 
