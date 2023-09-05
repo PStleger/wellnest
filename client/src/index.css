@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+module.exports = {
+
+    plugins: [
+        require('flowbite/plugin')
+    ]
+
+}
