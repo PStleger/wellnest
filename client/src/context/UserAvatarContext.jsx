@@ -23,12 +23,12 @@ export function UserAvatarProvider({ children }) {
     };
     fetchUserAvatar();
     useEffect(() => {
-        console.log("fetching the avatar");
+        // console.log("fetching the avatar");
         fetchUserAvatar();
     }, []);
     useEffect(() => {
         if (userAvatar === null) {
-            console.log("fetching the avatar (initial check)");
+            // console.log("fetching the avatar (initial check)");
             fetchUserAvatar();
         }
     }, [userAvatar]);
@@ -47,7 +47,7 @@ export function UserAvatarProvider({ children }) {
 
     // Fetch the user's avatar when the component mounts (you can adjust the timing)
     useEffect(() => {
-        console.log("fetching the avatar");
+        // console.log("fetching the avatar");
         fetchUserAvatar();
     }, [loading]);
 

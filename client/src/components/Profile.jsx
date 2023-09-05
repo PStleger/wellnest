@@ -9,11 +9,9 @@ import { useAuth } from "../context/Auth";
 const Profile = () => {
     const { user, uploadAvatar, uploading } = useAuth();
     const { userAvatar, updateUserAvatar } = useUserAvatar();
-    console.log(userAvatar);
+    // console.log(userAvatar);
 
-    // useEffect(()=>{
-    //     console.log("this is a loading message ", loading);
-    // },[loading])
+   
     function convertToDate(dobString) {
         // Extract year, month, and day from the string
         const year = parseInt(dobString.slice(0, 4), 10);
@@ -83,7 +81,7 @@ const Profile = () => {
                         </label>
                         {uploading ? (
                             <span className="ml-2 text-[#6C1770] font-bold ">
-                                Upuploading...
+                                Uploading...
                             </span>
                         ) : null}
                     </div>{" "}
@@ -168,13 +166,13 @@ const Profile = () => {
                     <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                         <label
                             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                            htmlFor="grid-city"
+                            htmlFor="country"
                         >
                             Country
                         </label>
                         <input
                             className="appearance-none block w-full bg-[#f6e8f7] text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                            id="grid-city"
+                            id="country"
                             type="text"
                             value={user.country}
                         />
@@ -182,13 +180,13 @@ const Profile = () => {
                     <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                         <label
                             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                            htmlFor="grid-state"
+                            htmlFor="email"
                         >
                             E-mail
                         </label>
                         <input
                             className="appearance-none block w-full bg-[#f6e8f7] text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                            id="grid-city"
+                            id="email"
                             type="text"
                             value={user.email}
                         />
