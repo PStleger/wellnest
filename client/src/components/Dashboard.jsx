@@ -120,7 +120,7 @@ const Dashboard = () => {
                                 href="#link5"
                                 role="tablist"
                             >
-                                Settings
+                                Profile
                             </a>
                         </li>
                     </ul>

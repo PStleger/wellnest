@@ -95,9 +95,22 @@ const SavedArticles = () => {
                                                     {article.title}
                                                 </Link>
                                             </h2>
-                                            <p className="mb-5 font-light text-gray-500 ">
-                                                {article.text?.slice(1, 150)}
-                                            </p>
+                                            <p
+                                                dangerouslySetInnerHTML={{
+                                                    __html:
+                                                        article &&
+                                                        (article.text
+                                                            ? article.text.slice(
+                                                                  0,
+                                                                  75
+                                                              ) +
+                                                              (article.text
+                                                                  .length > 75
+                                                                  ? "..."
+                                                                  : "")
+                                                            : ""),
+                                                }}
+                                            />
                                             <div className="flex justify-between items-end ">
                                                 <div className="flex items-end space-x-4">
                                                     <img

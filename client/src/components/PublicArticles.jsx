@@ -120,7 +120,7 @@ const PublicArticles = () => {
                                                     onClick={toggleDropdown}
                                                     className="h-[52px] max-h-[52px] flex-shrink-0 w-36 z-50 flex flex-col items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-1 focus:outline-none focus:ring-gray-100"
                                                     type="button"
-                                                > 
+                                                >
                                                     All categories
                                                     <svg
                                                         className={`   w-2.5 h-2.5 ml-2.5 ${
@@ -330,12 +330,25 @@ const PublicArticles = () => {
                                                         {article.title}
                                                     </Link>
                                                 </h2>
-                                                <p className="mb-5 font-light text-gray-500 ">
-                                                    {article.text?.slice(
-                                                        1,
-                                                        500
-                                                    )}
-                                                </p>
+
+                                                <p
+                                                    dangerouslySetInnerHTML={{
+                                                        __html:
+                                                            articles &&
+                                                            (article.text
+                                                                ? article.text.slice(
+                                                                      0,
+                                                                      75
+                                                                  ) +
+                                                                  (article.text
+                                                                      .length >
+                                                                  75
+                                                                      ? "..."
+                                                                      : "")
+                                                                : ""),
+                                                    }}
+                                                />
+
                                                 <div className="flex justify-between items-end ">
                                                     <div className="flex items-end space-x-4">
                                                         <img
@@ -363,7 +376,11 @@ const PublicArticles = () => {
                                                             <Heart
                                                                 isClick={
                                                                     article._id ===
-                                                                    "64f5d6987e123737f83ce9a8"
+                                                                        "64f5d6987e123737f83ce9a8" ||
+                                                                    article._id ===
+                                                                        "64f8531cd89b9e0215719987" ||
+                                                                    article._id ===
+                                                                        "64f853b3d89b9e021571998f"
                                                                         ? article.liked ||
                                                                           true
                                                                         : article.liked ||
@@ -376,7 +393,6 @@ const PublicArticles = () => {
                                                                 }
                                                             />
                                                         </div>
-
                                                         <Link
                                                             to={`/publicarticles/${article._id}`}
                                                             className="flex justify-center items-center"
