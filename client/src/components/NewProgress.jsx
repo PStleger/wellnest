@@ -86,7 +86,7 @@ const NewProgress = () => {
         if (answeredQuestion1) {
             const timer = setTimeout(() => {
                 setShowScanButton(true);
-            }, 16 * 1000); // 16 seconds in milliseconds
+            }, 2000); // 16 seconds in milliseconds
 
             return () => clearTimeout(timer);
         }
@@ -362,9 +362,12 @@ const NewProgress = () => {
             {/* {currentQuestionIndex == 4 ? (
   <img src={QAarray[currentQuestionIndex-1].answer} alt="" />
 ):null} */}
-            {currentQuestionIndex === 1 &&
-            !showBoxBreathing &&
-            !showBodyScan ? (
+            {(!showBoxBreathing &&
+                !showBodyScan &&
+                currentQuestionIndex === 1) ||
+            (!showBoxBreathing &&
+                !showBodyScan &&
+                currentQuestionIndex === 13) ? (
                 <div>
                     <BodyPartsDisplay onClick={handleBodyPartClick} />
                 </div>
@@ -381,6 +384,7 @@ const NewProgress = () => {
             currentQuestionIndex == 8 ||
             currentQuestionIndex == 10 ||
             currentQuestionIndex == 12 ||
+            currentQuestionIndex == 13 ||
             currentQuestionIndex == 14 ? null : (
                 <input
                     className="m-4 p-1 rounded-full w-60 text-[#6C1770] border border-[#6C1770] hover:border-fuchsia-500 focus:border-blue-50"
@@ -441,7 +445,8 @@ const NewProgress = () => {
                     <button
                         onClick={handleNextQuestion}
                         className={`m-10 relative inline-flex items-center justify-center px-4 py-2 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-xl shadow-xl group hover:ring-1 hover:ring-purple-500 ${
-                            currentQuestionIndex === 1
+                            currentQuestionIndex === 1 ||
+                            currentQuestionIndex == 13
                                 ? "custom-continue-button"
                                 : ""
                         }`}
