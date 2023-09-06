@@ -4,6 +4,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Journals from "./Journals";
 import Progress from "./Progress";
+import Profile from "./Profile";
+import SavedArticles from "./SavedArticles";
 
 const Dashboard = () => {
     const [openTab, setOpenTab] = useState(1);
@@ -94,7 +96,7 @@ const Dashboard = () => {
                                     setOpenTab(4);
                                 }}
                                 data-toggle="tab"
-                                href="#link3"
+                                href="#link4"
                                 role="tablist"
                             >
                                 Saved
@@ -115,7 +117,7 @@ const Dashboard = () => {
                                     setOpenTab(5);
                                 }}
                                 data-toggle="tab"
-                                href="#link2"
+                                href="#link5"
                                 role="tablist"
                             >
                                 Settings
@@ -219,6 +221,26 @@ const Dashboard = () => {
                                 >
                                     <div className="h-auto w-3/4 xl:w-2/3 bg-[#EFE2F0]/50 rounded-3xl flex flex-col items-center justify-around p-10 mx-auto">
                                         <Progress />
+                                    </div>
+                                </div>
+                                <div
+                                    className={
+                                        openTab === 4 ? "block " : "hidden "
+                                    }
+                                    id="link4"
+                                >
+                                    <div className="h-auto w-3/4 xl:w-2/3 bg-[#EFE2F0]/50 rounded-3xl flex flex-col items-center justify-around p-10 mx-auto">
+                                        <SavedArticles />
+                                    </div>
+                                </div>
+                                <div
+                                    className={
+                                        openTab === 5 ? "block " : "hidden "
+                                    }
+                                    id="link5"
+                                >
+                                    <div className="h-auto w-3/4 xl:w-2/3 bg-[#EFE2F0]/50 rounded-3xl flex flex-col items-center justify-around p-10 mx-auto">
+                                        <Profile />
                                     </div>
                                 </div>
                             </div>

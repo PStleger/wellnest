@@ -12,15 +12,17 @@ const Profile = () => {
     // console.log(userAvatar);
 
     function convertToDate(dobString) {
-        // Extract year, month, and day from the string
         const year = parseInt(dobString.slice(0, 4), 10);
         const month = parseInt(dobString.slice(4, 6), 10) - 1; // Months in JavaScript are 0-indexed
         const day = parseInt(dobString.slice(6, 8), 10);
 
-        // Create a Date object
+        // Create a Date object using the parsed parts
         const dobDate = new Date(year, month, day);
 
-        return dobDate;
+        // Format the Date object as a string in "YYYY-MM-DD" format
+        const formattedDate = dobDate.toISOString().slice(0, 10);
+
+        return formattedDate;
     }
 
     const handleFileChange = async (e) => {
@@ -110,7 +112,7 @@ const Profile = () => {
                             First Name
                         </label>
                         <input
-                            className="appearance-none block w-full bg-[#f6e8f7] text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                            className="appearance-none block w-full bg-[#f6e8f7] text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                             id="grid-first-name"
                             type="text"
                             value={user.firstName}
