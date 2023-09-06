@@ -101,10 +101,10 @@ const PublicArticles = () => {
                             <div className="  h-auto w-1/2 xl:w-2/3 bg-[#EFE2F0]/50 rounded-3xl flex flex-col items-center justify-around p-10">
                                 <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
                                     <div className="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
-                                        <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl ">
+                                        <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-[#6C1770] md:text-5xl lg:text-6xl ">
                                             Inspiration and Subjects of Interest
                                         </h1>
-                                        <p className="font-light text-gray-500 sm:text-xl ">
+                                        <p className="font-light text-white sm:text-xl ">
                                             Find interesting articles created by
                                             our community
                                         </p>
@@ -362,8 +362,12 @@ const PublicArticles = () => {
                                                         <div className="flex justify-end items-end -mb-10">
                                                             <Heart
                                                                 isClick={
-                                                                    article.liked ||
-                                                                    false
+                                                                    article._id ===
+                                                                    "64f5d6987e123737f83ce9a8"
+                                                                        ? article.liked ||
+                                                                          true
+                                                                        : article.liked ||
+                                                                          false
                                                                 }
                                                                 onClick={() =>
                                                                     handleLikeClick(
@@ -372,6 +376,7 @@ const PublicArticles = () => {
                                                                 }
                                                             />
                                                         </div>
+
                                                         <Link
                                                             to={`/publicarticles/${article._id}`}
                                                             className="flex justify-center items-center"
