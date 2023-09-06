@@ -28,7 +28,7 @@ return (
         <div
             className="head absolute top-[22px] left-[53px]  "
             onClick={() => handleBodyPartClick('Head')}
-            onClick={() => showInfo('Head')}
+            
         >
             <p className="text-transparent">
             Head <br />

@@ -137,7 +137,7 @@ const Header = () => {
                                                     </span>
                                                     {userAvatar ? (
                                                         <img
-                                                            src={context.user.avatar}
+                                                            src={context?.user?.avatar}
                                                             alt="User Avatar"
                                                             className="w-84 h-84"
                                                         />

@@ -1,4 +1,3 @@
-
 /* eslint-disable react/no-unescaped-entities */
 import { useState, Fragment, useRef, useEffect } from "react";
 import Wheel from "@uiw/react-color-wheel";
@@ -8,8 +7,10 @@ import { useNavigate } from "react-router-dom";
 import axios from "../axiosInstance";
 import "./NewProgress.css";
 import BodyPartsDisplay from "./BodyPartsDisplay";
-
-
+import BodyScan from "./BodyScan";
+import Textures from "./Textures";
+import BodyScanInstructions from "./BodyScanInstructions";
+import BodyScanComponent from "./BodyScanInstructions";
 
 const NewProgress = () => {
     const navigate = useNavigate();
@@ -18,11 +19,10 @@ const NewProgress = () => {
     // const [canvasDataURL, setCanvasDataURL] = useState("");
     const [hsva, setHsva] = useState({ h: 214, s: 43, v: 90, a: 1 });
     const [answeredQuestion1, setAnsweredQuestion1] = useState(false);
-    
+
     const [showBoxBreathing, setShowBoxBreathing] = useState(false);
     const [showScanButton, setShowScanButton] = useState(false);
     const [showBodyScan, setShowBodyScan] = useState(false);
-    
 
     const [QAarray, setQAarray] = useState([
         {
@@ -35,7 +35,11 @@ const NewProgress = () => {
         },
         { question: "Assign a colour to this area", answer: "" }, //2
         { question: "Now, assign a shape to this area", answer: "" }, //3
-        { question: "What texture do you feel it is?", answer: "" }, //4
+        {
+            question:
+                "What texture do you feel it is? Use these images as inspiration.",
+            answer: "",
+        }, //4
         {
             question:
                 "Observe this object you’ve assigned a colour, shape, and texture to. Focus on this for a few moments. Has it changed at all?",
@@ -46,7 +50,11 @@ const NewProgress = () => {
         { question: "Has the shape changed?", answer: "" }, //8
         { question: "Now, assign a shape to this area", answer: "" }, //9
         { question: "Has the texture changed?", answer: "" }, //10
-        { question: "What texture do you feel it is?", answer: "" }, //11
+        {
+            question:
+                "What texture do you feel it is? Use these images as inspiration.",
+            answer: "",
+        }, //11
         { question: "Has the location changed?", answer: "" }, //12
         {
             question: "What area in your body is pulling your attention?", //13
@@ -71,9 +79,9 @@ const NewProgress = () => {
         console.log(bodyPart);
         const updatedQAarray = [...QAarray];
         // updatedQAarray[currentQuestionIndex].answer = bodyPart; // Update answer for the current question
-setAnswer(bodyPart);
+        setAnswer(bodyPart);
         setQAarray(updatedQAarray);
-      };
+    };
     useEffect(() => {
         if (answeredQuestion1) {
             const timer = setTimeout(() => {
@@ -99,18 +107,21 @@ setAnswer(bodyPart);
     };
 
     const handleNextQuestion = () => {
-        console.log("adasdasdasdsad",answer)
+        console.log("adasdasdasdsad", answer);
         if (answer !== "") {
             // Check if an answer has been provided
             const updatedQAarray = [...QAarray];
             updatedQAarray[currentQuestionIndex].answer = answer; // Save the answer
             setQAarray(updatedQAarray); // Update the question-answer array
-            console.log("this is for checking", updatedQAarray[currentQuestionIndex].answer);
+            console.log(
+                "this is for checking",
+                updatedQAarray[currentQuestionIndex].answer
+            );
             if (currentQuestionIndex === 0) {
                 setAnsweredQuestion1(true);
                 setShowBoxBreathing(true);
             }
-        
+
             setCurrentQuestionIndex(currentQuestionIndex + 1);
             setAnswer(""); // Clear the answer for the next question
             // console.log(answer, updatedQAarray);
@@ -155,7 +166,7 @@ setAnswer(bodyPart);
     // {currentQuestionIndex === 1 ? (
     //     <><Fragment>
     //         {/* Add your image here */}
-            
+
     //         {QAarray[currentQuestionIndex].question}
     //     </Fragment></>
     // ) : null}
@@ -241,50 +252,42 @@ setAnswer(bodyPart);
             })
             .catch((e) => console.log(e));
     };
-//     const [currentStep, setCurrentStep] = useState(1);
+    //     const [currentStep, setCurrentStep] = useState(1);
 
-//     const handleNextStep = () => {
-//       if (currentStep < 3) {
-//         setCurrentStep(currentStep + 1);
-//     }
-// };
-const stepDescriptions = [
-    "Inhale",
-    "Hold",
-    "Exhale",
-    "Repeat",
-  ];
+    //     const handleNextStep = () => {
+    //       if (currentStep < 3) {
+    //         setCurrentStep(currentStep + 1);
+    //     }
+    // };
+    const stepDescriptions = ["Inhale", "Hold", "Exhale", "Repeat"];
 
-  const [currentStep, setCurrentStep] = useState(0);
+    const [currentStep, setCurrentStep] = useState(0);
 
-useEffect(() => {
-  const interval = setInterval(() => {
-    setCurrentStep((prevStep) => (prevStep + 1) % stepDescriptions.length);
-  }, 4000); // Adjust the interval duration (in milliseconds) as needed
-
-  return () => clearInterval(interval); // Clear the interval on unmount
-}, []);
-// const continueButtonClass =
-//     currentQuestionIndex === 1
-//       ? "m-10 relative inline-flex items-center justify-center px-4 py-2 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-xl shadow-xl group hover:ring-1 hover:ring-purple-500 custom-continue-button"
-//       : "m-10 relative inline-flex items-center justify-center px-4 py-2 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-xl shadow-xl group hover:ring-1 hover:ring-purple-500";
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentStep(
+                (prevStep) => (prevStep + 1) % stepDescriptions.length
+            );
+        }, 4000); // Adjust the interval duration (in milliseconds) as needed
+        setCurrentStep(0);
+        return () => clearInterval(interval); // Clear the interval on unmount
+    }, []);
+    // const continueButtonClass =
+    //     currentQuestionIndex === 1
+    //       ? "m-10 relative inline-flex items-center justify-center px-4 py-2 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-xl shadow-xl group hover:ring-1 hover:ring-purple-500 custom-continue-button"
+    //       : "m-10 relative inline-flex items-center justify-center px-4 py-2 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-xl shadow-xl group hover:ring-1 hover:ring-purple-500";
 
     return (
-        
         <div className="flex flex-col justify-center items-center mt-24 mb-24 min-h-[400px]">
-    
-
-            
             {showBodyScan ? (
-                <p className="text-[#6C1770] p-8 font-bold text-2xl text-center max-w-md animate-fade animate-once animate-duration-[3000ms] animate-delay-0 animate-ease-linear animate-normal animate-fill-forwards">
-                    This is body scan
-                </p>
-            ) : // <BodyScan />
-            null}
+                <div>
+                    <BodyScanComponent />
+                </div>
+            ) : null}
             {showBodyScan ? (
                 <button
                     onClick={handleQuestionAfterBodyScan}
-                    className="-mt-48 relative inline-flex items-center justify-center px-4 py-2 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-xl shadow-xl group hover:ring-1 hover:ring-purple-500"
+                    className="mt-10 relative inline-flex items-center justify-center px-4 py-2 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-xl shadow-xl group hover:ring-1 hover:ring-purple-500"
                 >
                     <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0]"></span>
                     <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
@@ -301,21 +304,20 @@ useEffect(() => {
                 //         className="boxbutton"
                 //         onClick={handleQuestionAfterBox}
                 //     >
-                    
+
                 //        <p>Step 1 :- Breathe </p>
                 //        <p>Step 2 :- </p>
                 //        <p>Step 3</p> {/* <img src={boxsteps} alt="" /> */}
                 //     </button>
                 // </div>
-                
+
                 <div>
-                <button className="boxbutton">
-                <p className="transition-opacity duration-500 opacity-100">
-                    {stepDescriptions[currentStep]}
-                </p>
-                </button>
-            </div>
-        
+                    <button className="boxbutton">
+                        <p className="transition-opacity duration-500 opacity-100">
+                            {stepDescriptions[currentStep]}
+                        </p>
+                    </button>
+                </div>
             ) : (
                 <p className="text-[#6C1770] p-8 font-bold text-2xl text-center max-w-md animate-fade animate-once animate-duration-[3000ms] animate-delay-0 animate-ease-linear animate-normal animate-fill-forwards">
                     {QAarray[currentQuestionIndex].question}
@@ -338,7 +340,6 @@ useEffect(() => {
                 <div>{wheel()}</div>
             ) : null}
             {/* {currentQuestionIndex == 1 && !showBoxBreathing && !showBodyScan ? (<div><BodyPartsDisplay /></div>) : null} */}
-            
 
             {currentQuestionIndex == 3 || currentQuestionIndex == 9 ? (
                 <ReactSketchCanvas
@@ -353,15 +354,21 @@ useEffect(() => {
                     strokeColor={hsvaToHex(hsva)}
                 />
             ) : null}
+            {currentQuestionIndex == 4 || currentQuestionIndex == 11 ? (
+                <div>
+                    <Textures />
+                </div>
+            ) : null}
             {/* {currentQuestionIndex == 4 ? (
   <img src={QAarray[currentQuestionIndex-1].answer} alt="" />
 ):null} */}
-  {currentQuestionIndex === 1 && !showBoxBreathing && !showBodyScan ? (
-        <div>
-             
-          <BodyPartsDisplay onClick={handleBodyPartClick} />
-        </div>
-      ): null}
+            {currentQuestionIndex === 1 &&
+            !showBoxBreathing &&
+            !showBodyScan ? (
+                <div>
+                    <BodyPartsDisplay onClick={handleBodyPartClick} />
+                </div>
+            ) : null}
             {showBoxBreathing ||
             showBodyScan ||
             currentQuestionIndex == 1 ||
@@ -432,15 +439,19 @@ useEffect(() => {
                 currentQuestionIndex !== 12 &&
                 currentQuestionIndex !== 14 && (
                     <button
-                    onClick={handleNextQuestion}
-                    className={`m-10 relative inline-flex items-center justify-center px-4 py-2 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-xl shadow-xl group hover:ring-1 hover:ring-purple-500 ${
-                      currentQuestionIndex === 1 ? 'custom-continue-button' : ''
-                    }`}
-                  >
-                    <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0]"></span>
-                    <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
-                    <span className="relative text-white text-2xl">Continue</span>
-                  </button>
+                        onClick={handleNextQuestion}
+                        className={`m-10 relative inline-flex items-center justify-center px-4 py-2 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-xl shadow-xl group hover:ring-1 hover:ring-purple-500 ${
+                            currentQuestionIndex === 1
+                                ? "custom-continue-button"
+                                : ""
+                        }`}
+                    >
+                        <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0]"></span>
+                        <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
+                        <span className="relative text-white text-2xl">
+                            Continue
+                        </span>
+                    </button>
                 )
             )}
 
@@ -475,4 +486,4 @@ useEffect(() => {
     );
 };
 
-export default NewProgress;  
+export default NewProgress;
