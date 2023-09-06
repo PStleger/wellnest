@@ -3,15 +3,16 @@ import axios from "../axiosInstance";
 import { useState, useEffect } from "react";
 
 function formatDate(timestamp) {
-    const date = new Date(timestamp);
-    const day = date.getDate();
-    const month = date.getMonth() + 1; // Month is 0-indexed
-    const year = date.getFullYear() % 100; // Get the last two digits of the year
+  const date = new Date(timestamp);
+  const day = date.getDate();
+  const month = date.getMonth() + 1; // Month is 0-indexed
+  const year = date.getFullYear() % 100; // Get the last two digits of the year
 
-    return `${day}/${month}/${year}`;
+  return `${day}/${month}/${year}`;
 }
 
 const PublicArticleDetails = () => {
+
     const [articles, setArticles] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
     const [editedText, setEditedText] = useState("");
@@ -55,25 +56,18 @@ const PublicArticleDetails = () => {
             .catch((e) => console.log(e));
     }, [id]); // Use 'id' as the dependency for useEffect
 
-    return (
-        <div>
-            <div className="relative flex flex-col break-words bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0] md:rounded-2xl md:mx-10 py-10 my-10 shadow-xl shadow-[#6C1770]/50">
-                <div className="py-5 px-5 flex-auto ">
-                    <div className="tab-content tab-space">
-                        <div className="flex justify-around items-center flex-col-reverse gap-10 md:flex-row">
-                            <div className="h-auto w-2/3 xl:w-1/2 bg-[#EFE2F0]/50 rounded-3xl flex flex-col items-center justify-around p-10">
-                                <div className="gridItem flex items-center justify-center gap-2 flex-wrap lg:mx-16 flex-col">
-                                    <h2 className="text-[#6C1770] text-2xl pb-3">
-                                        {articles.title}
-                                    </h2>
-                                    <p>
-                                        Published on{" "}
-                                        {formatDate(articles.createdAt)}
-                                    </p>
-                                    <p>
-                                        Created By{" "}
-                                        {articles.createdBy?.userName}
-                                    </p>
+
+  function getBorderColorClass(articleDescription) {
+    const colorMap = {
+      Mindfulness: "border-red-500",
+      Meditation: "border-blue-500",
+      CBT: "border-green-500",
+      Breathwork: "border-purple-500",
+      Yoga: "border-yellow-500",
+      Motivational: "border-orange-500",
+      Holistic: "border-indigo-500",
+    };
+
 
                                    
 
@@ -157,10 +151,27 @@ const PublicArticleDetails = () => {
                             </div>
                         </div>
                     </div>
+
                 </div>
+
+                {/* ADD ENTRY BUTTON */}
+                <Link
+                  to="../journals/new"
+                  className="inline-block mt-6 bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0] text-white text-lg font-semibold py-3 px-6 rounded-lg shadow-md hover:ring-2 hover:ring-purple-500 hover:bg-opacity-95 hover:transform hover:scale-105 transition duration-300 ease-in-out"
+                >
+                  Add Article
+                </Link>
+              </div>
             </div>
+          </div>
         </div>
-    );
+      </div>
+
+      {/* testing */}
+
+      {/* testing  */}
+    </div>
+  );
 };
 
 export default PublicArticleDetails;
