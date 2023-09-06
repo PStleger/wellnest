@@ -1,8 +1,8 @@
 // import nest from "./images/nest.png"
-import placeholder from "../assets/images/placeholder.png"
-import placeholder1 from "../assets/images/placeholder1.png"
-import placeholder2 from "../assets/images/placeholder2.png"
-import placeholder3 from "../assets/images/placeholder3.png"
+import placeholder from "../assets/images/placeholder.png";
+import placeholder1 from "../assets/images/placeholder1.png";
+import placeholder2 from "../assets/images/placeholder2.png";
+import placeholder3 from "../assets/images/placeholder3.png";
 // import placeholder4 from "./images/placeholder4.png"
 import { Link } from "react-router-dom";
 const HowItWorks = () => {
@@ -10,7 +10,7 @@ const HowItWorks = () => {
     <div>
       <div className=" bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0]">
         <section>
-          <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
+          <div className=" flex flex-col items-center pt-16 ">
             <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl ">
               How our app works
             </h1>
@@ -18,11 +18,11 @@ const HowItWorks = () => {
               Discover the Power of Emotion with WellNest Revolutionizing
               Emotional Well-Being
             </p>
-            <div className="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4"></div>
+            <div className="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4 "></div>
           </div>
         </section>
         <section>
-          <div className="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
+          <div className=" gap-2 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
             <img
               className="object-cover w-full h-full transform duration-700 backdrop-opacity-100 rounded-2xl"
               src={placeholder}
