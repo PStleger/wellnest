@@ -131,8 +131,8 @@ const Journals = () => {
           return (
             <div key={entry.id} className="w-96">
               <div className="p-6 my-5 grid gap-8 lg:grid-cols-1 h-70 max-w-[800px] w-full rounded-xl bg-[#EFE2F0]/50">
-
                 <p className="mb-5 font-light text-[#6C1770]/50">
+<h1>{entry.title}</h1>
                   <p dangerouslySetInnerHTML={{ __html: displayText }} />
                         </p>
                         <div className="flex justify-between items-end ">

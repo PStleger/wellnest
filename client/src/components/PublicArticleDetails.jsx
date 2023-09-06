@@ -49,7 +49,12 @@ const PublicArticleDetails = () => {
                                     </p>
 
                                     <div className="mt-5 px-10 w-auto h-auto border-2 border-white/20 rounded-2xl">
-                                        <p className="py-10">{articles.text}</p>
+                                        {/* <p className="py-10">{articles.text}</p> */}
+                                        <p
+                          dangerouslySetInnerHTML={{
+                            __html: articles && articles.text,
+                          }}
+                        />
                                     </div>
                                 </div>
 
