@@ -21,17 +21,17 @@ export function UserAvatarProvider({ children }) {
             setLoading(false);
         }
     };
-    fetchUserAvatar();
+    // fetchUserAvatar();
     useEffect(() => {
         // console.log("fetching the avatar");
         fetchUserAvatar();
     }, []);
-    useEffect(() => {
-        if (userAvatar === null) {
-            // console.log("fetching the avatar (initial check)");
-            fetchUserAvatar();
-        }
-    }, [userAvatar]);
+    // useEffect(() => {
+    //     if (userAvatar === null) {
+    //         // console.log("fetching the avatar (initial check)");
+    //         fetchUserAvatar();
+    //     }
+    // }, [userAvatar]);
 
     // Function to update the user's avatar on the server
     const updateUserAvatar = async (avatarUrl) => {

@@ -11,7 +11,7 @@ const HowItWorks = () => {
       <div className=" bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0]">
         <section>
           <div className=" flex flex-col items-center pt-16 ">
-            <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-stone-50 md:text-5xl lg:text-6xl ">
+            <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-[#6C1770] md:text-5xl lg:text-6xl ">
               How our app works
             </h1>
             <p className="mb-8 text-lg font-normal text-stone-50 lg:text-xl sm:px-16 xl:px-48 ">
@@ -28,7 +28,7 @@ const HowItWorks = () => {
               src={placeholder}
             />
             <div className="mt-4 md:mt-0">
-              <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-stone-50 ">
+              <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-[#6C1770]">
                 Revolutionizing Emotional Well-Being
               </h2>
               <p className="mb-6 font-light text-stone-50 md:text-lg ">
@@ -95,7 +95,7 @@ const HowItWorks = () => {
             />
 
             <div className="mt-4 md:mt-0">
-              <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-white ">
+              <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-[#6C1770] ">
                 Body Scan for Mindful Wellness
               </h2>
               <p className="mb-6 font-light text-white md:text-lg ">
