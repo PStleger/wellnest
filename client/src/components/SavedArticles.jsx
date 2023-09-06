@@ -55,10 +55,10 @@ const SavedArticles = () => {
                         <div className="flex justify-around items-center flex-col-reverse gap-10 ">
                             <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-10 lg:px-6 w-[900px]">
                                 <div className="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
-                                    <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl ">
+                                    <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-[#6C1770] md:text-5xl lg:text-6xl ">
                                         Your Favorite Articles
                                     </h1>
-                                    <p className="font-light text-gray-500 sm:text-xl ">
+                                    <p className="font-light text-white sm:text-xl ">
                                         Find interesting articles created by our
                                         community
                                     </p>
@@ -96,7 +96,7 @@ const SavedArticles = () => {
                                                 </Link>
                                             </h2>
                                             <p className="mb-5 font-light text-gray-500 ">
-                                                {article.text?.slice(1, 500)}
+                                                {article.text?.slice(1, 150)}
                                             </p>
                                             <div className="flex justify-between items-end ">
                                                 <div className="flex items-end space-x-4">
