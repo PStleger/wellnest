@@ -11,10 +11,6 @@ function formatDate(timestamp) {
     return `${day}/${month}/${year}`;
 }
 
-function sanitiseHTML(input) {
-  return input.replace(/<\/?[^>]+(>|$)/g, "");
-}
-
 const JournalDetails = () => {
   const [journals, setJournals] = useState([]);
   const [value, setValue] = useState("");
