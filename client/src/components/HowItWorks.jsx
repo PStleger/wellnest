@@ -11,10 +11,10 @@ const HowItWorks = () => {
       <div className=" bg-gradient-to-br from-[#88dfee] via-purple-400 to-[#DFC6E0]">
         <section>
           <div className=" flex flex-col items-center pt-16 ">
-            <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl ">
+            <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-stone-50 md:text-5xl lg:text-6xl ">
               How our app works
             </h1>
-            <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 ">
+            <p className="mb-8 text-lg font-normal text-stone-50 lg:text-xl sm:px-16 xl:px-48 ">
               Discover the Power of Emotion with WellNest Revolutionizing
               Emotional Well-Being
             </p>
@@ -28,10 +28,10 @@ const HowItWorks = () => {
               src={placeholder}
             />
             <div className="mt-4 md:mt-0">
-              <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 ">
+              <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-stone-50 ">
                 Revolutionizing Emotional Well-Being
               </h2>
-              <p className="mb-6 font-light text-gray-500 md:text-lg ">
+              <p className="mb-6 font-light text-stone-50 md:text-lg ">
                 In todays fast-paced world, its easy to push our emotions aside
                 or dismiss them in favor of intellectualizing our experiences.
                 Did you know that the human body requires just 90 seconds to
@@ -95,10 +95,10 @@ const HowItWorks = () => {
             />
 
             <div className="mt-4 md:mt-0">
-              <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 ">
+              <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-white ">
                 Body Scan for Mindful Wellness
               </h2>
-              <p className="mb-6 font-light text-gray-500 md:text-lg ">
+              <p className="mb-6 font-light text-white md:text-lg ">
                 Experience a profound connection between your body and mind with
                 Wellnest's Body Scan feature. Achieve a state of deep relaxation
                 and self-awareness as you explore the intricacies of your body,
