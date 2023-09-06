@@ -26,7 +26,7 @@ const JournalDetails = () => {
       .then((res) => {
         // Update the state with the retrieved journal data
         setJournals(res.data);
-        setEditedText(res.data.text); // Initialize editedText with the current text
+        setEditedText(sanitiseHTML(res.data.text)); // Initialize editedText with the current text
         console.log(res.data);
       })
       .catch((e) => console.log(e));

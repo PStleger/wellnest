@@ -150,51 +150,52 @@ const Journals = () => {
                                         ? truncatedText + "..."
                                         : truncatedText;
 
-
-          return (
-            <div key={entry.id} className="w-96">
-              <div className="p-6 my-5 grid gap-8 lg:grid-cols-1 h-70 max-w-[800px] w-full rounded-xl bg-[#EFE2F0]/50">
-                <p className="mb-5 font-light text-[#6C1770]/50">
-<h1>{entry.title}</h1>
-                  <p dangerouslySetInnerHTML={{ __html: displayText }} />
-                        </p>
-                        <div className="flex justify-between items-end ">
-                          <a
-                            href="#"
-                            className="inline-flex items-end font-medium text-primary-600  hover:underline"
-                          >
-                            <Link
-                              to={`/journals/${entry._id}`}
-                              className="flex justify-center items-center"
-                            >
-                              Read More
-                              <svg
-                                className="ml-2 w-4 h-4"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  fillRule="evenodd"
-                                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                                  clipRule="evenodd"
-                                ></path>
-                              </svg>{" "}
-                            </Link>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                }
-                return null; // If the entry doesn't match the selected date, skip it
-              })}
-            </ul>
-          </div>
-        )}
-    </div>
-  );
-
+                                return (
+                                    <div key={entry.id} className="w-96">
+                                        <div className="p-6 my-5 grid gap-8 lg:grid-cols-1 h-70 max-w-[800px] w-full rounded-xl bg-[#EFE2F0]/50">
+                                            <p className="mb-5 font-light text-[#6C1770]/50">
+                                                <p
+                                                    dangerouslySetInnerHTML={{
+                                                        __html: displayText,
+                                                    }}
+                                                />
+                                            </p>
+                                            <div className="flex justify-between items-end ">
+                                                <a
+                                                    href="#"
+                                                    className="inline-flex items-end font-medium text-primary-600  hover:underline"
+                                                >
+                                                    <Link
+                                                        to={`/journals/${entry._id}`}
+                                                        className="flex justify-center items-center"
+                                                    >
+                                                        Read More
+                                                        <svg
+                                                            className="ml-2 w-4 h-4"
+                                                            fill="currentColor"
+                                                            viewBox="0 0 20 20"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                        >
+                                                            <path
+                                                                fillRule="evenodd"
+                                                                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                                                clipRule="evenodd"
+                                                            ></path>
+                                                        </svg>{" "}
+                                                    </Link>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            }
+                            return null; // If the entry doesn't match the selected date, skip it
+                        })}
+                    </ul>
+                </div>
+            )}
+        </div>
+    );
 };
 
 export default Journals;
