@@ -1,0 +1,472 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/* Tokens                                                              */
+/* ------------------------------------------------------------------ */
+
+/*
+ * Tokens resolve where they're declared, so `.scheme-dark` re-declares them to give a
+ * subtree (like Calm now) the night palette regardless of the page's theme.
+ */
+:root,
+.scheme-dark {
+  color-scheme: light dark;
+
+  --canvas: light-dark(#f7f2ec, #141016);
+  --surface: light-dark(#fffcf8, #1d1720);
+  --surface-2: light-dark(#f1e9e0, #282030);
+  --ink: light-dark(#2b2130, #f3ecf1);
+  --ink-muted: light-dark(#665869, #b9abb9);
+  --line: light-dark(#e3d8cc, #3a3040);
+  --line-strong: light-dark(#cbbcae, #54475b);
+  --primary: light-dark(#7b2d63, #e8a9d4);
+  --primary-hover: light-dark(#63224f, #f2c4e3);
+  --on-primary: light-dark(#ffffff, #2a0f23);
+  --primary-soft: light-dark(#f3e3ec, #3a2436);
+  --sage: light-dark(#3d6a55, #9fd3b8);
+  --sage-soft: light-dark(#e2eee7, #1f3329);
+  --apricot: light-dark(#f2b48a, #b8744a);
+  --sky: light-dark(#0c5a84, #a5d8f5);
+  --sky-soft: light-dark(#e0f0fa, #16303f);
+  --danger: light-dark(#b42318, #ff9d94);
+  --danger-soft: light-dark(#fde8e6, #3b1a18);
+  --focus: light-dark(#7b2d63, #f2c4e3);
+  /* Chart series, validated for CVD separation and 3:1 contrast on --surface in each mode. */
+  --chart-before: light-dark(#d97745, #c9702f);
+  --chart-after: light-dark(#9d3f82, #a95b9a);
+  --shadow: light-dark(#4a2c28, #000000);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+.scheme-dark {
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-on-primary: var(--on-primary);
+  --color-primary-soft: var(--primary-soft);
+  --color-sage: var(--sage);
+  --color-sage-soft: var(--sage-soft);
+  --color-apricot: var(--apricot);
+  --color-sky: var(--sky);
+  --color-sky-soft: var(--sky-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-chart-before: var(--chart-before);
+  --color-chart-after: var(--chart-after);
+
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+
+  --shadow-soft:
+    0 1px 1px color-mix(in srgb, var(--shadow) 6%, transparent),
+    0 4px 8px -2px color-mix(in srgb, var(--shadow) 8%, transparent),
+    0 16px 32px -12px color-mix(in srgb, var(--shadow) 16%, transparent);
+  --shadow-lift:
+    0 2px 2px color-mix(in srgb, var(--shadow) 6%, transparent),
+    0 8px 16px -4px color-mix(in srgb, var(--shadow) 12%, transparent),
+    0 32px 64px -24px color-mix(in srgb, var(--shadow) 26%, transparent);
+
+  --radius-card: 1.75rem;
+
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-breath: cubic-bezier(0.45, 0, 0.55, 1);
+
+  --animate-breathe: breathe 8s var(--ease-soft) infinite;
+  --animate-drift: drift 18s ease-in-out infinite;
+  --animate-rise: rise 0.6s var(--ease-soft) both;
+  --animate-pop: pop 0.42s var(--ease-spring);
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-bloom: bloom 2.4s var(--ease-soft) both;
+  --animate-glow: glow 6s ease-in-out infinite;
+  --animate-levels: levels 1.2s ease-in-out infinite;
+
+  @keyframes breathe {
+    0%,
+    100% {
+      transform: scale(0.94);
+    }
+    50% {
+      transform: scale(1.04);
+    }
+  }
+
+  /* Transform-only, so it runs on the compositor with no repaints. */
+  @keyframes drift {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+    }
+    33% {
+      transform: translate3d(3%, -4%, 0) rotate(35deg) scale(1.06);
+    }
+    66% {
+      transform: translate3d(-3%, 3%, 0) rotate(-25deg) scale(0.96);
+    }
+  }
+
+  @keyframes pop {
+    0% {
+      transform: scale(1);
+    }
+    40% {
+      transform: scale(1.06);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+    50% {
+      transform: translate3d(0, -8px, 0);
+    }
+  }
+
+  /* A ring that swells outward and fades, like a ripple on still water. */
+  @keyframes bloom {
+    from {
+      transform: scale(0.6);
+      opacity: 0.7;
+    }
+    to {
+      transform: scale(1.9);
+      opacity: 0;
+    }
+  }
+
+  @keyframes glow {
+    0%,
+    100% {
+      opacity: 0.55;
+      transform: scale(0.96);
+    }
+    50% {
+      opacity: 0.9;
+      transform: scale(1.04);
+    }
+  }
+
+  @keyframes levels {
+    0%,
+    100% {
+      transform: scaleY(0.3);
+    }
+    50% {
+      transform: scaleY(1);
+    }
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(0.75rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    background-color: var(--canvas);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* A barely-there paper grain. Tiny inline SVG, fixed so it never repaints on scroll. */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.12;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--primary-soft);
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    outline: 2.5px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 0.5rem;
+  }
+
+  [id] {
+    scroll-margin-top: 6rem;
+  }
+
+  input,
+  textarea,
+  select,
+  button {
+    font: inherit;
+  }
+
+  input[type="range"] {
+    accent-color: var(--primary);
+  }
+
+  /* Fieldsets default to min-content width, which breaks responsive rows inside them. */
+  fieldset {
+    min-width: 0;
+  }
+}
+
+/* Skip rendering work for off-screen sections until they are scrolled near. */
+@utility defer-render {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
+}
+
+/* Reduced motion: the in-app setting wins, otherwise the operating system decides. */
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) *,
+  :root:not([data-motion="full"]) *::before,
+  :root:not([data-motion="full"]) *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  :root:not([data-motion="full"])::view-transition-group(*),
+  :root:not([data-motion="full"])::view-transition-old(*),
+  :root:not([data-motion="full"])::view-transition-new(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
+
+:root[data-motion="reduce"] *,
+:root[data-motion="reduce"] *::before,
+:root[data-motion="reduce"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+:root[data-motion="reduce"]::view-transition-group(*),
+:root[data-motion="reduce"]::view-transition-old(*),
+:root[data-motion="reduce"]::view-transition-new(*) {
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+}
+
+/* ------------------------------------------------------------------ */
+/* View transitions                                                    */
+/* ------------------------------------------------------------------ */
+
+/* The layout is identical between pages, so the root swaps instantly and only content moves. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
+/* Clicks during a transition reach the live page. */
+::view-transition {
+  pointer-events: none;
+}
+
+::view-transition-old(.page) {
+  animation: 160ms ease-in both vt-fade reverse;
+}
+
+::view-transition-new(.page) {
+  animation:
+    320ms var(--ease-soft) 80ms both vt-fade,
+    420ms var(--ease-soft) both vt-rise;
+}
+
+::view-transition-old(.fade-out) {
+  animation: 140ms ease-in both vt-fade reverse;
+}
+
+::view-transition-new(.rise-in) {
+  animation:
+    260ms var(--ease-soft) 60ms both vt-fade,
+    420ms var(--ease-soft) both vt-rise;
+}
+
+::view-transition-group(.morph) {
+  animation-duration: 480ms;
+  animation-timing-function: var(--ease-soft);
+}
+
+::view-transition-image-pair(.morph) {
+  animation-name: vt-soften;
+}
+
+@keyframes vt-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes vt-rise {
+  from {
+    translate: 0 14px;
+  }
+}
+
+@keyframes vt-soften {
+  40% {
+    filter: blur(2px);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Scroll-driven reveals (transform only, so text contrast is never   */
+/* reduced), progressive enhancement where the browser supports it.   */
+/* ------------------------------------------------------------------ */
+
+@supports (animation-timeline: view()) {
+  :root:not([data-motion="reduce"]) .reveal {
+    animation: reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 28%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :root:not([data-motion="full"]) .reveal {
+      animation: none;
+    }
+  }
+}
+
+@keyframes reveal {
+  from {
+    transform: translateY(36px) scale(0.98);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Prose (library articles)                                            */
+/* ------------------------------------------------------------------ */
+
+@layer components {
+  .prose-calm {
+    font-size: 1.125rem;
+    line-height: 1.75;
+  }
+
+  .prose-calm > * + * {
+    margin-top: 1.25em;
+  }
+
+  .prose-calm h2 {
+    margin-top: 2.25em;
+    font-size: 1.75rem;
+  }
+
+  .prose-calm h3 {
+    margin-top: 1.75em;
+    font-size: 1.3rem;
+  }
+
+  .prose-calm h2 + *,
+  .prose-calm h3 + * {
+    margin-top: 0.75em;
+  }
+
+  .prose-calm ul,
+  .prose-calm ol {
+    padding-left: 1.4em;
+  }
+
+  .prose-calm ul {
+    list-style: disc;
+  }
+
+  .prose-calm ol {
+    list-style: decimal;
+  }
+
+  .prose-calm li + li {
+    margin-top: 0.5em;
+  }
+
+  .prose-calm li::marker {
+    color: var(--primary);
+  }
+
+  .prose-calm a {
+    color: var(--primary);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+
+  .prose-calm a:hover {
+    text-decoration-thickness: 2px;
+  }
+
+  .prose-calm blockquote {
+    border-left: 3px solid var(--apricot);
+    padding-left: 1.1em;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  .prose-calm strong {
+    font-weight: 650;
+  }
+}

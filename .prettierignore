@@ -1,0 +1,11 @@
+.next
+node_modules
+pnpm-lock.yaml
+drizzle
+public
+coverage
+playwright-report
+test-results
+.lighthouseci
+src/content/library/*.mdx
+next-env.d.ts
